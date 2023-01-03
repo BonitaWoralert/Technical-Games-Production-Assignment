@@ -35,9 +35,10 @@ public class Movement : MonoBehaviour
             isGrounded = false;
         }
     }
-    void OnCollisionEnter2D(Collision2D coll)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (coll.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
         }
