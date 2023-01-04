@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class Enemy_AI : MonoBehaviour
 {
     /// <summary>
     /// The script should make the AI to:
@@ -14,33 +15,43 @@ public class EnemyAI : MonoBehaviour
     /// </summary>
 
     private AIState currentAIState;
+    private bool isSpriteFlip;
+    private SpriteRenderer spriteRenderer;
+    private Color defaultColor;
+    private Vector2 defaultVisionBoxPos;
+
     [SerializeField] private float patrolStartPointX;
     [SerializeField] private float patrolStartPointY;
     [SerializeField] private float patrolEndPointX;
     [SerializeField] private float patrolPointRange;
     [SerializeField] private float normalMovementSpeed;
+    [SerializeField] private bool isMoveLeft;
+
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private bool moveLeft;
+    [SerializeField] private GameObject visionBoxObject;
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        defaultColor = spriteRenderer.color;
         currentAIState = AIState.PATROLTO;
+        defaultVisionBoxPos = visionBoxObject.transform.localPosition;
         patrolStartPointX = rb.position.x;
         patrolStartPointY = rb.position.y;
 
         if (patrolStartPointX < patrolEndPointX)
         {
-            moveLeft = false;
+            isMoveLeft = false;
         }
         else
         {
-            moveLeft = true;
+            isMoveLeft = true;
         }
     }
 
     void Update()
     {
-        if(moveLeft == true)
+        if(isMoveLeft == true)
         {
             MoveLeft();
         }
@@ -79,7 +90,7 @@ public class EnemyAI : MonoBehaviour
             currentAIState = AIState.PATROLBACK;
 
             //Change Movement Direction
-            moveLeft = !moveLeft;
+            isMoveLeft = !isMoveLeft;
         }
     }
 
@@ -91,18 +102,26 @@ public class EnemyAI : MonoBehaviour
             currentAIState = AIState.PATROLTO;
 
             //Change Movement Direction
-            moveLeft = !moveLeft;
+            isMoveLeft = !isMoveLeft;
         }
     }
 
     private void MoveLeft()
     {
         transform.position = new Vector2(transform.position.x + -(normalMovementSpeed * Time.deltaTime), rb.position.y);
+        spriteRenderer.flipX = true;
+        visionBoxObject.transform.localPosition = new Vector3(defaultVisionBoxPos.x * -1, defaultVisionBoxPos.y);
+        //visionBoxObject.transform.position = new Vector3(-defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
+        //spriteRenderer.color = defaultColor;
     }
 
     private void MoveRight()
     {
         transform.position = new Vector2(transform.position.x + (normalMovementSpeed * Time.deltaTime), rb.position.y);
+        spriteRenderer.flipX = false;
+        visionBoxObject.transform.localPosition = defaultVisionBoxPos;
+        //visionBoxObject.transform.position = new Vector3(defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
+        //spriteRenderer.color = Color.yellow;
     }
 }
 
