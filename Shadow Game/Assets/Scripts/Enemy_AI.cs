@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class Enemy_AI : MonoBehaviour
     ///     Return (Go back to patrol pattern location)
     /// </summary>
 
-    private AIState currentAIState;
+    [SerializeField] private AIState currentAIState;
     private bool isSpriteFlip;
     private SpriteRenderer spriteRenderer;
     private Color defaultColor;
@@ -29,6 +30,7 @@ public class Enemy_AI : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject visionBoxObject;
+    //[SerializeField] private Enemy_Vision_Script enemyVisionScript;
 
     void Start()
     {
@@ -51,14 +53,7 @@ public class Enemy_AI : MonoBehaviour
 
     void Update()
     {
-        if(isMoveLeft == true)
-        {
-            MoveLeft();
-        }
-        else
-        {
-            MoveRight();
-        }
+
 
         switch (currentAIState)
         {
@@ -79,7 +74,16 @@ public class Enemy_AI : MonoBehaviour
             default:
                 break;
         }
-  
+
+        if (isMoveLeft == true)
+        {
+            MoveLeft();
+        }
+        else
+        {
+            MoveRight();
+        }
+
     }
 
     private void PatrolTo()
@@ -108,24 +112,58 @@ public class Enemy_AI : MonoBehaviour
 
     private void MoveLeft()
     {
-        transform.position = new Vector2(transform.position.x + -(normalMovementSpeed * Time.deltaTime), rb.position.y);
-        spriteRenderer.flipX = true;
-        visionBoxObject.transform.localPosition = new Vector3(defaultVisionBoxPos.x * -1, defaultVisionBoxPos.y);
-        //visionBoxObject.transform.position = new Vector3(-defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
-        //spriteRenderer.color = defaultColor;
+        if(currentAIState != AIState.NONE)
+        {
+            transform.position = new Vector2(transform.position.x + -(normalMovementSpeed * Time.deltaTime), rb.position.y);
+            spriteRenderer.flipX = true;
+            visionBoxObject.transform.localPosition = new Vector3(defaultVisionBoxPos.x * -1, defaultVisionBoxPos.y);
+            //visionBoxObject.transform.position = new Vector3(-defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
+            //spriteRenderer.color = defaultColor;
+        }
     }
 
     private void MoveRight()
     {
-        transform.position = new Vector2(transform.position.x + (normalMovementSpeed * Time.deltaTime), rb.position.y);
-        spriteRenderer.flipX = false;
-        visionBoxObject.transform.localPosition = defaultVisionBoxPos;
-        //visionBoxObject.transform.position = new Vector3(defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
-        //spriteRenderer.color = Color.yellow;
+        if(currentAIState != AIState.NONE)
+        {
+            transform.position = new Vector2(transform.position.x + (normalMovementSpeed * Time.deltaTime), rb.position.y);
+            spriteRenderer.flipX = false;
+            visionBoxObject.transform.localPosition = defaultVisionBoxPos;
+            //visionBoxObject.transform.position = new Vector3(defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
+            //spriteRenderer.color = Color.yellow;
+        }
+    }
+    
+    public void ChangeAIState(AIState newAIState)
+    {
+        //switch (newAIState)
+        //{
+        //    case 0:
+        //        currentAIState = AIState.NONE;
+        //        break;
+        //
+        //    case 1:
+        //        currentAIState = AIState.PATROLTO;
+        //        break;
+        //
+        //    case 2:
+        //        currentAIState = AIState.PATROLBACK;
+        //        break;
+        //
+        //    default:
+        //        currentAIState = AIState.NONE;
+        //        break;
+        //}
+        currentAIState = newAIState;
+    }
+
+    public AIState GetLastAIState()
+    {
+        return currentAIState;
     }
 }
 
-enum AIState
+public enum AIState
 {
     NONE,
     PATROLTO,
@@ -134,3 +172,5 @@ enum AIState
     CHASE,
     RETURN
 }
+
+
