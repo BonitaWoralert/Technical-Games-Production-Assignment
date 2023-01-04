@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 /// <summary>
 /// Emits the raycasts for object detection
 /// </summary>
-public class LightDetectorEmiter : MonoBehaviour
+public class LightDetectorEmitter : MonoBehaviour
 {
     List<GameObject> _exposedObjects = new List<GameObject>();
 
@@ -21,17 +21,17 @@ public class LightDetectorEmiter : MonoBehaviour
     {
         for (int i = 0; i < _exposedObjects.Count; i++)
         {
-            Debug.DrawRay(transform.position, (_exposedObjects[i].transform.position - transform.position).normalized, Color.red);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, (_exposedObjects[i].transform.position - transform.position).normalized);
             if (hit.collider.name == _exposedObjects[i].name)
             {
+                //Calculates the intenisty of the light hitting the object, taking the object's position into account
                 float spacialIntenisty = (1 - (hit.distance / (_attachedLight.pointLightOuterRadius - _attachedLight.pointLightInnerRadius))) * _attachedLight.intensity;
-                //print(hit.distance);
-                _exposedObjects[i].GetComponent<LightDetectorReciver>().SetIntenisty(spacialIntenisty);
+                _exposedObjects[i].GetComponent<LightDetectorReceiver>().SetIntenisty(spacialIntenisty);
             }
             else
             {
-                _exposedObjects[i].GetComponent<LightDetectorReciver>().SetIntenisty(0f);
+                //Resets intesnisty to 0 when they are in shadow
+                _exposedObjects[i].GetComponent<LightDetectorReceiver>().SetIntenisty(0f);
             }
         }
     }
@@ -39,7 +39,7 @@ public class LightDetectorEmiter : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         print("Trigger Enter");
-        if (collision.GetComponent<LightDetectorReciver>() != null)
+        if (collision.GetComponent<LightDetectorReceiver>() != null)
         {
             _exposedObjects.Add(collision.gameObject);
         }
@@ -48,9 +48,9 @@ public class LightDetectorEmiter : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         print("Trigger Exit");
-        if (collision.GetComponent<LightDetectorReciver>() != null)
+        if (collision.GetComponent<LightDetectorReceiver>() != null)
         {
-            collision.GetComponent<LightDetectorReciver>().SetIntenisty(0f);
+            collision.GetComponent<LightDetectorReceiver>().SetIntenisty(0f);//Resets to 0 when leaving the light area
             _exposedObjects.Remove(collision.gameObject);
         }
     }

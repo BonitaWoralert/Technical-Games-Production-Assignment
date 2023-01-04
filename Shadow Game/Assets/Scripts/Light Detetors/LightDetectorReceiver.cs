@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class LightDetectorReciver : MonoBehaviour
+/// <summary>
+/// Acts as a receiver to the light emiter, and stores the spacial intestisty of the lights
+/// </summary>
+public class LightDetectorReceiver : MonoBehaviour
 {
     private float _intenisty = 0f;
-
-    private void Update()
-    {
-        print(_intenisty);
-    }
 
     public void SetIntenisty(float intensity)
     {
