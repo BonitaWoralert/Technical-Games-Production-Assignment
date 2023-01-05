@@ -22,15 +22,25 @@ public class Enemy_Vision_Script : MonoBehaviour
                 lastAIState = enemyAIScript.GetLastAIState();
             }
             Debug.Log(lastAIState);
-            enemyAIScript.ChangeAIState(AIState.NONE);
+            enemyAIScript.ChangeAIState(AIState.CHASE);
+            //enemyAIScript.ChangeAIState(AIState.NONE);
         }
     }
 
+    //FIX HERE!!
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            enemyAIScript.ChangeAIState(lastAIState);
+            if(enemyAIScript.GetLastAIState() == AIState.CHASE)
+            {
+                enemyAIScript.ChangeAIState(AIState.RETURNTOPATROL);
+            }
+            else
+            {
+                //enemyAIScript.ChangeAIState(lastAIState);
+                enemyAIScript.ChangeAIState(AIState.RETURNTOPATROL);
+            }
         }
     }
 }

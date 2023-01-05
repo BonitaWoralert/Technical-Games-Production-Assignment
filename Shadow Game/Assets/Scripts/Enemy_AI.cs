@@ -16,6 +16,7 @@ public class Enemy_AI : MonoBehaviour
     /// </summary>
 
     [SerializeField] private AIState currentAIState;
+    [SerializeField] private GameObject playerObject;
     private bool isSpriteFlip;
     private SpriteRenderer spriteRenderer;
     private Color defaultColor;
@@ -40,6 +41,7 @@ public class Enemy_AI : MonoBehaviour
         defaultVisionBoxPos = visionBoxObject.transform.localPosition;
         patrolStartPointX = rb.position.x;
         patrolStartPointY = rb.position.y;
+        playerObject = GameObject.Find("Player");
 
         if (patrolStartPointX < patrolEndPointX)
         {
@@ -53,8 +55,6 @@ public class Enemy_AI : MonoBehaviour
 
     void Update()
     {
-
-
         switch (currentAIState)
         {
             case AIState.NONE:
@@ -68,8 +68,10 @@ public class Enemy_AI : MonoBehaviour
             case AIState.SUSPICIOUS:
                 break;
             case AIState.CHASE:
+                Chase();
                 break;
-            case AIState.RETURN:
+            case AIState.RETURNTOPATROL:
+                ReturnToPatrol();
                 break;
             default:
                 break;
@@ -107,6 +109,48 @@ public class Enemy_AI : MonoBehaviour
 
             //Change Movement Direction
             isMoveLeft = !isMoveLeft;
+        }
+    }
+
+    private void Chase()
+    {
+        if(transform.position.x <= playerObject.transform.position.x)
+        {
+            isMoveLeft = false;
+        }
+        else
+        {
+            isMoveLeft = true;
+        }
+    }
+
+    //This function makes the enemy go back to the their starting spawn location.
+    private void ReturnToPatrol()
+    {
+        if(transform.position.x <= patrolStartPointX)
+        {
+            isMoveLeft = false;
+        }
+        else
+        {
+            isMoveLeft = true;
+        }
+
+        //This if statement makes sure the enemy AI switch state to patrol mode when its in range of the starting patrol point.
+        if (patrolStartPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolStartPointX + patrolPointRange)
+        {
+            //Enemy is in range of patrolStartPoint. Start going to.
+            currentAIState = AIState.PATROLTO;
+
+            //Makes sure to move in the correct direction
+            if (patrolStartPointX < patrolEndPointX)
+            {
+                isMoveLeft = false;
+            }
+            else
+            {
+                isMoveLeft = true;
+            }
         }
     }
 
@@ -155,6 +199,7 @@ public class Enemy_AI : MonoBehaviour
         //        break;
         //}
         currentAIState = newAIState;
+        Debug.Log("New AIState is: " + currentAIState);
     }
 
     public AIState GetLastAIState()
@@ -170,7 +215,7 @@ public enum AIState
     PATROLBACK,
     SUSPICIOUS,
     CHASE,
-    RETURN
+    RETURNTOPATROL
 }
 
 
