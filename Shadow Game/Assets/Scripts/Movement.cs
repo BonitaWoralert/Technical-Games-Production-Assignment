@@ -10,11 +10,13 @@ public class Movement : MonoBehaviour
     public bool isGrounded = true;
     public LayerMask groundLayers;
     public Transform groundCheck;
+    private ShadowForm shadowForm;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        shadowForm = GetComponent<ShadowForm>();
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class Movement : MonoBehaviour
 
     void Move()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayers);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers);
 
         float horizontalMovement = Input.GetAxis("Horizontal");
 
@@ -35,8 +37,9 @@ public class Movement : MonoBehaviour
         // Set the velocity of the rigidbody
         rb.velocity = new Vector2(moveHorizontal * moveSpeed, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !shadowForm.isInShadowForm)
         {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false;
         }
