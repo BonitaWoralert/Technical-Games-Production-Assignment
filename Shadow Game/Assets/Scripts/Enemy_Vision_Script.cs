@@ -21,9 +21,7 @@ public class Enemy_Vision_Script : MonoBehaviour
             {
                 lastAIState = enemyAIScript.GetLastAIState();
             }
-            Debug.Log(lastAIState);
-            enemyAIScript.ChangeAIState(AIState.CHASE);
-            //enemyAIScript.ChangeAIState(AIState.NONE);
+            enemyAIScript.isPlayerSpotted = true;
         }
     }
 
@@ -34,13 +32,14 @@ public class Enemy_Vision_Script : MonoBehaviour
         {
             if(enemyAIScript.GetLastAIState() == AIState.CHASE)
             {
-                enemyAIScript.ChangeAIState(AIState.RETURNTOPATROL);
+                enemyAIScript.ChangeAIState(AIState.SUSPICIOUS);
             }
             else
             {
-                //enemyAIScript.ChangeAIState(lastAIState);
-                enemyAIScript.ChangeAIState(AIState.RETURNTOPATROL);
+                enemyAIScript.ChangeAIState(lastAIState);
             }
+
+            enemyAIScript.isPlayerSpotted = false;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class Enemy_AI : MonoBehaviour
@@ -15,12 +16,11 @@ public class Enemy_AI : MonoBehaviour
     ///     Return (Go back to patrol pattern location)
     /// </summary>
 
-    [SerializeField] private AIState currentAIState;
-    [SerializeField] private GameObject playerObject;
     private bool isSpriteFlip;
     private SpriteRenderer spriteRenderer;
     private Color defaultColor;
     private Vector2 defaultVisionBoxPos;
+    public bool isPlayerSpotted;
 
     [SerializeField] private float patrolStartPointX;
     [SerializeField] private float patrolStartPointY;
@@ -28,9 +28,17 @@ public class Enemy_AI : MonoBehaviour
     [SerializeField] private float patrolPointRange;
     [SerializeField] private float normalMovementSpeed;
     [SerializeField] private bool isMoveLeft;
+    [SerializeField] public bool canMove;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject visionBoxObject;
+
+    [SerializeField] private float suspiciousValue;
+    [SerializeField] private float suspiciousFillUpSpeed;
+    [SerializeField] private float suspiciousDrainSpeed;
+
+    [SerializeField] private AIState currentAIState;
+    [SerializeField] private GameObject playerObject;
     //[SerializeField] private Enemy_Vision_Script enemyVisionScript;
 
     void Start()
@@ -42,6 +50,12 @@ public class Enemy_AI : MonoBehaviour
         patrolStartPointX = rb.position.x;
         patrolStartPointY = rb.position.y;
         playerObject = GameObject.Find("Player");
+        canMove = true;
+        isPlayerSpotted = false;
+
+        suspiciousValue = 0f;
+        suspiciousFillUpSpeed = 30f;
+        suspiciousDrainSpeed = 15f;
 
         if (patrolStartPointX < patrolEndPointX)
         {
@@ -66,6 +80,7 @@ public class Enemy_AI : MonoBehaviour
                 PatrolBack();
                 break;
             case AIState.SUSPICIOUS:
+                Suspicious();
                 break;
             case AIState.CHASE:
                 Chase();
@@ -77,15 +92,50 @@ public class Enemy_AI : MonoBehaviour
                 break;
         }
 
-        if (isMoveLeft == true)
+        //if (currentAIState == AIState.SUSPICIOUS || currentAIState == AIState.CHASE)
+        if(isPlayerSpotted)
         {
-            MoveLeft();
+            //canMove = false;
+            if(suspiciousValue > 120f)
+            {
+                suspiciousValue = 120f;
+            }
+            else
+            {
+                suspiciousValue += suspiciousFillUpSpeed * Time.deltaTime;
+            }
+
         }
         else
         {
-            MoveRight();
+            //canMove = true;
+            if(suspiciousValue < 0f)
+            {
+                suspiciousValue = 0f;
+            }
+            else
+            {
+                suspiciousValue -= suspiciousDrainSpeed * Time.deltaTime;
+            }
+
         }
 
+        if(canMove)
+        {
+            if (isMoveLeft == true)
+            {
+                MoveLeft();
+            }
+            else
+            {
+                MoveRight();
+            }
+        }
+
+        if(100f > suspiciousValue && suspiciousValue > 50f)
+        {
+            ChangeAIState(AIState.SUSPICIOUS);
+        }
     }
 
     private void PatrolTo()
@@ -127,6 +177,7 @@ public class Enemy_AI : MonoBehaviour
     //This function makes the enemy go back to the their starting spawn location.
     private void ReturnToPatrol()
     {
+        canMove = true;
         if(transform.position.x <= patrolStartPointX)
         {
             isMoveLeft = false;
@@ -151,6 +202,26 @@ public class Enemy_AI : MonoBehaviour
             {
                 isMoveLeft = true;
             }
+        }
+    }
+
+    private void Suspicious()
+    {
+        //AI does not move, until suspicious bar fills up.
+        if (suspiciousValue > 100)
+        {
+            canMove = true;
+            currentAIState = AIState.CHASE;
+        }
+        else if (50 < suspiciousValue && suspiciousValue < 100)
+        {
+            canMove = false;
+        }
+
+        if (suspiciousValue == 0f)
+        {
+            canMove = true;
+            ChangeAIState(AIState.RETURNTOPATROL);
         }
     }
 
@@ -205,6 +276,16 @@ public class Enemy_AI : MonoBehaviour
     public AIState GetLastAIState()
     {
         return currentAIState;
+    }
+
+    public float GetSuspiciousValue()
+    {
+        return suspiciousValue;
+    }
+
+    public void SetSuspiciousValue(float newSuspiciousValue)
+    {
+        suspiciousValue = newSuspiciousValue;
     }
 }
 
