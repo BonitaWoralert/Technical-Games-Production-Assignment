@@ -8,11 +8,10 @@ using UnityEngine.PlayerLoop;
 /// </summary>
 public class LightDetectorReceiver : MonoBehaviour
 {
-    private float _intenisty = 0f;
+    public float _intenisty = 0f;   
 
     public void SetIntenisty(float intensity)
     {
-        print(_intenisty);
         _intenisty = intensity;
     }
 
