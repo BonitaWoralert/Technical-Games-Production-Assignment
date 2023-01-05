@@ -12,6 +12,12 @@ public class LightDetectorReceiver : MonoBehaviour
 
     public void SetIntenisty(float intensity)
     {
+        print(_intenisty);
         _intenisty = intensity;
+    }
+
+    public void AddIntenisty(float intensity)
+    {
+        _intenisty += intensity;
     }
 }
