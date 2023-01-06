@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightActivator : MonoBehaviour
+public class LightActivator : BaseSwitch
 {
     private LightDetectorReceiver _lightReciver;
-
-    private bool _state;
 
     [SerializeField] private float _requiredLight;
 
@@ -25,10 +23,5 @@ public class LightActivator : MonoBehaviour
         {
             _state = false;
         }
-    }
-
-    private bool GetState()
-    {
-        return _state;
     }
 }

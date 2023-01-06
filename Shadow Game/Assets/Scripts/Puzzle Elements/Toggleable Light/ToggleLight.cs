@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class ToggleLight : MonoBehaviour
 {
     private Light2D _light;
-    [SerializeField] private Button _active;
+    [SerializeField] private BaseSwitch _active;
 
     private void Awake()
     {

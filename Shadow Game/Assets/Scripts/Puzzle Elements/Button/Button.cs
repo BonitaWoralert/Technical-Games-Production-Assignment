@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour
+public class Button : BaseSwitch
 {
-    private bool _state = false;
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         _state = true;
@@ -14,10 +12,5 @@ public class Button : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         _state = false;
-    }
-
-    public bool GetState()
-    {
-        return _state;
     }
 }
