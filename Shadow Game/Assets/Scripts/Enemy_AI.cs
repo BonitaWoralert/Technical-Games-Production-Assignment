@@ -78,6 +78,7 @@ public class Enemy_AI : MonoBehaviour
         suspiciousFillUpSpeed = 30f;
         suspiciousDrainSpeed = 15f;
         suspiciousThreshold = 50f;
+        suspiciousValueMax = 120f;
 
 
         chaseThreshold = 100f;
