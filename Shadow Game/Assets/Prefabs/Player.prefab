@@ -713,6 +713,7 @@ GameObject:
   - component: {fileID: 1877749973754294092}
   - component: {fileID: 1877749973754294093}
   - component: {fileID: 1192468094}
+  - component: {fileID: 6506735011537393410}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -863,6 +864,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 11
   dashSpace: 100
+  isDashing: 0
   isGrounded: 0
   groundLayers:
     serializedVersion: 2
@@ -913,6 +915,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6506735011537393410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877749973754294081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e84317265fb2c4cbc3fcbf993ef986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointFlag: 21
+  health: 14
+  collectible: 16
+  score: 14
+  timer: 1.32
 --- !u!1 &2040979317267106957
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +943,6 @@ GameObject:
   - component: {fileID: 7923898166081634187}
   - component: {fileID: 4999690880831569944}
   - component: {fileID: 982611889167323158}
-  - component: {fileID: 5445682524749513485}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -999,18 +1017,6 @@ MonoBehaviour:
   pauseMenu: {fileID: 2040979317267106957}
   settingsMenu: {fileID: 8422559881445040592}
   controlsMenu: {fileID: 5230632842426867054}
---- !u!114 &5445682524749513485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040979317267106957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9e84317265fb2c4cbc3fcbf993ef986, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2047600489651604900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,7 +1645,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5445682524749513485}
+      - m_Target: {fileID: 6506735011537393410}
         m_TargetAssemblyTypeName: SavePrefs, Assembly-CSharp
         m_MethodName: LoadGame
         m_Mode: 1
@@ -2210,7 +2216,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5445682524749513485}
+      - m_Target: {fileID: 6506735011537393410}
         m_TargetAssemblyTypeName: SavePrefs, Assembly-CSharp
         m_MethodName: SaveGame
         m_Mode: 1
