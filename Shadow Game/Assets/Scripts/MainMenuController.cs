@@ -12,7 +12,7 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("SaveTest");
+        SceneManager.LoadScene("Aarons Scene");
     }
     
     public void Controls()
