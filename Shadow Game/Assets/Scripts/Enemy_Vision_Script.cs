@@ -6,15 +6,11 @@ public class Enemy_Vision_Script : MonoBehaviour
 {
     [SerializeField] private Enemy_AI enemyAIScript;
     [SerializeField] private AIState lastAIState;
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private Collider2D playerColliderBox;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && collision == playerColliderBox)
         {
             //Makes sure that AIState is not NONE, this is done because OnTriggerEnter2D can be triggered multiple times.
             if(enemyAIScript.GetLastAIState() != AIState.NONE)
@@ -22,24 +18,21 @@ public class Enemy_Vision_Script : MonoBehaviour
                 lastAIState = enemyAIScript.GetLastAIState();
             }
             enemyAIScript.isPlayerSpotted = true;
+            Debug.Log("PLAYER SEEN");
         }
     }
 
-    //FIX HERE!!
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && collision == playerColliderBox)
         {
             if(enemyAIScript.GetLastAIState() == AIState.CHASE)
             {
                 enemyAIScript.ChangeAIState(AIState.SUSPICIOUS);
             }
-            else
-            {
-                enemyAIScript.ChangeAIState(lastAIState);
-            }
 
             enemyAIScript.isPlayerSpotted = false;
+            Debug.Log("PLAYER GONE");
         }
     }
 }

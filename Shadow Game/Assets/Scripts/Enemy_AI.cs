@@ -22,30 +22,51 @@ public class Enemy_AI : MonoBehaviour
     private Vector2 defaultVisionBoxPos;
     public bool isPlayerSpotted;
 
-    [SerializeField] private float patrolStartPointX;
-    [SerializeField] private float patrolStartPointY;
-    [SerializeField] private float patrolEndPointX;
-    [SerializeField] private float patrolPointRange;
-    [SerializeField] private float normalMovementSpeed;
-    [SerializeField] private bool isMoveLeft;
-    [SerializeField] public bool canMove;
+    private float patrolStartPointX;
+    private float patrolStartPointY;
+
+    [Header("Patrol Point/Location")]
+    [Tooltip("The PosX of where the enemy should Patrol to")][SerializeField] private float patrolEndPointX;
+    [Tooltip("Keep this value around 0.5 - 3")][SerializeField] private float patrolPointRange;
+
+    [Space(20)]
+
+    [Header("Enemy Speed")]
+    [Tooltip("Enemy patrol Move Speed")][SerializeField] private float normalMovementSpeed;
+    [Tooltip("Enemy Chase Speed Multiplier from normal Move Speed")][SerializeField] private float chaseMovementMultiplier;
+
+    private bool isMoveLeft;
+    [HideInInspector]public bool canMove;
+    [HideInInspector]public bool isPatrolToMoveDirectionLeft;
+
+    [Space(20)]
 
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private GameObject visionBoxObject;
+    [Tooltip("Reference the vision box game object in the enemy's children")][SerializeField] private GameObject visionBoxObject;
 
-    [SerializeField] private float suspiciousValue;
-    [SerializeField] private float suspiciousFillUpSpeed;
+    [Space(20)]
+
+    private float suspiciousValue;
+
+    [Space(20)]
+
+    [Header("Enemy Suspicious and Chase Values")]
+    [Tooltip("How fast the enemy gets Suspicious")][SerializeField] private float suspiciousFillUpSpeed;
     [SerializeField] private float suspiciousDrainSpeed;
+    [Tooltip("Suspicious Value for the enemy to be Suspicious")][SerializeField] private float suspiciousThreshold;
+    [Tooltip("The maximum suspicious value the enemy can have, the bigger the value, the longer the chase state can be based on the chaseThreshold value")][SerializeField] private float suspiciousValueMax;
+    [Tooltip("Suspicious Value for the enemy to be Chasing")][SerializeField] private float chaseThreshold;
 
+    [Space(20)]
+
+    [Header("Debuging Only")]
     [SerializeField] private AIState currentAIState;
-    [SerializeField] private GameObject playerObject;
-    //[SerializeField] private Enemy_Vision_Script enemyVisionScript;
+    private GameObject playerObject;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultColor = spriteRenderer.color;
-        currentAIState = AIState.PATROLTO;
         defaultVisionBoxPos = visionBoxObject.transform.localPosition;
         patrolStartPointX = rb.position.x;
         patrolStartPointY = rb.position.y;
@@ -56,15 +77,23 @@ public class Enemy_AI : MonoBehaviour
         suspiciousValue = 0f;
         suspiciousFillUpSpeed = 30f;
         suspiciousDrainSpeed = 15f;
+        suspiciousThreshold = 50f;
+
+
+        chaseThreshold = 100f;
 
         if (patrolStartPointX < patrolEndPointX)
         {
             isMoveLeft = false;
+            isPatrolToMoveDirectionLeft = false;
         }
         else
         {
             isMoveLeft = true;
+            isPatrolToMoveDirectionLeft = true;
         }
+
+        currentAIState = AIState.PATROLTO;
     }
 
     void Update()
@@ -92,13 +121,12 @@ public class Enemy_AI : MonoBehaviour
                 break;
         }
 
-        //if (currentAIState == AIState.SUSPICIOUS || currentAIState == AIState.CHASE)
         if(isPlayerSpotted)
         {
             //canMove = false;
-            if(suspiciousValue > 120f)
+            if(suspiciousValue > suspiciousValueMax)
             {
-                suspiciousValue = 120f;
+                suspiciousValue = suspiciousValueMax;
             }
             else
             {
@@ -108,7 +136,6 @@ public class Enemy_AI : MonoBehaviour
         }
         else
         {
-            //canMove = true;
             if(suspiciousValue < 0f)
             {
                 suspiciousValue = 0f;
@@ -132,24 +159,26 @@ public class Enemy_AI : MonoBehaviour
             }
         }
 
-        if(100f > suspiciousValue && suspiciousValue > 50f)
+        if(chaseThreshold > suspiciousValue && suspiciousValue > suspiciousThreshold)
         {
             ChangeAIState(AIState.SUSPICIOUS);
         }
     }
 
+    //Going to the End Point.
     private void PatrolTo()
     {
         if(patrolEndPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolEndPointX + patrolPointRange)
         {
             //Enemy is in range of patrolEndPoint. Start going back.
             currentAIState = AIState.PATROLBACK;
-
+       
             //Change Movement Direction
-            isMoveLeft = !isMoveLeft;
+            isMoveLeft = !isPatrolToMoveDirectionLeft;
         }
     }
 
+    //Going Back to the Start Point.
     private void PatrolBack()
     {
         if(patrolStartPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolStartPointX + patrolPointRange)
@@ -158,10 +187,11 @@ public class Enemy_AI : MonoBehaviour
             currentAIState = AIState.PATROLTO;
 
             //Change Movement Direction
-            isMoveLeft = !isMoveLeft;
+            isMoveLeft = isPatrolToMoveDirectionLeft;
         }
     }
 
+    //Chase the player.
     private void Chase()
     {
         if(transform.position.x <= playerObject.transform.position.x)
@@ -205,15 +235,16 @@ public class Enemy_AI : MonoBehaviour
         }
     }
 
+    //Enemy stays still.
     private void Suspicious()
     {
         //AI does not move, until suspicious bar fills up.
-        if (suspiciousValue > 100)
+        if (suspiciousValue > chaseThreshold)
         {
             canMove = true;
             currentAIState = AIState.CHASE;
         }
-        else if (50 < suspiciousValue && suspiciousValue < 100)
+        else if (suspiciousThreshold < suspiciousValue && suspiciousValue < chaseThreshold)
         {
             canMove = false;
         }
@@ -251,26 +282,7 @@ public class Enemy_AI : MonoBehaviour
     
     public void ChangeAIState(AIState newAIState)
     {
-        //switch (newAIState)
-        //{
-        //    case 0:
-        //        currentAIState = AIState.NONE;
-        //        break;
-        //
-        //    case 1:
-        //        currentAIState = AIState.PATROLTO;
-        //        break;
-        //
-        //    case 2:
-        //        currentAIState = AIState.PATROLBACK;
-        //        break;
-        //
-        //    default:
-        //        currentAIState = AIState.NONE;
-        //        break;
-        //}
         currentAIState = newAIState;
-        Debug.Log("New AIState is: " + currentAIState);
     }
 
     public AIState GetLastAIState()
