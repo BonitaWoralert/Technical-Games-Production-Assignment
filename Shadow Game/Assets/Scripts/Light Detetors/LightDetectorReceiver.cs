@@ -10,13 +10,9 @@ public class LightDetectorReceiver : MonoBehaviour
 {
     public float _intenisty = 0f;
 
-    /// <summary>
-    /// Sets how much light is hitting the object
-    /// </summary>
-    /// <param name="intensity">How much light is hitting the object</param>
-    public void SetIntenisty(float intensity)
+    private void Update()
     {
-        _intenisty = intensity;
+        _intenisty = 0f;
     }
 
     public void AddIntenisty(float intensity)

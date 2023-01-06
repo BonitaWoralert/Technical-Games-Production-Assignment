@@ -17,7 +17,7 @@ public class LightDetectorEmitter : MonoBehaviour
         _attachedLight = GetComponent<Light2D>();
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         for (int i = 0; i < _exposedObjects.Count; i++)
         {
@@ -26,7 +26,7 @@ public class LightDetectorEmitter : MonoBehaviour
             {
                 //Calculates the intenisty of the light hitting the object, taking the object's position into account
                 float spacialIntenisty = (1 - (hit.distance / (_attachedLight.pointLightOuterRadius - _attachedLight.pointLightInnerRadius))) * _attachedLight.intensity;
-                _exposedObjects[i].GetComponent<LightDetectorReceiver>().SetIntenisty(spacialIntenisty);
+                _exposedObjects[i].GetComponent<LightDetectorReceiver>().AddIntenisty(spacialIntenisty);
             }
             else
             {
