@@ -3301,14 +3301,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
-    - target: {fileID: 3999806567009810595, guid: 975227b0a6978794090d24559776a9fb, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3999806567009810595, guid: 975227b0a6978794090d24559776a9fb, type: 3}
-      propertyPath: m_LinearDrag
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4197714151133318156, guid: 975227b0a6978794090d24559776a9fb, type: 3}
       propertyPath: m_RootOrder
       value: 2
