@@ -1,0 +1,6 @@
+1. Create a 2D spot light
+2. Position the light
+3. Add a trigger colider to the light
+	If the light is 360 degrees, use a circle colider, radius will be equal to the light radius
+	If not, a polygon collider must be to the lit area set manually
+4. IMPORTANT: Set light to ignore raycast layer (Seriously, I forgot and spent like, 2 hours trying to fix this.)
