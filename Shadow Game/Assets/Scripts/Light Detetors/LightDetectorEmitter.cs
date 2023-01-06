@@ -28,17 +28,11 @@ public class LightDetectorEmitter : MonoBehaviour
                 float spacialIntenisty = (1 - (hit.distance / (_attachedLight.pointLightOuterRadius - _attachedLight.pointLightInnerRadius))) * _attachedLight.intensity;
                 _exposedObjects[i].GetComponent<LightDetectorReceiver>().AddIntenisty(spacialIntenisty);
             }
-            else
-            {
-                //Resets intesnisty to 0 when they are in shadow
-                _exposedObjects[i].GetComponent<LightDetectorReceiver>().SetIntenisty(0f);
-            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Trigger Enter");
         if (collision.GetComponent<LightDetectorReceiver>() != null)
         {
             _exposedObjects.Add(collision.gameObject);
@@ -47,10 +41,8 @@ public class LightDetectorEmitter : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        print("Trigger Exit");
         if (collision.GetComponent<LightDetectorReceiver>() != null)
         {
-            collision.GetComponent<LightDetectorReceiver>().SetIntenisty(0f);//Resets to 0 when leaving the light area
             _exposedObjects.Remove(collision.gameObject);
         }
     }
