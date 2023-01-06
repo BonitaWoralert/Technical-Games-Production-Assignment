@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class SavePrefs : MonoBehaviour
 {
-    int checkpointFlag;
-    int health;
-    int collectible;
-    int score;
-    float timer;
+    public int checkpointFlag;
+    public int health;
+    public int collectible;
+    public int score;
+    public float timer;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        LoadGame();
+    }
 
     public void SaveGame()
     {
