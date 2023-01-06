@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
     public float dashSpace;
+    public bool isDashing = false;
 
     public bool isGrounded = true;
 
@@ -21,13 +22,21 @@ public class Movement : MonoBehaviour
 
     public float dashTimer;
     Rigidbody2D rb;
+    Animator ani;
+    SpriteRenderer sprite;
     private ShadowForm shadowForm;
     float horizontalMovement;
+
+    enum MoveState { idle, running, jumping, falling, dashing };
+    MoveState state;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         shadowForm = GetComponent<ShadowForm>();
+        ani = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -46,16 +55,14 @@ public class Movement : MonoBehaviour
         if (!shadowForm.isInShadowForm) { return; }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers);
 
-        float horizontalMovement = Input.GetAxis("Horizontal");
-
         // Get input for horizontal movement
-        float moveHorizontal = Input.GetAxis("Horizontal");
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
 
         // Set the velocity of the rigidbody
         if (Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && horizontalMovement < 0)
         {
             Debug.Log("Moving Left");
-            rb.velocity = new Vector2(moveHorizontal * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
         }
         else if (!Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && horizontalMovement < 0)
         {
@@ -65,13 +72,15 @@ public class Movement : MonoBehaviour
         if (Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && horizontalMovement > 0)
         {
             Debug.Log("Moving Right");
-            rb.velocity = new Vector2(moveHorizontal * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
         }
         else if (!Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && horizontalMovement > 0)
         {
             Debug.Log("Can't Move Right");
             rb.velocity = Vector2.zero;
         }
+
+        UpdateAnimations();
     }
 
     void PlayerMove()
@@ -79,13 +88,11 @@ public class Movement : MonoBehaviour
         if (shadowForm.isInShadowForm) { return; }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers);
 
-        horizontalMovement = Input.GetAxis("Horizontal");
-
         // Get input for horizontal movement
-        float moveHorizontal = Input.GetAxis("Horizontal");
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
 
         // Set the velocity of the rigidbody
-        rb.velocity = new Vector2(moveHorizontal * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !shadowForm.isInShadowForm)
         {
@@ -98,11 +105,18 @@ public class Movement : MonoBehaviour
         {
             Move();
         }
+        else if (dashTimer < 0)
+        {
+            isDashing = false;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
+            isDashing = true;
             Dash(dashSpace);
         }
+
+        UpdateAnimations();
     }
 
     private void Move()
@@ -121,5 +135,54 @@ public class Movement : MonoBehaviour
     {
         Debug.Log("Dashing (through the snow)");
         dashTimer = maxDashTimer;
+    }
+
+    void UpdateAnimations()
+    {
+        if (!isDashing)
+        {
+            if (horizontalMovement > 0f)
+            {
+                state = MoveState.running;
+                sprite.flipX = false;
+            }
+            else if (horizontalMovement < 0f)
+            {
+                state = MoveState.running;
+                sprite.flipX = true;
+            }
+            else
+            {
+                state = MoveState.idle;
+            }
+        }
+        else if (isDashing)
+        {
+            if (horizontalMovement > 0f)
+            {
+                state = MoveState.dashing;
+                sprite.flipX = false;
+            }
+            else if (horizontalMovement < 0f)
+            {
+                state = MoveState.dashing;
+                sprite.flipX = true;
+            }
+            else
+            {
+                state = MoveState.idle;
+            }
+        }
+
+        if (rb.velocity.y > 0.01f)
+        {
+            state = MoveState.jumping;
+        }
+        else if (rb.velocity.y < -0.01f)
+        {
+            state = MoveState.falling;
+        }
+
+        ani.SetInteger("state", (int)state);
     }
 }
