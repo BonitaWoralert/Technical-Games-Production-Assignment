@@ -9,11 +9,32 @@ public class PauseMenuController : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject controlsMenu;
 
+    void Update()
+    {
+        
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale == 1.0f)
+            {
+                Time.timeScale = 0.0f;
+                pauseMenu.SetActive(true);
+            }
+            else if (Time.timeScale == 0.0f)
+            {
+                Time.timeScale = 1.0f;
+                pauseMenu.SetActive(false);
+            }
+        }
+    }
+
+    
+
     public void Resume()
     {
         pauseMenu.SetActive(false);
-        settingsMenu.SetActive(false);
-        controlsMenu.SetActive(false);
+        Time.timeScale = 1.0f;
+        pauseMenu.SetActive(false);
     }
 
     public void Settings()
@@ -38,5 +59,7 @@ public class PauseMenuController : MonoBehaviour
     public void Exit()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1.0f;
+        pauseMenu.SetActive(false);
     }
 }
