@@ -56,7 +56,7 @@ public class Enemy_AI : MonoBehaviour
 
     [Space(20)]
 
-    private float suspiciousValue;
+    [SerializeField] private float suspiciousValue;
 
     [Space(20)]
 
