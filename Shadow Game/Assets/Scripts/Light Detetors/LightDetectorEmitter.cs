@@ -17,6 +17,8 @@ public class LightDetectorEmitter : MonoBehaviour
         _attachedLight = GetComponent<Light2D>();
     }
 
+
+
     private void LateUpdate()
     {
         for (int i = 0; i < _exposedObjects.Count; i++)
