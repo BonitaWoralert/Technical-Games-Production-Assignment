@@ -10,16 +10,21 @@ public class SavePrefs : MonoBehaviour
     public int score;
     public float timer;
 
+    private PlayerStats stats;
+
     // Start is called before the first frame update
     void Start()
     {
-        LoadGame();
+        LoadGame(); //Load save when game starts
+        stats = FindObjectOfType<PlayerStats>();
+        health = stats.health;
+        Debug.Log(stats.health);
     }
 
-    public void SaveGame()
+    public void SaveGame() //files are saved in Registry Editor: Computer\HKEY_CURRENT_USER\SOFTWARE\Unity\UnityEditor\DefaultCompany\Shadow Game
     {
-        PlayerPrefs.SetInt("CheckpointFlag", checkpointFlag);
-        PlayerPrefs.SetInt("Health", health);
+        PlayerPrefs.SetInt("CheckpointFlag", checkpointFlag); //location on map
+        PlayerPrefs.SetInt("Health", health); 
         PlayerPrefs.SetInt("Collectible", collectible);
         PlayerPrefs.SetInt("Score", score);
         PlayerPrefs.SetFloat("Timer", timer);
