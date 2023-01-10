@@ -10,6 +10,7 @@ public class RoomGenerator : MonoBehaviour
     public List<GameObject> doors;
     public bool roomSpawned;
     private DoorOpener doorOpener;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,7 @@ public class RoomGenerator : MonoBehaviour
             //Distance Checker for all Doors
             foreach (var i in doors)
             {
-                if (Vector2.Distance(player.transform.position, i.transform.position) < 2f)
+                if (Vector2.Distance(player.transform.position, i.transform.position) < 4f)
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
