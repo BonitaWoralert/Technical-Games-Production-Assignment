@@ -39,7 +39,7 @@ public class Combat : MonoBehaviour
         }
     }
 
-    void OnDrawGizmoSelected()
+    public void OnDrawGizmoSelected()
     {
         if (attackPoint == null)
             return;
