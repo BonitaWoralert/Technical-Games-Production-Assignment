@@ -7587,9 +7587,25 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 918564700476410625, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713675138889215047, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762174550776251894, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1877749973754294081, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877749973754294081, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1877749973754294094, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
       propertyPath: m_RootOrder
@@ -7647,9 +7663,17 @@ PrefabInstance:
       propertyPath: sprites.Array.data[1]
       value: 
       objectReference: {fileID: -695345218, guid: 951fd60e960dfd84db41326abdb93c8a, type: 3}
+    - target: {fileID: 4187124586237169611, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5707208601521377497, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5727251857932353995, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6138690871593200435, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
       propertyPath: m_LocalPosition.x
