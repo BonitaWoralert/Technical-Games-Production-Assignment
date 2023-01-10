@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public class Enemy_AI : MonoBehaviour
+public class Enemy_AIAaron : MonoBehaviour
 {
     /// <summary>
     /// The script should make the AI to:
@@ -29,6 +29,7 @@ public class Enemy_AI : MonoBehaviour
     [Header("Patrol Point/Location")]
     [Tooltip("The PosX of where the enemy should Patrol to")]
     [SerializeField] private float patrolEndPointX;
+    [SerializeField] private float patrolEndPointOffsetX;
     [SerializeField] private float patrolEndPointY;
 
     [Tooltip("Keep this value around 0.5 - 3")]
@@ -74,10 +75,13 @@ public class Enemy_AI : MonoBehaviour
     [Space(20)]
 
     [Header("Debuging Only")]
-    [SerializeField] private AIState currentAIState;
+    [SerializeField] private AIState2 currentAIState2;
     private GameObject playerObject;
     private float checkTimer;
     [SerializeField] private float maxCheckTimer = 1f;
+    [SerializeField] private Vector3 destination;
+    [SerializeField] private Vector3 playerDistanceBuffer;
+    private Movement move;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -85,10 +89,12 @@ public class Enemy_AI : MonoBehaviour
         defaultVisionBoxPos = visionBoxObject.transform.localPosition;
         patrolStartPointX = rb.position.x;
         patrolStartPointY = transform.position.y;
+        patrolEndPointX = patrolStartPointX + patrolEndPointOffsetX;
         resetPosition = new Vector2(rb.transform.position.x, rb.transform.position.y);
         playerObject = GameObject.Find("Player");
         canMove = true;
         isPlayerSpotted = false;
+        destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
 
         //suspiciousValue = 0f;
         //suspiciousFillUpSpeed = 30f;
@@ -109,28 +115,28 @@ public class Enemy_AI : MonoBehaviour
             isPatrolToMoveDirectionLeft = true;
         }
 
-        currentAIState = AIState.PATROLTO;
+        currentAIState2 = AIState2.PATROLTO;
     }
 
     void Update()
     {
-        switch (currentAIState)
+        switch (currentAIState2)
         {
-            case AIState.NONE:
+            case AIState2.NONE:
                 break;
-            case AIState.PATROLTO:
+            case AIState2.PATROLTO:
                 PatrolTo();
                 break;
-            case AIState.PATROLBACK:
+            case AIState2.PATROLBACK:
                 PatrolBack();
                 break;
-            case AIState.SUSPICIOUS:
+            case AIState2.SUSPICIOUS:
                 Suspicious();
                 break;
-            case AIState.CHASE:
+            case AIState2.CHASE:
                 Chase();
                 break;
-            case AIState.RETURNTOPATROL:
+            case AIState2.RETURNTOPATROL:
                 ReturnToPatrol();
                 break;
             default:
@@ -165,7 +171,7 @@ public class Enemy_AI : MonoBehaviour
 
         if(canMove)
         {
-            if (isMoveLeft == true)
+            if (destination.x - gameObject.transform.position.x < 0f)
             {
                 MoveLeft();
             }
@@ -177,10 +183,9 @@ public class Enemy_AI : MonoBehaviour
 
         if(chaseThreshold > suspiciousValue && suspiciousValue > suspiciousThreshold)
         {
-            ChangeAIState(AIState.SUSPICIOUS);
+            ChangeAIState2(AIState2.SUSPICIOUS);
         }
 
-        CheckTimer();
     }
 
     private void CheckTimer()
@@ -195,16 +200,20 @@ public class Enemy_AI : MonoBehaviour
 
     private void FindCheck()
     {
-        Movement move;
         move = playerObject.GetComponent<Movement>();
         if (Vector2.Distance(gameObject.transform.position, move.leftCheck.transform.position) < Vector2.Distance(gameObject.transform.position, move.rightCheck.transform.position))
         {
-            MoveLeft();
+            ChangeDestination(move.leftCheck.transform.position - playerDistanceBuffer);
         }
         else
         {
-            MoveRight();
+            ChangeDestination(move.rightCheck.transform.position + playerDistanceBuffer);
         }
+    }
+
+    private void ChangeDestination(Vector3 newDestination)
+    {
+        destination = newDestination;
     }
 
     //Going to the End Point.
@@ -212,9 +221,11 @@ public class Enemy_AI : MonoBehaviour
     {
         if(patrolEndPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolEndPointX + patrolPointRange)
         {
+            Debug.Log("End");
+            destination = new Vector3(patrolStartPointX, patrolStartPointY, 0);
             canMove = true;
             //Enemy is in range of patrolEndPoint. Start going back.
-            currentAIState = AIState.PATROLBACK;
+            currentAIState2 = AIState2.PATROLBACK;
        
             //Change Movement Direction
             isMoveLeft = !isPatrolToMoveDirectionLeft;
@@ -226,9 +237,11 @@ public class Enemy_AI : MonoBehaviour
     {
         if(patrolStartPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolStartPointX + patrolPointRange)
         {
+            Debug.Log("Start");
+            destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
             canMove = true;
             //Enemy is in range of patrolStartPoint. Start going to.
-            currentAIState = AIState.PATROLTO;
+            currentAIState2 = AIState2.PATROLTO;
 
             //Change Movement Direction
             isMoveLeft = isPatrolToMoveDirectionLeft;
@@ -238,7 +251,9 @@ public class Enemy_AI : MonoBehaviour
     //Chase the player.
     private void Chase()
     {
-        if(transform.position.x <= playerObject.transform.position.x)
+        CheckTimer();
+
+        if (transform.position.x <= playerObject.transform.position.x)
         {
             isMoveLeft = false;
         }
@@ -251,40 +266,24 @@ public class Enemy_AI : MonoBehaviour
     //This function makes the enemy go back to the their starting spawn location.
     private void ReturnToPatrol()
     {
-        if(transform.position.x <= patrolStartPointX)
-        {
-            isMoveLeft = false;
-        }
-        else
-        {
-            isMoveLeft = true;
-        }
+        destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
 
-        //This if statement makes sure the enemy AI switch state to patrol mode when its in range of the starting patrol point.
-        if (patrolStartPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolStartPointX + patrolPointRange)
-        {
-            //Enemy is in range of patrolStartPoint. Start going to.
-            currentAIState = AIState.PATROLTO;
 
-            //Makes sure to move in the correct direction
-            if (patrolStartPointX < patrolEndPointX)
-            {
-                isMoveLeft = false;
-            }
-            else
-            {
-                isMoveLeft = true;
-            }
-        }
 
-        if(!(patrolStartPointY - 0.3f < rb.transform.position.y || rb.transform.position.y > patrolStartPointY + 0.3f))
+        if (!(patrolStartPointY - 0.3f < rb.transform.position.y || rb.transform.position.y > patrolStartPointY + 0.3f))
         {
             canMove = false;
             //rb.MovePosition(new Vector2(rb.transform.position.x, patrolStartPointY));
             StartCoroutine(Telp());
-            
+
             //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
             Debug.Log("I am called!");
+        }
+        else
+        { 
+            //This if statement makes sure the enemy AI switch state to patrol mode when its in range of the starting patrol point.
+            //Enemy is in range of patrolStartPoint. Start going to.
+            currentAIState2 = AIState2.PATROLTO;
         }
 
         canMove = true;
@@ -303,7 +302,7 @@ public class Enemy_AI : MonoBehaviour
         if (suspiciousValue > chaseThreshold)
         {
             canMove = true;
-            currentAIState = AIState.CHASE;
+            currentAIState2 = AIState2.CHASE;
         }
         else if (suspiciousThreshold < suspiciousValue && suspiciousValue < chaseThreshold)
         {
@@ -313,15 +312,15 @@ public class Enemy_AI : MonoBehaviour
         if (suspiciousValue == 0f)
         {
             canMove = true;
-            ChangeAIState(AIState.RETURNTOPATROL);
+            ChangeAIState2(AIState2.RETURNTOPATROL);
         }
     }
 
     private void MoveLeft()
     {
-        if(currentAIState != AIState.NONE)
+        if(currentAIState2 != AIState2.NONE)
         {
-            if(currentAIState == AIState.CHASE)
+            if(currentAIState2 == AIState2.CHASE)
             {
                 transform.position = new Vector2(transform.position.x + -(normalMovementSpeed * chaseMovementMultiplier * Time.deltaTime), rb.position.y);
             }
@@ -338,9 +337,9 @@ public class Enemy_AI : MonoBehaviour
 
     private void MoveRight()
     {
-        if(currentAIState != AIState.NONE)
+        if(currentAIState2 != AIState2.NONE)
         {
-            if(currentAIState == AIState.CHASE)
+            if(currentAIState2 == AIState2.CHASE)
             {
                 transform.position = new Vector2(transform.position.x + (normalMovementSpeed * chaseMovementMultiplier * Time.deltaTime), rb.position.y);
             }
@@ -348,21 +347,35 @@ public class Enemy_AI : MonoBehaviour
             {
                 transform.position = new Vector2(transform.position.x + (normalMovementSpeed * Time.deltaTime), rb.position.y);
             }
-            spriteRenderer.flipX = false;
+            if (currentAIState2 != AIState2.CHASE)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else
+            {
+                if (currentAIState2 == AIState2.CHASE && destination == move.leftCheck.transform.position)
+                {
+                    spriteRenderer.flipX = true;
+                }
+                else if (currentAIState2 == AIState2.CHASE && destination == move.rightCheck.transform.position)
+                {
+                    spriteRenderer.flipX = false;
+                }
+            }
             visionBoxObject.transform.localPosition = defaultVisionBoxPos;
             //visionBoxObject.transform.position = new Vector3(defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
             //spriteRenderer.color = Color.yellow;
         }
     }
     
-    public void ChangeAIState(AIState newAIState)
+    public void ChangeAIState2(AIState2 newAIState2)
     {
-        currentAIState = newAIState;
+        currentAIState2 = newAIState2;
     }
 
-    public AIState GetLastAIState()
+    public AIState2 GetLastAIState2()
     {
-        return currentAIState;
+        return currentAIState2;
     }
 
     public float GetSuspiciousValue()
@@ -374,9 +387,14 @@ public class Enemy_AI : MonoBehaviour
     {
         suspiciousValue = newSuspiciousValue;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(gameObject.transform.position, new Vector2(patrolEndPointX, gameObject.transform.position.y));
+    }
 }
 
-public enum AIState
+public enum AIState2
 {
     NONE,
     PATROLTO,
