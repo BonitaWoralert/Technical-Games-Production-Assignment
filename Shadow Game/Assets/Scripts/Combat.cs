@@ -11,7 +11,7 @@ public class Combat : MonoBehaviour
 
     public int attackDamage = 50;
     public float attackRange = 0.5f;
-    public float attackRate = 2.0f;
+    public float attackRate = 10.0f;
     float nextAttackTime;
 
     // Update is called once per frame
