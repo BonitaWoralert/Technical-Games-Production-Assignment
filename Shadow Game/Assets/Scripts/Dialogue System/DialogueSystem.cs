@@ -30,6 +30,7 @@ public class DialogueSystem : MonoBehaviour
         _index = 0;
         _textComponent.color = _dialogue._color[_index];
         _textComponent.text = _dialogue._text[_index];
+        _player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         _player.GetComponent<Movement>().enabled = false;
         _player.GetComponent<ShadowForm>().enabled = false;
     }
