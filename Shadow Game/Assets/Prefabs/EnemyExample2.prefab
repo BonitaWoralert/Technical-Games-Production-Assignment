@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 1405702244381241121}
   - component: {fileID: 1405702244381241120}
   - component: {fileID: 1405702244381241122}
+  - component: {fileID: 6695476416823753104}
   - component: {fileID: 1405702244381241123}
   m_Layer: 0
   m_Name: EnemyExample2
@@ -262,7 +263,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1405702244381241123
+--- !u!114 &6695476416823753104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,21 +272,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 1405702244381241126}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee17867d6fbc1294eb2476def31ecfeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerSpotted: 0
+  patrolStartPointY: 0
+  patrolEndPointX: 3
+  patrolEndPointY: 0
+  patrolPointRange: 1
+  resetPosition: {x: 0, y: 0}
+  normalMovementSpeed: 1
+  chaseMovementMultiplier: 0
+  canMove: 0
+  isPatrolToMoveDirectionLeft: 0
+  rb: {fileID: 0}
+  visionBoxObject: {fileID: 0}
+  suspiciousValue: 0
+  suspiciousFillUpSpeed: 30
+  suspiciousDrainSpeed: 15
+  suspiciousThreshold: 0
+  suspiciousValueMax: 0
+  chaseThreshold: 0
+  currentAIState2: 0
+  maxCheckTimer: 1
+  destination: {fileID: 0}
+--- !u!114 &1405702244381241123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405702244381241126}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a38254337454fa439afc218d0847457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerSpotted: 0
+  patrolStartPointY: 0
   patrolEndPointX: 3
+  patrolEndPointY: 0
   patrolPointRange: 1
+  resetPosition: {x: 0, y: 0}
   normalMovementSpeed: 1
   chaseMovementMultiplier: 0
   canMove: 0
   isPatrolToMoveDirectionLeft: 0
   rb: {fileID: 1405702244381241122}
   visionBoxObject: {fileID: 1405702243648308526}
+  suspiciousValue: 0
   suspiciousFillUpSpeed: 30
   suspiciousDrainSpeed: 15
   suspiciousThreshold: 0
   suspiciousValueMax: 0
   chaseThreshold: 0
   currentAIState: 0
+  maxCheckTimer: 1
