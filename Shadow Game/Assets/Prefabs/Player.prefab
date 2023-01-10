@@ -872,7 +872,7 @@ MonoBehaviour:
   groundCheck: {fileID: 6138690871593200435}
   leftCheck: {fileID: 4187124586237169611}
   rightCheck: {fileID: 5727251857932353995}
-  maxDashTimer: 0
+  maxDashTimer: 0.2
   dashTimer: 0
 --- !u!50 &1877749973754294093
 Rigidbody2D:

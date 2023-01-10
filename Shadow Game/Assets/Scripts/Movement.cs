@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
     private ShadowForm shadowForm;
     float horizontalMovement;
 
-    enum MoveState { idle, running, jumping, falling, dashing };
+    enum MoveState { idle, running, jumping, falling, dashing, shadow };
     MoveState state;
 
     // Start is called before the first frame update
@@ -110,6 +110,11 @@ public class Movement : MonoBehaviour
             isDashing = false;
         }
 
+        if (maxDashTimer <= 0)
+        {
+            isDashing = false;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             isDashing = true;
@@ -181,6 +186,11 @@ public class Movement : MonoBehaviour
         else if (rb.velocity.y < -0.01f)
         {
             state = MoveState.falling;
+        }
+
+        if (shadowForm.isInShadowForm)
+        {
+            state = MoveState.shadow;
         }
 
         ani.SetInteger("state", (int)state);
