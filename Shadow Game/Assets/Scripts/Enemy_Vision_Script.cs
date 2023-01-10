@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy_Vision_Script : MonoBehaviour
 {
-    [SerializeField] private Enemy_AIAaron enemyAIScript;
+    [SerializeField] private Enemy_AI_v2 enemyAIScript;
     [SerializeField] private AIState2 lastAIState;
     [SerializeField] private Collider2D playerColliderBox;
 

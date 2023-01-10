@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public class Enemy_AIAaron : MonoBehaviour
+public class Enemy_AI_v2 : MonoBehaviour
 {
     /// <summary>
     /// The script should make the AI to:
@@ -54,6 +54,10 @@ public class Enemy_AIAaron : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [Tooltip("Reference the vision box game object in the enemy's children")]
     [SerializeField] private GameObject visionBoxObject;
+    [SerializeField] private GameObject attackBoxObject;
+    [SerializeField] private BoxCollider2D attackBoxCollider;
+
+    [SerializeField] private float attackRange;
 
     [Space(20)]
 
@@ -82,9 +86,11 @@ public class Enemy_AIAaron : MonoBehaviour
     [SerializeField] private Vector3 destination;
     [SerializeField] private Vector3 playerDistanceBuffer;
     private Movement move;
+    private Animator animator;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         defaultColor = spriteRenderer.color;
         defaultVisionBoxPos = visionBoxObject.transform.localPosition;
         patrolStartPointX = rb.position.x;
@@ -96,6 +102,7 @@ public class Enemy_AIAaron : MonoBehaviour
         isPlayerSpotted = false;
         destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
 
+        attackBoxCollider = attackBoxObject.GetComponent<BoxCollider2D>();
         //suspiciousValue = 0f;
         //suspiciousFillUpSpeed = 30f;
         //suspiciousDrainSpeed = 15f;
@@ -135,6 +142,9 @@ public class Enemy_AIAaron : MonoBehaviour
                 break;
             case AIState2.CHASE:
                 Chase();
+                break;
+            case AIState2.ATTACK:
+                Attack();
                 break;
             case AIState2.RETURNTOPATROL:
                 ReturnToPatrol();
@@ -261,6 +271,28 @@ public class Enemy_AIAaron : MonoBehaviour
         {
             isMoveLeft = true;
         }
+
+        if(-attackRange < destination.x - gameObject.transform.position.x && destination.x - gameObject.transform.position.x < attackRange)
+        {
+            //Attack();
+            currentAIState2 = AIState2.ATTACK;
+        }
+    }
+
+    private void Attack()
+    {
+        animator.SetTrigger("ghoulAttack");
+    }
+
+    private void AttackStart()
+    {
+        attackBoxCollider.enabled = true;
+    }
+
+    private void AttackFinished()
+    {
+        attackBoxCollider.enabled = false;
+        currentAIState2 = AIState2.CHASE;
     }
 
     //This function makes the enemy go back to the their starting spawn location.
@@ -401,6 +433,7 @@ public enum AIState2
     PATROLBACK,
     SUSPICIOUS,
     CHASE,
+    ATTACK,
     RETURNTOPATROL
 }
 
