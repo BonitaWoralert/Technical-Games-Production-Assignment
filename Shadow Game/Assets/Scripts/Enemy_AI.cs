@@ -76,7 +76,8 @@ public class Enemy_AI : MonoBehaviour
     [Header("Debuging Only")]
     [SerializeField] private AIState currentAIState;
     private GameObject playerObject;
-
+    private float checkTimer;
+    [SerializeField] private float maxCheckTimer = 1f;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -177,6 +178,32 @@ public class Enemy_AI : MonoBehaviour
         if(chaseThreshold > suspiciousValue && suspiciousValue > suspiciousThreshold)
         {
             ChangeAIState(AIState.SUSPICIOUS);
+        }
+
+        CheckTimer();
+    }
+
+    private void CheckTimer()
+    {
+        checkTimer -= Time.deltaTime;
+        if (checkTimer <= 0f)
+        {
+            checkTimer = maxCheckTimer;
+            FindCheck();
+        }
+    }
+
+    private void FindCheck()
+    {
+        Movement move;
+        move = playerObject.GetComponent<Movement>();
+        if (Vector2.Distance(gameObject.transform.position, move.leftCheck.transform.position) < Vector2.Distance(gameObject.transform.position, move.rightCheck.transform.position))
+        {
+            MoveLeft();
+        }
+        else
+        {
+            MoveRight();
         }
     }
 
