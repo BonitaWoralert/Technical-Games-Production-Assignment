@@ -19,7 +19,7 @@ public class Combat : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 BasicAttack();
                 nextAttackTime = Time.time + 1.0f / attackRate;
