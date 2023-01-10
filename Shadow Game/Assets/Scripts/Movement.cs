@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     public float jumpForce = 5f;
     public float dashSpace;
     public bool isDashing = false;
+    public bool isAttacking = false;
 
     public bool isGrounded = true;
 
@@ -27,7 +28,7 @@ public class Movement : MonoBehaviour
     private ShadowForm shadowForm;
     float horizontalMovement;
 
-    enum MoveState { idle, running, jumping, falling, dashing, shadow };
+    enum MoveState { idle, running, jumping, falling, dashing, shadow, attack };
     MoveState state;
 
     // Start is called before the first frame update
@@ -186,6 +187,11 @@ public class Movement : MonoBehaviour
         else if (rb.velocity.y < -0.01f)
         {
             state = MoveState.falling;
+        }
+
+        if (isAttacking)
+        {
+            state = MoveState.attack;
         }
 
         if (shadowForm.isInShadowForm)
