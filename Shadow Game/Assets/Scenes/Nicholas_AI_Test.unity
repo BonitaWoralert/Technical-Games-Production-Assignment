@@ -1834,6 +1834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1405702244381241123, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
+    - {fileID: 6695476416823753104, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1405702244381241127, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
       insertIndex: -1
@@ -1849,24 +1850,6 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 1405702244381241122, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
   m_PrefabInstance: {fileID: 611633728}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &751454346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751454339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93158e793995a5a49834af97941e9034, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  topBoxCollider: {fileID: 0}
-  bottomBoxCollider: {fileID: 0}
-  playerObject: {fileID: 1821323138}
-  playerRigidBody: {fileID: 1821323141}
-  isPlayerColliding: 0
-  forcePush: 100
 --- !u!4 &751454351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1405702244381241127, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
@@ -1930,6 +1913,24 @@ MonoBehaviour:
   maxCheckTimer: 0.3
   destination: {x: 0, y: 0, z: 0}
   playerDistanceBuffer: {x: 0.4, y: 0, z: 0}
+--- !u!114 &751454356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751454339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93158e793995a5a49834af97941e9034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topBoxCollider: {fileID: 0}
+  bottomBoxCollider: {fileID: 0}
+  playerObject: {fileID: 0}
+  playerRigidBody: {fileID: 0}
+  isPlayerColliding: 0
+  forcePush: 300
 --- !u!61 &879975434 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1877749973754294080, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
@@ -1981,7 +1982,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.056963112, y: -0.01168476}
+  m_Offset: {x: 0.07154042, y: -0.01168476}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1992,7 +1993,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3018363, y: 0.3164424}
+  m_Size: {x: 0.3309909, y: 0.3164424}
   m_EdgeRadius: 0
 --- !u!114 &1549794505
 MonoBehaviour:
@@ -2007,6 +2008,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackBoxCollider: {fileID: 1549794504}
+  knockbackStrength: 300
+  isPlayerTakingEnemyKnockback: 0
 --- !u!1 &1803985387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,16 +2120,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1821323138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1877749973754294081, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
-  m_PrefabInstance: {fileID: 2116935993}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1821323141 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 1877749973754294093, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
-  m_PrefabInstance: {fileID: 2116935993}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1821323146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1877749973754294094, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
@@ -2329,6 +2322,10 @@ PrefabInstance:
     - target: {fileID: 1877749973754294081, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877749973754294092, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
+      propertyPath: maxDashTimer
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1877749973754294093, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
       propertyPath: m_Simulated

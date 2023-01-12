@@ -283,7 +283,13 @@ public class Enemy_AI_v2 : MonoBehaviour
     {
         CheckTimer();
         //Make sure that the enemy is not attacking (prevent overlap animation)
-        if(isAttacking == false)
+        StartCoroutine(PlayAttackAnimation());
+    }
+
+    private IEnumerator PlayAttackAnimation()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (isAttacking == false)
         {
             canMove = false;
             animator.SetTrigger("ghoulAttack");
@@ -398,14 +404,14 @@ public class Enemy_AI_v2 : MonoBehaviour
             }
             else
             {
-                if (currentAIState2 == AIState2.CHASE && destination == move.leftCheck.transform.position)
-                {
-                    //spriteRenderer.flipX = true;
-                }
-                else if (currentAIState2 == AIState2.CHASE && destination == move.rightCheck.transform.position)
-                {
-                    //spriteRenderer.flipX = false;
-                }
+                //if (currentAIState2 == AIState2.CHASE && destination == move.leftCheck.transform.position)
+                //{
+                //    //spriteRenderer.flipX = true;
+                //}
+                //else if (currentAIState2 == AIState2.CHASE && destination == move.rightCheck.transform.position)
+                //{
+                //    //spriteRenderer.flipX = false;
+                //}
             }
             visionBoxObject.transform.localPosition = defaultVisionBoxPos;
             //attackBoxObject.transform.localPosition = defaultAttackBoxPos;
