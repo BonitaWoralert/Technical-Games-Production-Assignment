@@ -11,6 +11,8 @@ public class EnemyAttack : MonoBehaviour
     public int enemyDamage;
     private PlayerStats playerStatsScript;
     private GameObject playerObject;
+    //private SpriteRenderer playerSpriteRenderer;
+    //private Color defaultPlayerColor;
     private Rigidbody2D playerRigidBody;
 
     // Start is called before the first frame update
@@ -19,6 +21,8 @@ public class EnemyAttack : MonoBehaviour
         playerObject = GameObject.Find("Player");
         playerRigidBody = playerObject.GetComponent<Rigidbody2D>();
         playerStatsScript = playerObject.GetComponent<PlayerStats>();
+        //playerSpriteRenderer = playerObject.GetComponent<SpriteRenderer>();
+        //defaultPlayerColor = playerSpriteRenderer.color;
         isPlayerTakingEnemyKnockback = false;
     }
 
@@ -27,7 +31,8 @@ public class EnemyAttack : MonoBehaviour
         if(isPlayerTakingEnemyKnockback == true)
         {
             Vector2 direction = (playerObject.transform.position - transform.position).normalized;
-            playerRigidBody.AddForce(direction * knockbackStrength, ForceMode2D.Force);
+            playerRigidBody.AddForce(new Vector2(direction.x * knockbackStrength, 0), ForceMode2D.Force);
+            //playerRigidBody.AddForce(direction * knockbackStrength, ForceMode2D.Force);
         }
     }
 
@@ -37,6 +42,7 @@ public class EnemyAttack : MonoBehaviour
         {
             Debug.Log("PLAYER TAKES DAMAGE");
             playerStatsScript.health -= enemyDamage;
+            //playerSpriteRenderer.color = Color.white;
             if(playerStatsScript.health <= 0)
             {
                 //Player Death.
@@ -50,6 +56,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            //playerSpriteRenderer.color = defaultPlayerColor;
             isPlayerTakingEnemyKnockback = false;
         }
     }

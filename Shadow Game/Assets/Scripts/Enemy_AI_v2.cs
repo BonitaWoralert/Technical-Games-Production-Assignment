@@ -349,16 +349,19 @@ public class Enemy_AI_v2 : MonoBehaviour
         //AI does not move, until suspicious bar fills up.
         if (suspiciousValue > chaseThreshold)
         {
+            animator.SetBool("isSuspicious", false);
             canMove = true;
             currentAIState2 = AIState2.CHASE;
         }
         else if (suspiciousThreshold < suspiciousValue && suspiciousValue < chaseThreshold)
         {
+            animator.SetBool("isSuspicious", true);
             canMove = false;
         }
 
         if (suspiciousValue == 0f)
         {
+            animator.SetBool("isSuspicious", false);
             canMove = true;
             ChangeAIState2(AIState2.RETURNTOPATROL);
         }
@@ -445,6 +448,11 @@ public class Enemy_AI_v2 : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(gameObject.transform.position, new Vector2(patrolEndPointX, gameObject.transform.position.y));
+    }
+
+    public void RemoveEnemy()
+    {
+        Destroy(gameObject);
     }
 }
 
