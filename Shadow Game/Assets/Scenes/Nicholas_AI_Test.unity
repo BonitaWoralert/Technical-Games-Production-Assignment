@@ -1910,7 +1910,7 @@ MonoBehaviour:
   suspiciousValueMax: 130
   chaseThreshold: 100
   currentAIState2: 0
-  maxCheckTimer: 0.3
+  maxCheckTimer: 0.15
   destination: {x: 0, y: 0, z: 0}
   playerDistanceBuffer: {x: 0.4, y: 0, z: 0}
 --- !u!114 &751454356
@@ -2010,6 +2010,7 @@ MonoBehaviour:
   attackBoxCollider: {fileID: 1549794504}
   knockbackStrength: 300
   isPlayerTakingEnemyKnockback: 0
+  enemyDamage: 1
 --- !u!1 &1803985387
 GameObject:
   m_ObjectHideFlags: 0
