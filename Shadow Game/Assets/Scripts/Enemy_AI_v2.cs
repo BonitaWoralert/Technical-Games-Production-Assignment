@@ -21,6 +21,8 @@ public class Enemy_AI_v2 : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color defaultColor;
     private Vector2 defaultVisionBoxPos;
+    private Vector2 defaultAttackBoxPos;
+    private Vector2 defaultAttackCollisionBoxOffsetX;
     public bool isPlayerSpotted;
 
     private float patrolStartPointX;
@@ -98,6 +100,7 @@ public class Enemy_AI_v2 : MonoBehaviour
         animator = GetComponent<Animator>();
         defaultColor = spriteRenderer.color;
         defaultVisionBoxPos = visionBoxObject.transform.localPosition;
+        defaultAttackBoxPos = attackBoxObject.transform.localPosition;
         patrolStartPointX = rb.position.x;
         patrolStartPointY = transform.position.y;
         patrolEndPointX = patrolStartPointX + patrolEndPointOffsetX;
@@ -108,6 +111,7 @@ public class Enemy_AI_v2 : MonoBehaviour
         destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
 
         attackBoxCollider = attackBoxObject.GetComponent<BoxCollider2D>();
+        defaultAttackCollisionBoxOffsetX = attackBoxCollider.offset;
         isAttacking = false;
 
         if (patrolStartPointX < patrolEndPointX)
@@ -369,6 +373,8 @@ public class Enemy_AI_v2 : MonoBehaviour
             //HERE!!
             spriteRenderer.flipX = true;
             visionBoxObject.transform.localPosition = new Vector3(defaultVisionBoxPos.x * -1, defaultVisionBoxPos.y);
+            //attackBoxObject.transform.localPosition = new Vector3(defaultAttackBoxPos.x * -1, defaultAttackBoxPos.y);
+            attackBoxCollider.offset = defaultAttackCollisionBoxOffsetX * -1;
             //visionBoxObject.transform.position = new Vector3(-defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
             //spriteRenderer.color = defaultColor;
         }
@@ -402,6 +408,8 @@ public class Enemy_AI_v2 : MonoBehaviour
                 }
             }
             visionBoxObject.transform.localPosition = defaultVisionBoxPos;
+            //attackBoxObject.transform.localPosition = defaultAttackBoxPos;
+            attackBoxCollider.offset = defaultAttackCollisionBoxOffsetX;
             //visionBoxObject.transform.position = new Vector3(defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
             //spriteRenderer.color = Color.yellow;
             spriteRenderer.flipX = false;
