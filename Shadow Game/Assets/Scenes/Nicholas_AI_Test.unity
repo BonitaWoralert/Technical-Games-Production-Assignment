@@ -1919,7 +1919,7 @@ MonoBehaviour:
   visionBoxObject: {fileID: 1957413960}
   attackBoxObject: {fileID: 1549794502}
   attackBoxCollider: {fileID: 0}
-  attackRange: 0.5
+  attackRange: 0.2
   suspiciousValue: 0
   suspiciousFillUpSpeed: 30
   suspiciousDrainSpeed: 15
@@ -1927,9 +1927,9 @@ MonoBehaviour:
   suspiciousValueMax: 130
   chaseThreshold: 100
   currentAIState2: 0
-  maxCheckTimer: 1
+  maxCheckTimer: 0.3
   destination: {x: 0, y: 0, z: 0}
-  playerDistanceBuffer: {x: 0, y: 0, z: 0}
+  playerDistanceBuffer: {x: 0.4, y: 0, z: 0}
 --- !u!61 &879975434 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1877749973754294080, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}

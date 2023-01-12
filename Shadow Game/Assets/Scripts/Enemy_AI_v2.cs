@@ -87,6 +87,11 @@ public class Enemy_AI_v2 : MonoBehaviour
     [SerializeField] private Vector3 playerDistanceBuffer;
     private Movement move;
     private Animator animator;
+
+    [Space(20)]
+
+    private bool isAttacking;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -103,13 +108,7 @@ public class Enemy_AI_v2 : MonoBehaviour
         destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
 
         attackBoxCollider = attackBoxObject.GetComponent<BoxCollider2D>();
-        //suspiciousValue = 0f;
-        //suspiciousFillUpSpeed = 30f;
-        //suspiciousDrainSpeed = 15f;
-        //suspiciousThreshold = 50f;
-        //suspiciousValueMax = 120f;
-        //
-        //chaseThreshold = 100f;
+        isAttacking = false;
 
         if (patrolStartPointX < patrolEndPointX)
         {
@@ -155,7 +154,6 @@ public class Enemy_AI_v2 : MonoBehaviour
 
         if(isPlayerSpotted)
         {
-            //canMove = false;
             if(suspiciousValue > suspiciousValueMax)
             {
                 suspiciousValue = suspiciousValueMax;
@@ -231,7 +229,6 @@ public class Enemy_AI_v2 : MonoBehaviour
     {
         if(patrolEndPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolEndPointX + patrolPointRange)
         {
-            Debug.Log("End");
             destination = new Vector3(patrolStartPointX, patrolStartPointY, 0);
             canMove = true;
             //Enemy is in range of patrolEndPoint. Start going back.
@@ -247,7 +244,6 @@ public class Enemy_AI_v2 : MonoBehaviour
     {
         if(patrolStartPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolStartPointX + patrolPointRange)
         {
-            Debug.Log("Start");
             destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
             canMove = true;
             //Enemy is in range of patrolStartPoint. Start going to.
@@ -262,7 +258,7 @@ public class Enemy_AI_v2 : MonoBehaviour
     private void Chase()
     {
         CheckTimer();
-
+        canMove = true;
         if (transform.position.x <= playerObject.transform.position.x)
         {
             isMoveLeft = false;
@@ -281,16 +277,26 @@ public class Enemy_AI_v2 : MonoBehaviour
 
     private void Attack()
     {
-        animator.SetTrigger("ghoulAttack");
+        CheckTimer();
+        //Make sure that the enemy is not attacking (prevent overlap animation)
+        if(isAttacking == false)
+        {
+            canMove = false;
+            animator.SetTrigger("ghoulAttack");
+        }
     }
 
     private void AttackStart()
     {
+        isAttacking = true;
+        //canMove = false;
         attackBoxCollider.enabled = true;
     }
 
     private void AttackFinished()
     {
+        isAttacking = false;
+        //canMove = true;
         attackBoxCollider.enabled = false;
         currentAIState2 = AIState2.CHASE;
     }
@@ -309,7 +315,7 @@ public class Enemy_AI_v2 : MonoBehaviour
             StartCoroutine(Telp());
 
             //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
-            Debug.Log("I am called!");
+            //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
         }
         else
         { 
@@ -360,6 +366,7 @@ public class Enemy_AI_v2 : MonoBehaviour
             {
                 transform.position = new Vector2(transform.position.x + -(normalMovementSpeed * Time.deltaTime), rb.position.y);
             }
+            //HERE!!
             spriteRenderer.flipX = true;
             visionBoxObject.transform.localPosition = new Vector3(defaultVisionBoxPos.x * -1, defaultVisionBoxPos.y);
             //visionBoxObject.transform.position = new Vector3(-defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
@@ -381,22 +388,23 @@ public class Enemy_AI_v2 : MonoBehaviour
             }
             if (currentAIState2 != AIState2.CHASE)
             {
-                spriteRenderer.flipX = false;
+                //spriteRenderer.flipX = false;
             }
             else
             {
                 if (currentAIState2 == AIState2.CHASE && destination == move.leftCheck.transform.position)
                 {
-                    spriteRenderer.flipX = true;
+                    //spriteRenderer.flipX = true;
                 }
                 else if (currentAIState2 == AIState2.CHASE && destination == move.rightCheck.transform.position)
                 {
-                    spriteRenderer.flipX = false;
+                    //spriteRenderer.flipX = false;
                 }
             }
             visionBoxObject.transform.localPosition = defaultVisionBoxPos;
             //visionBoxObject.transform.position = new Vector3(defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
             //spriteRenderer.color = Color.yellow;
+            spriteRenderer.flipX = false;
         }
     }
     
