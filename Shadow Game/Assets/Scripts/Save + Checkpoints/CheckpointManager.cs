@@ -49,6 +49,10 @@ public class CheckpointManager : MonoBehaviour
 
     public void SetCurrentCheckpoint(int newindex) //set new current checkpoint, for loading a save
     {
+        foreach (GameObject checkPoint in CheckPointsList)
+        {
+            checkPoint.GetComponent<ActivateCheckpoint>().activated = false;
+        }
         CheckPointsList[newindex].GetComponent<ActivateCheckpoint>().activated = true; //activate correct checkpoint
         Debug.Log("Current index set to: " + index);
     }
