@@ -380,7 +380,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 707150527, guid: 3158963ba76579845a3bd9aa527a7a08, type: 3}
+  m_Sprite: {fileID: -1012265951, guid: ff14a97e7d8d2a540a8de0926835c074, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -462,6 +462,7 @@ MonoBehaviour:
   jumpForce: 11
   dashSpace: 100
   isDashing: 0
+  isAttacking: 0
   isGrounded: 0
   groundLayers:
     serializedVersion: 2
