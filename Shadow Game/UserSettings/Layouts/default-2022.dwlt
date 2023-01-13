@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier:
   m_PixelRect:
     serializedVersion: 2
+
     x: 2249
     y: 302.5
     width: 1206
@@ -59,6 +60,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+
   m_Name:
   m_EditorClassIdentifier:
   m_Children: []
