@@ -1895,7 +1895,7 @@ MonoBehaviour:
   patrolPointRange: 0.5
   resetPosition: {x: 0, y: 0}
   normalMovementSpeed: 1
-  chaseMovementMultiplier: 1.5
+  chaseMovementMultiplier: 3
   canMove: 0
   isPatrolToMoveDirectionLeft: 0
   rb: {fileID: 751454341}
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   attackBoxCollider: {fileID: 0}
   attackRange: 0.5
   suspiciousValue: 0
-  suspiciousFillUpSpeed: 30
+  suspiciousFillUpSpeed: 45
   suspiciousDrainSpeed: 15
   suspiciousThreshold: 50
   suspiciousValueMax: 130
@@ -1920,7 +1920,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751454339}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93158e793995a5a49834af97941e9034, type: 3}
   m_Name: 
@@ -1946,11 +1946,6 @@ MonoBehaviour:
   animator: {fileID: 751454352}
   maxHealth: 100
   currentHealth: 0
---- !u!61 &751454360 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1405702244381241120, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
-  m_PrefabInstance: {fileID: 611633728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!61 &879975434 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1877749973754294080, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
@@ -1996,13 +1991,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549794502}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07154042, y: -0.01168476}
+  m_Offset: {x: 0.0006797239, y: 0.004316047}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2013,7 +2008,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3309909, y: 0.3164424}
+  m_Size: {x: 0.32184762, y: 0.348444}
   m_EdgeRadius: 0
 --- !u!114 &1549794505
 MonoBehaviour:
@@ -2027,8 +2022,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a54594bf5ab84944a13efb203f46ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackBoxCollider: {fileID: 751454360}
-  knockbackStrength: 200
+  attackBoxCollider: {fileID: 1549794504}
+  knockbackStrength: 6
   isPlayerTakingEnemyKnockback: 0
   enemyDamage: 0
 --- !u!1 &1803985387
