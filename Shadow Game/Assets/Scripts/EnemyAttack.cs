@@ -28,12 +28,12 @@ public class EnemyAttack : MonoBehaviour
 
     private void Update()
     {
-        if(isPlayerTakingEnemyKnockback == true)
-        {
-            Vector2 direction = (playerObject.transform.position - transform.position).normalized;
-            playerRigidBody.AddForce(new Vector2(direction.x * knockbackStrength, 0), ForceMode2D.Force);
-            //playerRigidBody.AddForce(direction * knockbackStrength, ForceMode2D.Force);
-        }
+        //if(isPlayerTakingEnemyKnockback == true)
+        //{
+        //    Vector2 direction = (playerObject.transform.position - transform.position).normalized;
+        //    playerRigidBody.AddForce(new Vector2(direction.x * knockbackStrength, 0));
+        //    //playerRigidBody.AddForce(direction * knockbackStrength, ForceMode2D.Force);
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -42,11 +42,14 @@ public class EnemyAttack : MonoBehaviour
         {
             Debug.Log("PLAYER TAKES DAMAGE");
             playerStatsScript.health -= enemyDamage;
+            Vector2 direction = (playerObject.transform.position - transform.position).normalized;
+            //playerRigidBody.AddForce(new Vector2(direction.x * knockbackStrength, 0), ForceMode2D.Impulse);
+            playerRigidBody.velocity = direction * knockbackStrength;
             //playerSpriteRenderer.color = Color.white;
-            if(playerStatsScript.health <= 0)
+            if (playerStatsScript.health <= 0)
             {
                 //Player Death.
-                Destroy(playerObject);
+                //Destroy(playerObject);
             }
             isPlayerTakingEnemyKnockback = true;
         }
