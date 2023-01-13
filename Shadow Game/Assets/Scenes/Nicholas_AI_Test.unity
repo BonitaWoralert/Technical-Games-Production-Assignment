@@ -1902,7 +1902,7 @@ MonoBehaviour:
   visionBoxObject: {fileID: 1957413960}
   attackBoxObject: {fileID: 1549794502}
   attackBoxCollider: {fileID: 0}
-  attackRange: 0.2
+  attackRange: 0.5
   suspiciousValue: 0
   suspiciousFillUpSpeed: 30
   suspiciousDrainSpeed: 15
@@ -1946,6 +1946,11 @@ MonoBehaviour:
   animator: {fileID: 751454352}
   maxHealth: 100
   currentHealth: 0
+--- !u!61 &751454360 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1405702244381241120, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
+  m_PrefabInstance: {fileID: 611633728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &879975434 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1877749973754294080, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
@@ -2022,10 +2027,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a54594bf5ab84944a13efb203f46ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackBoxCollider: {fileID: 1549794504}
-  knockbackStrength: 300
+  attackBoxCollider: {fileID: 751454360}
+  knockbackStrength: 200
   isPlayerTakingEnemyKnockback: 0
-  enemyDamage: 1
+  enemyDamage: 0
 --- !u!1 &1803985387
 GameObject:
   m_ObjectHideFlags: 0

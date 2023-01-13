@@ -274,49 +274,35 @@ public class Enemy_AI_v2 : MonoBehaviour
 
         if(-attackRange < destination.x - gameObject.transform.position.x && destination.x - gameObject.transform.position.x < attackRange)
         {
-            //Attack();
-            currentAIState2 = AIState2.ATTACK;
+            if(isAttacking == false)
+            {
+                isAttacking = true;
+                Attack();
+            }
         }
     }
 
     private void Attack()
     {
-        CheckTimer();
-        //Make sure that the enemy is not attacking (prevent overlap animation)
-        StartCoroutine(PlayAttackAnimation());
-    }
-
-    private IEnumerator PlayAttackAnimation()
-    {
-        yield return new WaitForSeconds(0.1f);
-        if (isAttacking == false)
-        {
-            canMove = false;
-            animator.SetTrigger("ghoulAttack");
-        }
+        animator.SetTrigger("ghoulAttack");
     }
 
     private void AttackStart()
     {
-        isAttacking = true;
-        //canMove = false;
+        canMove = false;
         attackBoxCollider.enabled = true;
     }
 
     private void AttackFinished()
     {
-        isAttacking = false;
-        //canMove = true;
+        canMove = true;
         attackBoxCollider.enabled = false;
-        currentAIState2 = AIState2.CHASE;
     }
 
     //This function makes the enemy go back to the their starting spawn location.
     private void ReturnToPatrol()
     {
         destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
-
-
 
         if (!(patrolStartPointY - 0.3f < rb.transform.position.y || rb.transform.position.y > patrolStartPointY + 0.3f))
         {
