@@ -1660,6 +1660,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1405702244381241120, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1405702244381241121, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -1912,7 +1916,7 @@ MonoBehaviour:
   currentAIState2: 0
   maxCheckTimer: 0.15
   destination: {x: 0, y: 0, z: 0}
-  playerDistanceBuffer: {x: 0.4, y: 0, z: 0}
+  playerDistanceBuffer: {x: 0.2, y: 0, z: 0}
 --- !u!114 &751454356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1930,7 +1934,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   playerRigidBody: {fileID: 0}
   isPlayerColliding: 0
-  forcePush: 300
+  forcePush: 10
 --- !u!114 &751454359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1946,11 +1950,6 @@ MonoBehaviour:
   animator: {fileID: 751454352}
   maxHealth: 100
   currentHealth: 0
---- !u!61 &751454360 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1405702244381241120, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
-  m_PrefabInstance: {fileID: 611633728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!61 &879975434 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1877749973754294080, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
@@ -1965,8 +1964,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1549794503}
-  - component: {fileID: 1549794504}
   - component: {fileID: 1549794505}
+  - component: {fileID: 1549794506}
   m_Layer: 8
   m_Name: Attack Box
   m_TagString: Untagged
@@ -1989,32 +1988,6 @@ Transform:
   m_Father: {fileID: 751454351}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1549794504
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549794502}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.07154042, y: -0.01168476}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.3309909, y: 0.3164424}
-  m_EdgeRadius: 0
 --- !u!114 &1549794505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2027,10 +2000,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a54594bf5ab84944a13efb203f46ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackBoxCollider: {fileID: 751454360}
-  knockbackStrength: 200
+  attackBoxCollider: {fileID: 1549794506}
+  knockbackStrength: 6
   isPlayerTakingEnemyKnockback: 0
-  enemyDamage: 0
+  enemyDamage: 1
+--- !u!61 &1549794506
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549794502}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.004553005, y: -0.00971169}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.25428584, y: 0.3453858}
+  m_EdgeRadius: 0
 --- !u!1 &1803985387
 GameObject:
   m_ObjectHideFlags: 0
