@@ -16,12 +16,12 @@ public class ActivateCheckpoint : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //player collides with checkpoint
     {
         if(!activated)
         {
-            checkpointManager.DeactivateAll();
-            activated = true;
+            checkpointManager.DeactivateAll(); //all other checkpoints off
+            activated = true; //this checkpoint on
             Debug.Log("Checkpoint activated: " + index);
         }
     }
