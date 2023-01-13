@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public class Enemy_AIAaron : MonoBehaviour
+public class Enemy_AI_v2 : MonoBehaviour
 {
     /// <summary>
     /// The script should make the AI to:
@@ -21,6 +21,8 @@ public class Enemy_AIAaron : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color defaultColor;
     private Vector2 defaultVisionBoxPos;
+    private Vector2 defaultAttackBoxPos;
+    private Vector2 defaultAttackCollisionBoxOffsetX;
     public bool isPlayerSpotted;
 
     private float patrolStartPointX;
@@ -54,6 +56,10 @@ public class Enemy_AIAaron : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [Tooltip("Reference the vision box game object in the enemy's children")]
     [SerializeField] private GameObject visionBoxObject;
+    [SerializeField] private GameObject attackBoxObject;
+    [SerializeField] private BoxCollider2D attackBoxCollider;
+
+    [SerializeField] private float attackRange;
 
     [Space(20)]
 
@@ -82,11 +88,19 @@ public class Enemy_AIAaron : MonoBehaviour
     [SerializeField] private Vector3 destination;
     [SerializeField] private Vector3 playerDistanceBuffer;
     private Movement move;
+    private Animator animator;
+
+    [Space(20)]
+
+    private bool isAttacking;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         defaultColor = spriteRenderer.color;
         defaultVisionBoxPos = visionBoxObject.transform.localPosition;
+        defaultAttackBoxPos = attackBoxObject.transform.localPosition;
         patrolStartPointX = rb.position.x;
         patrolStartPointY = transform.position.y;
         patrolEndPointX = patrolStartPointX + patrolEndPointOffsetX;
@@ -96,13 +110,9 @@ public class Enemy_AIAaron : MonoBehaviour
         isPlayerSpotted = false;
         destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
 
-        //suspiciousValue = 0f;
-        //suspiciousFillUpSpeed = 30f;
-        //suspiciousDrainSpeed = 15f;
-        //suspiciousThreshold = 50f;
-        //suspiciousValueMax = 120f;
-        //
-        //chaseThreshold = 100f;
+        attackBoxCollider = attackBoxObject.GetComponent<BoxCollider2D>();
+        defaultAttackCollisionBoxOffsetX = attackBoxCollider.offset;
+        isAttacking = false;
 
         if (patrolStartPointX < patrolEndPointX)
         {
@@ -136,6 +146,9 @@ public class Enemy_AIAaron : MonoBehaviour
             case AIState2.CHASE:
                 Chase();
                 break;
+            case AIState2.ATTACK:
+                Attack();
+                break;
             case AIState2.RETURNTOPATROL:
                 ReturnToPatrol();
                 break;
@@ -145,7 +158,6 @@ public class Enemy_AIAaron : MonoBehaviour
 
         if(isPlayerSpotted)
         {
-            //canMove = false;
             if(suspiciousValue > suspiciousValueMax)
             {
                 suspiciousValue = suspiciousValueMax;
@@ -221,7 +233,6 @@ public class Enemy_AIAaron : MonoBehaviour
     {
         if(patrolEndPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolEndPointX + patrolPointRange)
         {
-            Debug.Log("End");
             destination = new Vector3(patrolStartPointX, patrolStartPointY, 0);
             canMove = true;
             //Enemy is in range of patrolEndPoint. Start going back.
@@ -237,7 +248,6 @@ public class Enemy_AIAaron : MonoBehaviour
     {
         if(patrolStartPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolStartPointX + patrolPointRange)
         {
-            Debug.Log("Start");
             destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
             canMove = true;
             //Enemy is in range of patrolStartPoint. Start going to.
@@ -252,7 +262,7 @@ public class Enemy_AIAaron : MonoBehaviour
     private void Chase()
     {
         CheckTimer();
-
+        canMove = true;
         if (transform.position.x <= playerObject.transform.position.x)
         {
             isMoveLeft = false;
@@ -261,14 +271,38 @@ public class Enemy_AIAaron : MonoBehaviour
         {
             isMoveLeft = true;
         }
+
+        if(-attackRange < destination.x - gameObject.transform.position.x && destination.x - gameObject.transform.position.x < attackRange)
+        {
+            if(isAttacking == false)
+            {
+                isAttacking = true;
+                Attack();
+            }
+        }
+    }
+
+    private void Attack()
+    {
+        animator.SetTrigger("ghoulAttack");
+    }
+
+    private void AttackStart()
+    {
+        canMove = false;
+        attackBoxCollider.enabled = true;
+    }
+
+    private void AttackFinished()
+    {
+        canMove = true;
+        attackBoxCollider.enabled = false;
     }
 
     //This function makes the enemy go back to the their starting spawn location.
     private void ReturnToPatrol()
     {
         destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
-
-
 
         if (!(patrolStartPointY - 0.3f < rb.transform.position.y || rb.transform.position.y > patrolStartPointY + 0.3f))
         {
@@ -277,7 +311,7 @@ public class Enemy_AIAaron : MonoBehaviour
             StartCoroutine(Telp());
 
             //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
-            Debug.Log("I am called!");
+            //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
         }
         else
         { 
@@ -301,16 +335,19 @@ public class Enemy_AIAaron : MonoBehaviour
         //AI does not move, until suspicious bar fills up.
         if (suspiciousValue > chaseThreshold)
         {
+            animator.SetBool("isSuspicious", false);
             canMove = true;
             currentAIState2 = AIState2.CHASE;
         }
         else if (suspiciousThreshold < suspiciousValue && suspiciousValue < chaseThreshold)
         {
+            animator.SetBool("isSuspicious", true);
             canMove = false;
         }
 
         if (suspiciousValue == 0f)
         {
+            animator.SetBool("isSuspicious", false);
             canMove = true;
             ChangeAIState2(AIState2.RETURNTOPATROL);
         }
@@ -328,8 +365,11 @@ public class Enemy_AIAaron : MonoBehaviour
             {
                 transform.position = new Vector2(transform.position.x + -(normalMovementSpeed * Time.deltaTime), rb.position.y);
             }
+            //HERE!!
             spriteRenderer.flipX = true;
             visionBoxObject.transform.localPosition = new Vector3(defaultVisionBoxPos.x * -1, defaultVisionBoxPos.y);
+            //attackBoxObject.transform.localPosition = new Vector3(defaultAttackBoxPos.x * -1, defaultAttackBoxPos.y);
+            attackBoxCollider.offset = defaultAttackCollisionBoxOffsetX * -1;
             //visionBoxObject.transform.position = new Vector3(-defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
             //spriteRenderer.color = defaultColor;
         }
@@ -349,22 +389,25 @@ public class Enemy_AIAaron : MonoBehaviour
             }
             if (currentAIState2 != AIState2.CHASE)
             {
-                spriteRenderer.flipX = false;
+                //spriteRenderer.flipX = false;
             }
             else
             {
-                if (currentAIState2 == AIState2.CHASE && destination == move.leftCheck.transform.position)
-                {
-                    spriteRenderer.flipX = true;
-                }
-                else if (currentAIState2 == AIState2.CHASE && destination == move.rightCheck.transform.position)
-                {
-                    spriteRenderer.flipX = false;
-                }
+                //if (currentAIState2 == AIState2.CHASE && destination == move.leftCheck.transform.position)
+                //{
+                //    //spriteRenderer.flipX = true;
+                //}
+                //else if (currentAIState2 == AIState2.CHASE && destination == move.rightCheck.transform.position)
+                //{
+                //    //spriteRenderer.flipX = false;
+                //}
             }
             visionBoxObject.transform.localPosition = defaultVisionBoxPos;
+            //attackBoxObject.transform.localPosition = defaultAttackBoxPos;
+            attackBoxCollider.offset = defaultAttackCollisionBoxOffsetX;
             //visionBoxObject.transform.position = new Vector3(defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
             //spriteRenderer.color = Color.yellow;
+            spriteRenderer.flipX = false;
         }
     }
     
@@ -392,6 +435,11 @@ public class Enemy_AIAaron : MonoBehaviour
     {
         Gizmos.DrawLine(gameObject.transform.position, new Vector2(patrolEndPointX, gameObject.transform.position.y));
     }
+
+    public void RemoveEnemy()
+    {
+        Destroy(gameObject);
+    }
 }
 
 public enum AIState2
@@ -401,6 +449,7 @@ public enum AIState2
     PATROLBACK,
     SUSPICIOUS,
     CHASE,
+    ATTACK,
     RETURNTOPATROL
 }
 
