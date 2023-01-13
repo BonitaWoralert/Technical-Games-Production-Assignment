@@ -31,6 +31,7 @@ public class EnemyBounceOff : MonoBehaviour
     private void PlayerBounce()
     {
         //playerRigidBody.AddForce((playerObject.transform.position - transform.position) * forcePush, ForceMode2D.Force);
+        //playerRigidBody.AddForce((Vector2.right) * forcePush, ForceMode2D.Force);
         playerRigidBody.AddForce((Vector2.right) * forcePush, ForceMode2D.Force);
     }
 

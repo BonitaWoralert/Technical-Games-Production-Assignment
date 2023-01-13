@@ -7,6 +7,9 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.AE24D059" = "p: t:texture"
+	"OpenInspectorPreview.AE24D059" = "0"
+	"currentGroup.AE24D059" = "all"
 }
 providers = {
 	adb = {
@@ -53,14 +56,16 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"p: t:texture"
+	"p: dir=\"Dialogue\" "
 ]
 searchItemFavorites = [
 ]
 savedSearchesSortOrder = 0
-showSavedSearchPanel = false
+showSavedSearchPanel = true
 expandedQueries = [
 ]
 queryBuilder = false
 ignoredProperties = "id;name;classname;imagecontentshash"
-helperWidgetCurrentArea = "all"
+helperWidgetCurrentArea = "p:"
 disabledIndexers = ""
