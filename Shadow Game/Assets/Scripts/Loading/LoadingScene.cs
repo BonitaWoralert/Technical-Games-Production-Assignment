@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScene : MonoBehaviour
 {
+    // https://www.youtube.com/watch?v=iXWFTgFNRdM 
     public GameObject loadingScreen;
     public Image loadingBarFill;
 
@@ -18,7 +19,7 @@ public class LoadingScene : MonoBehaviour
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
 
-        LoadingScene.SetActive(true);
+        //LoadingScene.SetActive(true);
 
         while(!operation.isDone)
         {
