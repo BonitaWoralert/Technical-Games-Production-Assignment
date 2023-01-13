@@ -478,7 +478,7 @@ MonoBehaviour:
   leftCheck: {fileID: 4187124586237169611}
   rightCheck: {fileID: 5727251857932353995}
   maxDashTimer: 0.1
-  dashTimer: 3
+  dashTimer: 0.1
   dashAmount: 3
   rb: {fileID: 0}
   state: 0
