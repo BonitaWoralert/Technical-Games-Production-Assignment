@@ -11,20 +11,27 @@ public class SavePrefs : MonoBehaviour
     public float timer;
 
     private PlayerStats stats;
-
+    private CheckpointManager checkpointManager;
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         LoadGame(); //Load save when game starts
         stats = FindObjectOfType<PlayerStats>();
+        checkpointManager = FindObjectOfType<CheckpointManager>();
         health = stats.health;
-        Debug.Log(stats.health);
+        Debug.Log("Loaded health is" + stats.health);
     }
 
     public void SaveGame() //files are saved in Registry Editor: Computer\HKEY_CURRENT_USER\SOFTWARE\Unity\UnityEditor\DefaultCompany\Shadow Game
     {
+        checkpointFlag = checkpointManager.GetCurrentCheckpoint();
         PlayerPrefs.SetInt("CheckpointFlag", checkpointFlag); //location on map
+
+        health = stats.health;
         PlayerPrefs.SetInt("Health", health); 
+
         PlayerPrefs.SetInt("Collectible", collectible);
         PlayerPrefs.SetInt("Score", score);
         PlayerPrefs.SetFloat("Timer", timer);
@@ -37,7 +44,12 @@ public class SavePrefs : MonoBehaviour
         if (PlayerPrefs.HasKey("CheckpointFlag"))
         {
             checkpointFlag = PlayerPrefs.GetInt("CheckpointFlag");
+            checkpointManager.SetCurrentCheckpoint(checkpointFlag);
+            player.transform.position = checkpointManager.GetCheckpointPos();
+
             health = PlayerPrefs.GetInt("Health");
+            stats.health = health;
+
             collectible = PlayerPrefs.GetInt("Collectible");
             score = PlayerPrefs.GetInt("Score");
             timer = PlayerPrefs.GetFloat("Timer");
