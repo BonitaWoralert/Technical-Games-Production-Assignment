@@ -4,31 +4,37 @@ using UnityEngine;
 
 public class SavePrefs : MonoBehaviour
 {
-    public int checkpointFlag;
-    public int health;
-    public int collectible;
-    public int score;
-    public float timer;
+    //all variables to be saved
+    int checkpointFlag = 0;
+    int health;
+    int collectible;
+    int score;
+    float timer;
 
+    //all references containing data that needs to be saved
     private PlayerStats stats;
     private CheckpointManager checkpointManager;
     private GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
+        //initialise references
         player = GameObject.FindGameObjectWithTag("Player");
-        LoadGame(); //Load save when game starts
         stats = FindObjectOfType<PlayerStats>();
         checkpointManager = FindObjectOfType<CheckpointManager>();
-        health = stats.health;
-        Debug.Log("Loaded health is" + stats.health);
+
+        LoadGame(); //Load existing save when game starts
     }
 
     public void SaveGame() //files are saved in Registry Editor: Computer\HKEY_CURRENT_USER\SOFTWARE\Unity\UnityEditor\DefaultCompany\Shadow Game
     {
+        //save index of current checkpoint in the list of checkpoints
+        //player location
         checkpointFlag = checkpointManager.GetCurrentCheckpoint();
-        PlayerPrefs.SetInt("CheckpointFlag", checkpointFlag); //location on map
+        PlayerPrefs.SetInt("CheckpointFlag", checkpointFlag); 
 
+        //save int health
         health = stats.health;
         PlayerPrefs.SetInt("Health", health); 
 
@@ -39,16 +45,16 @@ public class SavePrefs : MonoBehaviour
         Debug.Log("Game Data Saved");
     }
 
-    public void LoadGame()
+    public void LoadGame() 
     {
-        if (PlayerPrefs.HasKey("CheckpointFlag"))
+        if (PlayerPrefs.HasKey("CheckpointFlag")) //making sure playerprefs isn't empty
         {
-            checkpointFlag = PlayerPrefs.GetInt("CheckpointFlag");
-            checkpointManager.SetCurrentCheckpoint(checkpointFlag);
-            player.transform.position = checkpointManager.GetCheckpointPos();
+            checkpointFlag = PlayerPrefs.GetInt("CheckpointFlag"); //set checkpointflag variable to data inside save file
+            checkpointManager.SetCurrentCheckpoint(checkpointFlag); //set current checkpoint
+            player.transform.position = checkpointManager.GetCheckpointPos(); //set player position
 
-            health = PlayerPrefs.GetInt("Health");
-            stats.health = health;
+            health = PlayerPrefs.GetInt("Health"); //set health var to health in file
+            stats.health = health; //set health in player stats
 
             collectible = PlayerPrefs.GetInt("Collectible");
             score = PlayerPrefs.GetInt("Score");
@@ -61,7 +67,8 @@ public class SavePrefs : MonoBehaviour
 
     public void ResetData()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll(); //delete all data in playerprefs
+        //reset all variables to 0
         checkpointFlag = 0;
         health = 0;
         collectible = 0;
