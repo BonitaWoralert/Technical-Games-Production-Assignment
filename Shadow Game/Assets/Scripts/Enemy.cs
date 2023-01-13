@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     public int maxHealth = 100;
     public int currentHealth;
+    //private Enemy_AI_v2 enemyAIScript;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +31,10 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Enemy died!");
         //Play animation
+        animator.SetTrigger("deadTrigger");
 
         //Disable enemy
-        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Collider2D>().enabled = true;
         this.enabled = false;
     }
 }
