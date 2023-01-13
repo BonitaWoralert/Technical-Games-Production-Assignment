@@ -42,15 +42,12 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.position.y > transform.position.y)
-        {
-            collision.transform.parent = transform;
-        }
+        collision.transform.parent = transform;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         collision.transform.parent = null;
     }
