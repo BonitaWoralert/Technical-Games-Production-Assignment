@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
-public class NextLevel : MonoBehaviour
+public class LevelLoader : MonoBehaviour
 {
-    [SerializeField] private Transform player;
     public Animator transition;
     public float transitionTime = 1.0f;
-    public Vector3 playerPos;
 
-    public void OnTriggerEnter2D (Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
