@@ -43,13 +43,14 @@ public class CheckpointManager : MonoBehaviour
                 index = checkPoint.GetComponent<ActivateCheckpoint>().index;
             }
         }
+        Debug.Log("Got index: " + index);
         return index;
     }
 
     public void SetCurrentCheckpoint(int newindex) //set new current checkpoint, for loading a save
     {
-        DeactivateAll(); //delete any current checkpoints
         CheckPointsList[newindex].GetComponent<ActivateCheckpoint>().activated = true; //activate correct checkpoint
+        Debug.Log("Current index set to: " + index);
     }
 
     public Vector2 GetCheckpointPos()
