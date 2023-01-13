@@ -22,6 +22,7 @@ public class Combat : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 BasicAttack();
+                Debug.Log("Player is attacking!");
                 nextAttackTime = Time.time + 1.0f / attackRate;
             }
         }
@@ -30,7 +31,8 @@ public class Combat : MonoBehaviour
     void BasicAttack()
     {
         //Plays the attack animation
-        animator.SetTrigger("Attack");
+        //animator.SetTrigger("Attack");
+        animator.SetInteger("state", 6);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)

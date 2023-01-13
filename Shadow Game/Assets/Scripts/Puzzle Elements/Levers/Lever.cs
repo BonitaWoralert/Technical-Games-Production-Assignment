@@ -8,10 +8,12 @@ public class Lever : BaseSwitch
     private Color _activeColor;
     private Color _inactiveColor;
     private SpriteRenderer _spriteRenderer;
+    private Animator animator;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         _activeColor = Color.green;
         _inactiveColor = Color.red;
     }
@@ -30,10 +32,12 @@ public class Lever : BaseSwitch
     {
         if (_state)
         {
+            animator.SetBool("isActive", true);
             _spriteRenderer.color = _activeColor;
         }
         else
         {
+            animator.SetBool("isActive", false);
             _spriteRenderer.color = _inactiveColor;
         }
     }
