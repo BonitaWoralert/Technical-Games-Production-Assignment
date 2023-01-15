@@ -2073,6 +2073,8 @@ MonoBehaviour:
   movementForceX: 3
   velocityX: 0
   velocityY: 0
+  defaultTimeToMove: 5
+  timeToMove: 5
 --- !u!50 &1801319308
 Rigidbody2D:
   serializedVersion: 4

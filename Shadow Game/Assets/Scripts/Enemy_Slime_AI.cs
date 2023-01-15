@@ -48,7 +48,7 @@ public class Enemy_Slime_AI : MonoBehaviour
     [SerializeField] private float chaseMovementMultiplier;
 
     private bool isMoveLeft;
-    [HideInInspector]public bool canMove;
+    public bool canMove;
     [HideInInspector]public bool isPatrolToMoveDirectionLeft;
 
     [Space(20)]
@@ -91,6 +91,8 @@ public class Enemy_Slime_AI : MonoBehaviour
     [SerializeField] private float movementForceX;
     [SerializeField] private float velocityX;
     [SerializeField] private float velocityY;
+    [SerializeField] private float defaultTimeToMove;
+    [SerializeField] private float timeToMove;
 
     private Movement move;
     private Animator animator;
@@ -118,6 +120,7 @@ public class Enemy_Slime_AI : MonoBehaviour
         //attackBoxCollider = attackBoxObject.GetComponent<BoxCollider2D>();
         //defaultAttackCollisionBoxOffsetX = attackBoxCollider.offset;
         isAttacking = false;
+        timeToMove = defaultTimeToMove;
 
         if (patrolStartPointX < patrolEndPointX)
         {
@@ -161,51 +164,21 @@ public class Enemy_Slime_AI : MonoBehaviour
                 break;
         }
 
-        //if(isPlayerSpotted)
-        //{
-        //    if(suspiciousValue > suspiciousValueMax)
-        //    {
-        //        suspiciousValue = suspiciousValueMax;
-        //    }
-        //    else
-        //    {
-        //        suspiciousValue += suspiciousFillUpSpeed * Time.deltaTime;
-        //    }
-        //
-        //}
-        //else
-        //{
-        //    if(suspiciousValue < 0f)
-        //    {
-        //        suspiciousValue = 0f;
-        //    }
-        //    else
-        //    {
-        //        suspiciousValue -= suspiciousDrainSpeed * Time.deltaTime;
-        //    }
-        //
-        //}
-
+        MoveTimer();
         SlimeAnimationCheck();
         VelocityInputTest();
 
         if(canMove)
         {
-            //if (destination.x - gameObject.transform.position.x < 0f)
-            //{
-            //    MoveLeft();
-            //}
-            //else
-            //{
-            //    MoveRight();
-            //}
+            if (destination.x - gameObject.transform.position.x < 0f)
+            {
+                MoveLeft();
+            }
+            else
+            {
+                MoveRight();
+            }
         }
-
-        //if(chaseThreshold > suspiciousValue && suspiciousValue > suspiciousThreshold)
-        //{
-        //    ChangeAIState2(AIState2.SUSPICIOUS);
-        //}
-
     }
 
     private void SlimeAnimationCheck()
@@ -391,58 +364,40 @@ public class Enemy_Slime_AI : MonoBehaviour
     {
         if(currentAIState2 != AIState2.NONE)
         {
-            if(currentAIState2 == AIState2.CHASE)
-            {
-                transform.position = new Vector2(transform.position.x + -(normalMovementSpeed * chaseMovementMultiplier * Time.deltaTime), rb.position.y);
-            }
-            else
-            {
-                transform.position = new Vector2(transform.position.x + -(normalMovementSpeed * Time.deltaTime), rb.position.y);
-            }
-            //HERE!!
-            spriteRenderer.flipX = true;
-            //visionBoxObject.transform.localPosition = new Vector3(defaultVisionBoxPos.x * -1, defaultVisionBoxPos.y);
-            //attackBoxObject.transform.localPosition = new Vector3(defaultAttackBoxPos.x * -1, defaultAttackBoxPos.y);
-            //attackBoxCollider.offset = defaultAttackCollisionBoxOffsetX * -1;
-            //visionBoxObject.transform.position = new Vector3(-defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
-            //spriteRenderer.color = defaultColor;
+            rb.velocity += new Vector2(-movementForceX, movementForceY);
+            Debug.Log("FORCE ADDED!");
+            velocityX = rb.velocity.x;
+            velocityY = rb.velocity.y;
+            canMove = false;
         }
     }
 
     private void MoveRight()
     {
         if(currentAIState2 != AIState2.NONE)
+        {   
+            rb.velocity += new Vector2(movementForceX, movementForceY);
+            Debug.Log("FORCE ADDED!");
+            velocityX = rb.velocity.x;
+            velocityY = rb.velocity.y;
+            canMove = false;
+        }
+    }
+
+    private void MoveTimer()
+    {
+        //This timer calculates the time the slime has to stay on the ground before moving again.
+        if(velocityY <= 0)
         {
-            if(currentAIState2 == AIState2.CHASE)
-            {
-                transform.position = new Vector2(transform.position.x + (normalMovementSpeed * chaseMovementMultiplier * Time.deltaTime), rb.position.y);
-            }
-            else
-            {
-                //transform.position = new Vector2(transform.position.x + (normalMovementSpeed * Time.deltaTime), rb.position.y);
-                //rb.MovePosition(new Vector2(transform.position.x + (normalMovementSpeed * Time.deltaTime)));
-            }
-            if (currentAIState2 != AIState2.CHASE)
-            {
-                //spriteRenderer.flipX = false;
-            }
-            else
-            {
-                //if (currentAIState2 == AIState2.CHASE && destination == move.leftCheck.transform.position)
-                //{
-                //    //spriteRenderer.flipX = true;
-                //}
-                //else if (currentAIState2 == AIState2.CHASE && destination == move.rightCheck.transform.position)
-                //{
-                //    //spriteRenderer.flipX = false;
-                //}
-            }
-            //visionBoxObject.transform.localPosition = defaultVisionBoxPos;
-            //attackBoxObject.transform.localPosition = defaultAttackBoxPos;
-            //attackBoxCollider.offset = defaultAttackCollisionBoxOffsetX;
-            //visionBoxObject.transform.position = new Vector3(defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
-            //spriteRenderer.color = Color.yellow;
-            spriteRenderer.flipX = false;
+            //Start the Timer.
+            timeToMove -= Time.deltaTime;
+        }
+
+        if(timeToMove <= 0)
+        {
+            //Slime can now move.
+            canMove = true;
+            timeToMove = defaultTimeToMove;
         }
     }
     
