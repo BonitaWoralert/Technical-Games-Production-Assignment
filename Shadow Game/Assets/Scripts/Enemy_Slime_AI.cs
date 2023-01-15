@@ -211,7 +211,10 @@ public class Enemy_Slime_AI : MonoBehaviour
     private void SlimeAnimationCheck()
     {
         //If slime Velocity y is more than 0, play jumping animation.
-
+        if(velocityY > 0)
+        {
+            
+        }
         //If slime Velocity y is less than or equal to 0, play falling animation.
 
         //If slime movement is in Cooldown, play stay still animation.
@@ -223,7 +226,7 @@ public class Enemy_Slime_AI : MonoBehaviour
         if(Input.GetKeyDown("e"))
         {
             //rb.AddForce(new Vector2(0, movementForceY));
-            rb.velocity += new Vector2(0, movementForceY);
+            rb.velocity += new Vector2(movementForceX, movementForceY);
             Debug.Log("FORCE ADDED!");
         }
 

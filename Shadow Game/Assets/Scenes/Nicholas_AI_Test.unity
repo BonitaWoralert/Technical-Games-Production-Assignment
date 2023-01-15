@@ -2069,8 +2069,8 @@ MonoBehaviour:
   maxCheckTimer: 1
   destination: {x: 0, y: 0, z: 0}
   playerDistanceBuffer: {x: 0, y: 0, z: 0}
-  movementForceY: 10
-  movementForceX: 0
+  movementForceY: 5
+  movementForceX: 3
   velocityX: 0
   velocityY: 0
 --- !u!50 &1801319308
