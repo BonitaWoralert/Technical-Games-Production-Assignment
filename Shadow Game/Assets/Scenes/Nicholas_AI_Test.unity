@@ -1951,6 +1951,81 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1877749973754294080, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
   m_PrefabInstance: {fileID: 2116935993}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1304634908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1304634911}
+  - component: {fileID: 1304634910}
+  - component: {fileID: 1304634909}
+  m_Layer: 8
+  m_Name: Attack Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1304634909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304634908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a54594bf5ab84944a13efb203f46ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackBoxCollider: {fileID: 1304634910}
+  knockbackStrength: 6
+  isPlayerTakingEnemyKnockback: 0
+  enemyDamage: 0
+--- !u!61 &1304634910
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304634908}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.019009203, y: -0.059746355}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.26559353, y: 0.2341015}
+  m_EdgeRadius: 0
+--- !u!4 &1304634911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304634908}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.02, y: 0.35839, z: 0.039383676}
+  m_LocalScale: {x: 6, y: 6.373125, z: 6}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1801319312}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1549794502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,29 +2127,24 @@ MonoBehaviour:
   resetPosition: {x: 0, y: 0}
   normalMovementSpeed: 2
   chaseMovementMultiplier: 1.5
-  canMove: 0
+  defaultTimeToMove: 5
+  movementForceY: 5
+  movementForceX: 3
+  playerDistanceBuffer: {x: 0, y: 0, z: 0}
   isPatrolToMoveDirectionLeft: 0
   rb: {fileID: 1801319308}
-  visionBoxObject: {fileID: 0}
+  visionBoxObject: {fileID: 1304634908}
   attackBoxObject: {fileID: 0}
   attackBoxCollider: {fileID: 0}
   attackRange: 0
   suspiciousValue: 0
-  suspiciousFillUpSpeed: 0
-  suspiciousDrainSpeed: 0
-  suspiciousThreshold: 50
-  suspiciousValueMax: 100
-  chaseThreshold: 0
   currentAIState2: 0
   maxCheckTimer: 1
   destination: {x: 0, y: 0, z: 0}
-  playerDistanceBuffer: {x: 0, y: 0, z: 0}
-  movementForceY: 5
-  movementForceX: 3
   velocityX: 0
   velocityY: 0
-  defaultTimeToMove: 5
-  timeToMove: 5
+  timeToMove: 0
+  canMove: 0
 --- !u!50 &1801319308
 Rigidbody2D:
   serializedVersion: 4
@@ -2109,7 +2179,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.07628381}
+  m_Offset: {x: -0.10125744, y: -0.02497363}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2120,8 +2190,13 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6666666, y: 1.5140989}
+  m_Size: {x: 1.4641519, y: 1.311584}
   m_EdgeRadius: 0
+--- !u!4 &1801319312 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1036197791832919693, guid: c8108633a190bba4f8457678c181425e, type: 3}
+  m_PrefabInstance: {fileID: 2032731560}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1803985387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2417,7 +2492,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1036197791832919693, guid: c8108633a190bba4f8457678c181425e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1304634911}
   m_SourcePrefab: {fileID: 100100000, guid: c8108633a190bba4f8457678c181425e, type: 3}
 --- !u!1001 &2116935993
 PrefabInstance:

@@ -46,9 +46,15 @@ public class Enemy_Slime_AI : MonoBehaviour
     [SerializeField] private float normalMovementSpeed;
     [Tooltip("Enemy Chase Speed Multiplier from normal Move Speed")]
     [SerializeField] private float chaseMovementMultiplier;
+    [SerializeField] private float defaultTimeToMove;
+    [SerializeField] private float movementForceY;
+    [SerializeField] private float movementForceX;
+
+    [Space(20)]
+
+    [SerializeField] private Vector3 playerDistanceBuffer;
 
     private bool isMoveLeft;
-    public bool canMove;
     [HideInInspector]public bool isPatrolToMoveDirectionLeft;
 
     [Space(20)]
@@ -67,47 +73,24 @@ public class Enemy_Slime_AI : MonoBehaviour
 
     [Space(20)]
 
-    [Header("Enemy Suspicious and Chase Values")]
-    [Tooltip("How fast the enemy gets Suspicious")]
-    [SerializeField] private float suspiciousFillUpSpeed;
-    [SerializeField] private float suspiciousDrainSpeed;
-    [Tooltip("Suspicious Value for the enemy to be Suspicious")]
-    [SerializeField] private float suspiciousThreshold;
-    [Tooltip("The maximum suspicious value the enemy can have, the bigger the value, the longer the chase state can be based on the chaseThreshold value")]
-    [SerializeField] private float suspiciousValueMax;
-    [Tooltip("Suspicious Value for the enemy to be Chasing")]
-    [SerializeField] private float chaseThreshold;
-
-    [Space(20)]
-
     [Header("Debuging Only")]
     [SerializeField] private AIState2 currentAIState2;
     private GameObject playerObject;
     private float checkTimer;
     [SerializeField] private float maxCheckTimer = 1f;
     [SerializeField] private Vector3 destination;
-    [SerializeField] private Vector3 playerDistanceBuffer;
-    [SerializeField] private float movementForceY;
-    [SerializeField] private float movementForceX;
     [SerializeField] private float velocityX;
     [SerializeField] private float velocityY;
-    [SerializeField] private float defaultTimeToMove;
     [SerializeField] private float timeToMove;
+    public bool canMove;
 
     private Movement move;
     private Animator animator;
-
-    [Space(20)]
-
-    private bool isAttacking;
-
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         defaultColor = spriteRenderer.color;
-        //defaultVisionBoxPos = visionBoxObject.transform.localPosition;
-        //defaultAttackBoxPos = attackBoxObject.transform.localPosition;
         patrolStartPointX = rb.position.x;
         patrolStartPointY = transform.position.y;
         patrolEndPointX = patrolStartPointX + patrolEndPointOffsetX;
@@ -117,9 +100,6 @@ public class Enemy_Slime_AI : MonoBehaviour
         isPlayerSpotted = false;
         destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
 
-        //attackBoxCollider = attackBoxObject.GetComponent<BoxCollider2D>();
-        //defaultAttackCollisionBoxOffsetX = attackBoxCollider.offset;
-        isAttacking = false;
         timeToMove = defaultTimeToMove;
 
         if (patrolStartPointX < patrolEndPointX)
@@ -147,15 +127,6 @@ public class Enemy_Slime_AI : MonoBehaviour
                 break;
             case AIState2.PATROLBACK:
                 PatrolBack();
-                break;
-            case AIState2.SUSPICIOUS:
-                Suspicious();
-                break;
-            case AIState2.CHASE:
-                Chase();
-                break;
-            case AIState2.ATTACK:
-                Attack();
                 break;
             case AIState2.RETURNTOPATROL:
                 ReturnToPatrol();
@@ -265,47 +236,6 @@ public class Enemy_Slime_AI : MonoBehaviour
         }
     }
 
-    //Chase the player.
-    private void Chase()
-    {
-        CheckTimer();
-        canMove = true;
-        if (transform.position.x <= playerObject.transform.position.x)
-        {
-            isMoveLeft = false;
-        }
-        else
-        {
-            isMoveLeft = true;
-        }
-
-        if(-attackRange < destination.x - gameObject.transform.position.x && destination.x - gameObject.transform.position.x < attackRange)
-        {
-            if(isAttacking == false)
-            {
-                isAttacking = true;
-                Attack();
-            }
-        }
-    }
-
-    private void Attack()
-    {
-        animator.SetTrigger("ghoulAttack");
-    }
-
-    private void AttackStart()
-    {
-        canMove = false;
-        attackBoxCollider.enabled = true;
-    }
-
-    private void AttackFinished()
-    {
-        canMove = true;
-        attackBoxCollider.enabled = false;
-    }
-
     //This function makes the enemy go back to the their starting spawn location.
     private void ReturnToPatrol()
     {
@@ -314,11 +244,7 @@ public class Enemy_Slime_AI : MonoBehaviour
         if (!(patrolStartPointY - 0.3f < rb.transform.position.y || rb.transform.position.y > patrolStartPointY + 0.3f))
         {
             canMove = false;
-            //rb.MovePosition(new Vector2(rb.transform.position.x, patrolStartPointY));
             StartCoroutine(Telp());
-
-            //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
-            //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
         }
         else
         { 
@@ -334,30 +260,6 @@ public class Enemy_Slime_AI : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         gameObject.transform.position = resetPosition;
-    }
-
-    //Enemy stays still.
-    private void Suspicious()
-    {
-        //AI does not move, until suspicious bar fills up.
-        if (suspiciousValue > chaseThreshold)
-        {
-            animator.SetBool("isSuspicious", false);
-            canMove = true;
-            currentAIState2 = AIState2.CHASE;
-        }
-        else if (suspiciousThreshold < suspiciousValue && suspiciousValue < chaseThreshold)
-        {
-            animator.SetBool("isSuspicious", true);
-            canMove = false;
-        }
-
-        if (suspiciousValue == 0f)
-        {
-            animator.SetBool("isSuspicious", false);
-            canMove = true;
-            ChangeAIState2(AIState2.RETURNTOPATROL);
-        }
     }
 
     private void MoveLeft()
