@@ -155,10 +155,26 @@ public class Enemy_Slime_AI : MonoBehaviour
     private void SlimeAnimationCheck()
     {
         //If slime Velocity y is more than 0, play jumping animation.
-        if(velocityY > 0)
+        if (velocityY != 0)
         {
-            
+            if (velocityY > 0.01f || velocityY < -0.01f)
+            {
+                animator.SetBool("isFalling", false);
+                animator.SetBool("isJumping", true);
+            }
+            else
+            {
+                animator.SetBool("isJumping", false);
+                animator.SetBool("isFalling", true);
+            }
         }
+        else
+        {
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isJumping", false);
+        }
+ 
+
         //If slime Velocity y is less than or equal to 0, play falling animation.
 
         //If slime movement is in Cooldown, play stay still animation.
@@ -212,7 +228,7 @@ public class Enemy_Slime_AI : MonoBehaviour
         if(patrolEndPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolEndPointX + patrolPointRange)
         {
             destination = new Vector3(patrolStartPointX, patrolStartPointY, 0);
-            canMove = true;
+            //canMove = true;
             //Enemy is in range of patrolEndPoint. Start going back.
             currentAIState2 = AIState2.PATROLBACK;
        
@@ -227,7 +243,7 @@ public class Enemy_Slime_AI : MonoBehaviour
         if(patrolStartPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolStartPointX + patrolPointRange)
         {
             destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
-            canMove = true;
+            //canMove = true;
             //Enemy is in range of patrolStartPoint. Start going to.
             currentAIState2 = AIState2.PATROLTO;
 
