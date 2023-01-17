@@ -54,14 +54,22 @@ public class Movement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
+    void Awake()
+    {
+#if UNITY_EDITOR
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        Application.targetFrameRate = 45;
+#endif
+    }
+
     // Update is called once per frame
     void Update()
     {
-        jumpCheckTimer -= Time.deltaTime;
+        jumpCheckTimer -= Time.fixedDeltaTime;
 
         if (dashTimer > 0)
         {
-            dashTimer -= Time.deltaTime;
+            dashTimer -= Time.fixedDeltaTime;
         }
     }
     private void FixedUpdate()
@@ -106,7 +114,7 @@ public class Movement : MonoBehaviour
         if (Input.GetButton("Jump") && jumpTimer > 0 && jumpForce > 0)
         {
             Debug.Log("Jumping");
-            rb.AddForce(new Vector2(0f, jumpForce * Time.deltaTime));
+            rb.AddForce(new Vector2(0f, jumpForce * Time.fixedDeltaTime));
             jumpForce -= jumpDecrease; //or whatever amount
         }
         //inside Update
@@ -117,7 +125,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            jumpTimer -= Time.deltaTime;
+            jumpTimer -= Time.fixedDeltaTime;
         }
     }
 
@@ -164,7 +172,7 @@ public class Movement : MonoBehaviour
         // Get input for horizontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        float speedSet = horizontalMovement * moveSpeed * Time.deltaTime;
+        float speedSet = horizontalMovement * moveSpeed * Time.fixedDeltaTime;
 
         // Set the velocity of the rigidbody
 
@@ -199,11 +207,11 @@ public class Movement : MonoBehaviour
     {
         if (horizontalMovement < 0)
         {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x - dashSpace, dashTimer * Time.deltaTime), 0);
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x - dashSpace, dashTimer * Time.fixedDeltaTime), 0);
         }
         if (horizontalMovement > 0)
         {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer * Time.deltaTime), 0);
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer * Time.fixedDeltaTime), 0);
         }
     }
 
