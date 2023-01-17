@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour
     RaycastHit2D hit;
     public enum MoveState { idle, running, jumping, falling, dashing, shadow, attack };
     [SerializeField] private MoveState state;
-    [SerializeField] private TrailRenderer trailRenderer;
+    private TrailRenderer trailRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +54,7 @@ public class Movement : MonoBehaviour
         shadowForm = GetComponent<ShadowForm>();
         ani = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
