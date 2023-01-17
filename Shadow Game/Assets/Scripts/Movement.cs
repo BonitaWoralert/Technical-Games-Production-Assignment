@@ -20,6 +20,8 @@ public class Movement : MonoBehaviour
 
     public bool isDashing = false;
 
+    public bool isAttacking = false;
+
     public bool isGrounded = true;
 
     public LayerMask groundLayers;
@@ -40,7 +42,7 @@ public class Movement : MonoBehaviour
     private ShadowForm shadowForm;
     float horizontalMovement;
     RaycastHit2D hit;
-    public enum MoveState { idle, running, jumping, falling, dashing };
+    public enum MoveState { idle, running, jumping, falling, dashing, shadow, attack };
     public MoveState state;
 
     // Start is called before the first frame update
@@ -55,11 +57,6 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMove();
-        ShadowMove();
-        CheckGrounded();
-        PlayerJump();
-
         jumpCheckTimer -= Time.deltaTime;
 
         if (dashTimer > 0)
@@ -69,6 +66,10 @@ public class Movement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        PlayerMove();
+        ShadowMove();
+        CheckGrounded();
+        PlayerJump();
     }
 
     private void CheckGrounded()
@@ -105,7 +106,7 @@ public class Movement : MonoBehaviour
         if (Input.GetButton("Jump") && jumpTimer > 0 && jumpForce > 0)
         {
             Debug.Log("Jumping");
-            rb.AddForce(new Vector2(0f, jumpForce));
+            rb.AddForce(new Vector2(0f, jumpForce * Time.deltaTime));
             jumpForce -= jumpDecrease; //or whatever amount
         }
         //inside Update
@@ -163,7 +164,7 @@ public class Movement : MonoBehaviour
         // Get input for horizontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        float speedSet = horizontalMovement * moveSpeed;
+        float speedSet = horizontalMovement * moveSpeed * Time.deltaTime;
 
         // Set the velocity of the rigidbody
 
@@ -198,11 +199,11 @@ public class Movement : MonoBehaviour
     {
         if (horizontalMovement < 0)
         {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x - dashSpace, dashTimer), 0);
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x - dashSpace, dashTimer * Time.deltaTime), 0);
         }
         if (horizontalMovement > 0)
         {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer), 0);
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer * Time.deltaTime), 0);
         }
     }
 
@@ -272,6 +273,16 @@ public class Movement : MonoBehaviour
         else if (rb.velocity.y < -0.01f)
         {
             state = MoveState.falling;
+        }
+
+        if (isAttacking)
+        {
+            state = MoveState.attack;
+        }
+
+        if (shadowForm.isInShadowForm)
+        {
+            state = MoveState.shadow;
         }
 
         ani.SetInteger("state", (int)state);
