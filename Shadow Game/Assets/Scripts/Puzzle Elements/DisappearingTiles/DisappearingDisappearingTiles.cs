@@ -5,14 +5,14 @@ using UnityEngine.Tilemaps;
 
 public class DisappearingTiles : MonoBehaviour
 {
-    private SpriteRenderer _spriteRenderer;
+    private Tilemap _spriteRenderer;
     private TilemapCollider2D _collider;
 
     [SerializeField] private BaseSwitch _active;
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<Tilemap>();
         _collider = GetComponent<TilemapCollider2D>();
     }
 
