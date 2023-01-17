@@ -5,30 +5,47 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 5f;
-    public float dashSpace;
-    public bool isDashing = false;
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float maxSpeed = 15f;
 
-    public bool isGrounded = true;
+    [Header("Jump")]
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float jumpDecrease = 5f;
+    [SerializeField] private float maxJumpForce;
+    [SerializeField] private float jumpTimer;
+    [SerializeField] private float maxJumpTimer = 0.2f;
+    [SerializeField] private float jumpCheckTimer = 0.2f;
+    [SerializeField] private float maxJumpCheckTimer = 0.2f;
+    [SerializeField] private bool isCoyote = true;
+    [SerializeField] private bool isGrounded = true;
 
-    public LayerMask groundLayers;
+    [Header("Dash")]
+    [SerializeField] private float dashSpace;
+    [SerializeField] private bool isDashing = false;
+    [SerializeField] private bool canDash = true;
+    [SerializeField] private float maxDashTimer;
+    [SerializeField] private float dashTimer;
+    [SerializeField] private int dashAmount;
 
-    public Transform groundCheck;
+    [Header("Attack")]
+    [SerializeField] private bool isAttacking = false;
+
+    [Header("Ground Checks")]
+    [SerializeField] private LayerMask groundLayers;
+    [SerializeField] private Transform groundCheck;
     public GameObject leftCheck;
     public GameObject rightCheck;
 
-    public float maxDashTimer;
-
-    public float dashTimer;
-    Rigidbody2D rb;
-    Animator ani;
-    SpriteRenderer sprite;
+    private Rigidbody2D rb;
+    private Animator ani;
+    private SpriteRenderer sprite;
     private ShadowForm shadowForm;
-    float horizontalMovement;
-
-    enum MoveState { idle, running, jumping, falling, dashing };
-    MoveState state;
+    private float horizontalMovement;
+    RaycastHit2D hit;
+    public enum MoveState { idle, running, jumping, falling, dashing, shadow, attack };
+    [SerializeField] private MoveState state;
+    private TrailRenderer trailRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -37,26 +54,98 @@ public class Movement : MonoBehaviour
         shadowForm = GetComponent<ShadowForm>();
         ani = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        jumpCheckTimer -= Time.deltaTime;
+        dashTimer -= Time.deltaTime;
+
+        MoveInput();
+
+        trailRenderer.enabled = (dashTimer + 0.25f > 0);
+    }
+
+    private void MoveInput()
+    {
+        // Get input for horizontal movement
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            isDashing = true;
+            Dash(dashSpace);
+        }
+    }
+
+    private void FixedUpdate()
+    {
         PlayerMove();
         ShadowMove();
-        if (dashTimer > 0)
+        CheckGrounded();
+        PlayerJump();
+    }
+
+    private void CheckGrounded()
+    {
+        if (Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers) && jumpCheckTimer <= 0)
         {
-            dashTimer -= Time.deltaTime;
+            isGrounded = true;
+        }
+        else
+        {
+            if (jumpCheckTimer > 0)
+            {
+                isGrounded = false;
+            }
+            RemoveGrounded();
+        }
+        //isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers);
+    }
+
+    private void RemoveGrounded()
+    {
+        isCoyote = true;
+    }
+
+    private void PlayerJump()
+    {
+        if (shadowForm.isInShadowForm)
+        {
+            return;
+        }
+
+        if (Input.GetButton("Jump"))
+        {
+            isGrounded = false;
+            jumpCheckTimer = maxJumpCheckTimer;
+        }
+
+        //inside FixedUpdate
+        if (Input.GetButton("Jump") && jumpTimer > 0 && jumpForce > 0)
+        {
+            Debug.Log("Jumping");
+            rb.AddForce(new Vector2(0f, jumpForce * (Time.fixedDeltaTime * 500)));
+            jumpForce -= jumpDecrease; //or whatever amount
+        }
+        //inside Update
+        if (isGrounded)
+        {
+            canDash = true;
+            jumpForce = maxJumpForce; //go back to original power
+            jumpTimer = maxJumpTimer;
+        }
+        else
+        {
+            jumpTimer -= Time.fixedDeltaTime;
         }
     }
 
     private void ShadowMove()
     {
         if (!shadowForm.isInShadowForm) { return; }
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers);
-
-        // Get input for horizontal movement
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
 
         // Set the velocity of the rigidbody
         if (Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && horizontalMovement < 0)
@@ -64,41 +153,44 @@ public class Movement : MonoBehaviour
             Debug.Log("Moving Left");
             rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
         }
-        else if (!Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && horizontalMovement < 0)
-        {
-            Debug.Log("Can't Move Left");
-            rb.velocity = Vector2.zero;
-        }
+        
         if (Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && horizontalMovement > 0)
         {
             Debug.Log("Moving Right");
             rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
         }
-        else if (!Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && horizontalMovement > 0)
+
+
+        if (!Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x > 0.05f)
         {
             Debug.Log("Can't Move Right");
+            rb.velocity = Vector2.zero;
+        }
+
+        if (!Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x < 0.05f)
+        {
+            Debug.Log("Can't Move Left");
             rb.velocity = Vector2.zero;
         }
 
         UpdateAnimations();
     }
 
-    void PlayerMove()
+    private void PlayerMove()
     {
         if (shadowForm.isInShadowForm) { return; }
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers);
 
-        // Get input for horizontal movement
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
+        float speedSet = horizontalMovement * moveSpeed * (Time.fixedDeltaTime * 500);
 
         // Set the velocity of the rigidbody
-        rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !shadowForm.isInShadowForm)
+        if (rb.velocity.x <= maxSpeed && speedSet > 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isGrounded = false;
+            rb.AddForce(new Vector2(speedSet, 0));
+        }
+        else if (rb.velocity.x >= -maxSpeed && speedSet < 0)
+        {
+            rb.AddForce(new Vector2(speedSet, 0));
         }
 
         if (dashTimer > 0)
@@ -110,12 +202,6 @@ public class Movement : MonoBehaviour
             isDashing = false;
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            isDashing = true;
-            Dash(dashSpace);
-        }
-
         UpdateAnimations();
     }
 
@@ -123,18 +209,40 @@ public class Movement : MonoBehaviour
     {
         if (horizontalMovement < 0)
         {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x - dashSpace, dashTimer), 0);
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x - dashSpace, dashTimer * (Time.fixedDeltaTime * 500)), 0);
         }
         if (horizontalMovement > 0)
         {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer), 0);
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer * (Time.fixedDeltaTime * 500)), 0);
         }
     }
 
-    void Dash(float dashSpace)
+    private void Dash(float dashSpace)
     {
-        Debug.Log("Dashing (through the snow)");
-        dashTimer = maxDashTimer;
+        if (dashAmount >= 1 && rb.velocity.x != 0 && canDash)
+        {
+            Debug.Log("Dashing (through the snow)");
+            dashAmount -= 1;
+            canDash = false;
+            dashTimer = maxDashTimer;
+        }
+    }
+
+    private void DashAdd(int dashIncrement)
+    {
+        if (dashAmount + dashIncrement >= 3)
+        {
+            dashAmount = 3;
+        }
+        else
+        {
+            dashAmount += dashIncrement;
+        }
+    }
+
+    public bool GetGrounded()
+    {
+        return isGrounded;
     }
 
     void UpdateAnimations()
@@ -181,6 +289,16 @@ public class Movement : MonoBehaviour
         else if (rb.velocity.y < -0.01f)
         {
             state = MoveState.falling;
+        }
+
+        if (isAttacking)
+        {
+            state = MoveState.attack;
+        }
+
+        if (shadowForm.isInShadowForm)
+        {
+            state = MoveState.shadow;
         }
 
         ani.SetInteger("state", (int)state);

@@ -58,8 +58,11 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+#
 *Resources.meta
 *BilingMode.json.meta
 *PackageManagerSettings.asset
 *default-2022.dwlt
-*EditorUserSettings.asset
+*/EditorUserSettings.asset
+*.dwlt
+*/ProjectSettings/ShaderGraphSettings.asset

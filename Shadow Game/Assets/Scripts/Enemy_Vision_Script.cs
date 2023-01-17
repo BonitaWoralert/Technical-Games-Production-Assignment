@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy_Vision_Script : MonoBehaviour
 {
-    [SerializeField] private Enemy_AI enemyAIScript;
-    [SerializeField] private AIState lastAIState;
+    [SerializeField] private Enemy_AI_v2 enemyAIScript;
+    [SerializeField] private AIState2 lastAIState;
     [SerializeField] private Collider2D playerColliderBox;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -13,9 +13,9 @@ public class Enemy_Vision_Script : MonoBehaviour
         if(collision.gameObject.tag == "Player" && collision == playerColliderBox)
         {
             //Makes sure that AIState is not NONE, this is done because OnTriggerEnter2D can be triggered multiple times.
-            if(enemyAIScript.GetLastAIState() != AIState.NONE)
+            if(enemyAIScript.GetLastAIState2() != AIState2.NONE)
             {
-                lastAIState = enemyAIScript.GetLastAIState();
+                lastAIState = enemyAIScript.GetLastAIState2();
             }
             enemyAIScript.isPlayerSpotted = true;
             Debug.Log("PLAYER SEEN");
@@ -26,9 +26,9 @@ public class Enemy_Vision_Script : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && collision == playerColliderBox)
         {
-            if(enemyAIScript.GetLastAIState() == AIState.CHASE)
+            if(enemyAIScript.GetLastAIState2() == AIState2.CHASE)
             {
-                enemyAIScript.ChangeAIState(AIState.SUSPICIOUS);
+                enemyAIScript.ChangeAIState2(AIState2.SUSPICIOUS);
             }
 
             enemyAIScript.isPlayerSpotted = false;

@@ -12,9 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Aarons Scene.unity
     guid: fe93d56f20bbf8644bdc26b2ef6905ab
   - enabled: 1
+    path: Assets/Scenes/Alex_Puzzle_Elements.unity
+    guid: c14bef64b5a61c84ba8101c7f0e20634
+  - enabled: 1
     path: Assets/Scenes/PauseMenu.unity
     guid: 4dd904007ff19c64193a14e65dc6dd8d
   - enabled: 1
     path: Assets/Scenes/SaveTest.unity
     guid: 88917e54c5a57a741828419c85f0a93e
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: cbd2b12883cffd04a81c88a461e4d201
+  - enabled: 1
+    path: Assets/Scenes/Level One.unity
+    guid: 6fc706ce356fb264b85153eefc376b37
   m_configObjects: {}

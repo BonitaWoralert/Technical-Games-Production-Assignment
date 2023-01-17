@@ -8,11 +8,14 @@ public class ShadowForm : MonoBehaviour
     public bool isInShadowForm;
     public bool isInDarkness;
     public Light2D shadowLight;
+    public float intensity;
 
     private Sprite playerSprite;
     private PlayerStats stats;
     private Animator animator;
     private Movement movement;
+    private LightDetectorReceiver lightDetectorReceiver;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,7 @@ public class ShadowForm : MonoBehaviour
         stats = GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
         movement = GetComponent<Movement>();
+        lightDetectorReceiver = GetComponent<LightDetectorReceiver>();
     }
 
     // Update is called once per frame
@@ -30,18 +34,21 @@ public class ShadowForm : MonoBehaviour
 
         Change();
     }
-
+    private void LateUpdate()
+    {
+        intensity = lightDetectorReceiver._intenisty;
+    }
     void Change()
     {
         shadowLight.enabled = isInShadowForm;
 
-        if (Input.GetKeyDown(KeyCode.F) && isInDarkness && movement.isGrounded)
+        if (Input.GetKeyDown(KeyCode.F) && isInDarkness && movement.GetGrounded())
         {
             if (isInShadowForm)
             {
                 isInShadowForm = !isInShadowForm;
             }
-            else if (!isInShadowForm && stats.shadowEnergy > 0f)
+            else if (!isInShadowForm && stats.shadowEnergy > 0f && intensity <= 0)
             {
                 isInShadowForm = !isInShadowForm;
             }
