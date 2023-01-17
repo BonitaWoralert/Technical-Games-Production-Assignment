@@ -100,6 +100,7 @@ public class Enemy_Firefly_AI : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        rb.GetComponent<Rigidbody2D>();
         defaultColor = spriteRenderer.color;
         patrolStartPointX = rb.position.x;
         patrolStartPointY = transform.position.y;
@@ -183,7 +184,6 @@ public class Enemy_Firefly_AI : MonoBehaviour
         {
             //rb.AddForce(new Vector2(0, movementForceY));
             rb.velocity += new Vector2(-movementForceX, 0f);
-            Debug.Log("FORCE ADDED!");
         }
 
         velocityX = rb.velocity.x;
@@ -282,7 +282,7 @@ public class Enemy_Firefly_AI : MonoBehaviour
             transform.position = position + transform.up * Mathf.Sin(Time.time * moveWaveFrequency + moveWaveOffset) * moveWaveMagnitude;
             velocityX = rb.velocity.x;
             velocityY = rb.velocity.y;
-            Debug.Log("Moving Left");
+            spriteRenderer.flipX = false;
         }
     }
 
@@ -294,7 +294,7 @@ public class Enemy_Firefly_AI : MonoBehaviour
             transform.position = position + transform.up * Mathf.Sin(Time.time * moveWaveFrequency + moveWaveOffset) * moveWaveMagnitude;
             velocityX = rb.velocity.x;
             velocityY = rb.velocity.y;
-            Debug.Log("Move Right");
+            spriteRenderer.flipX = true;
         }
     }
 

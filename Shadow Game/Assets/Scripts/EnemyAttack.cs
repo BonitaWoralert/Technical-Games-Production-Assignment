@@ -9,12 +9,13 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float knockbackStrength;
     [SerializeField] private bool isPlayerTakingEnemyKnockback;
     public int enemyDamage;
+    [SerializeField] private int enemyHealth;
     private PlayerStats playerStatsScript;
     private GameObject playerObject;
     //private SpriteRenderer playerSpriteRenderer;
     //private Color defaultPlayerColor;
     private Rigidbody2D playerRigidBody;
-
+    [SerializeField] Enemy enemyScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class EnemyAttack : MonoBehaviour
         playerRigidBody = playerObject.GetComponent<Rigidbody2D>();
         playerStatsScript = playerObject.GetComponent<PlayerStats>();
         isPlayerTakingEnemyKnockback = false;
+        enemyScript = GetComponentInParent<Enemy>();
     }
 
     private void Update()
@@ -37,19 +39,17 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.tag == "Player")
+        if(collider.gameObject.tag == "Player" )
         {
-            Debug.Log("PLAYER TAKES DAMAGE");
-            playerStatsScript.health -= enemyDamage;
+            if (enemyScript.currentHealth > 0)
+            {
+                Debug.Log("PLAYER TAKES DAMAGE");
+                playerStatsScript.health -= enemyDamage;
+            }
             Vector2 direction = (playerObject.transform.position - transform.position).normalized;
             //playerRigidBody.AddForce(new Vector2(direction.x * knockbackStrength, 0), ForceMode2D.Impulse);
             playerRigidBody.velocity = direction * knockbackStrength;
             //playerSpriteRenderer.color = Color.white;
-            if (playerStatsScript.health <= 0)
-            {
-                //Player Death.
-                //Destroy(playerObject);
-            }
             isPlayerTakingEnemyKnockback = true;
         }
     }

@@ -90,16 +90,14 @@ public class Movement : MonoBehaviour
 
     public void CheckGrounded()
     {
+        Debug.Log(Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers));
         if (Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers) && jumpCheckTimer <= 0)
         {
             isGrounded = true;
         }
         else
         {
-            if (jumpCheckTimer > 0)
-            {
-                isGrounded = false;
-            }
+            isGrounded = false;
             RemoveGrounded();
         }
         //isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers);
@@ -128,13 +126,13 @@ public class Movement : MonoBehaviour
         {
             Debug.Log("Jumping");
             rb.AddForce(new Vector2(0f, jumpForce * (Time.fixedDeltaTime * 500)));
-            jumpForce -= jumpDecrease; //or whatever amount
+            jumpForce -= jumpDecrease; //Or Whatever amount
         }
-        //inside Update
+        //Inside Update
         if (isGrounded)
         {
             canDash = true;
-            jumpForce = maxJumpForce; //go back to original power
+            jumpForce = maxJumpForce; //Go Back to Original Power
             jumpTimer = maxJumpTimer;
         }
         else
