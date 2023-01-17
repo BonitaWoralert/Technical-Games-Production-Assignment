@@ -10,6 +10,8 @@ public class ShadowForm : MonoBehaviour
     public Light2D shadowLight;
     public float intensity;
 
+    [SerializeField] private BoxCollider2D playerBoxCollider;
+    [SerializeField] private BoxCollider2D shadowBoxCollider;
     private Sprite playerSprite;
     private PlayerStats stats;
     private Animator animator;
@@ -25,8 +27,9 @@ public class ShadowForm : MonoBehaviour
         animator = GetComponent<Animator>();
         movement = GetComponent<Movement>();
         lightDetectorReceiver = GetComponent<LightDetectorReceiver>();
+        playerBoxCollider.enabled = true;
+        shadowBoxCollider.enabled = false;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -46,20 +49,17 @@ public class ShadowForm : MonoBehaviour
         {
             if (isInShadowForm)
             {
-                isInShadowForm = !isInShadowForm;
-                transform.gameObject.layer = 7;
+                PlayerFormChange();
             }
             else if (!isInShadowForm && stats.shadowEnergy > 0f && intensity <= 0)
             {
-                isInShadowForm = !isInShadowForm;
-                transform.gameObject.layer = 9;
+                ShadowFormChange();
             }
         }
 
-        if (stats.shadowEnergy <= 0)
+        if (stats.shadowEnergy <= 0 && isInShadowForm)
         {
-            isInShadowForm = false;
-            transform.gameObject.layer = 7;
+            PlayerFormChange();
         }
 
         //IS in Shadow Form
@@ -73,5 +73,20 @@ public class ShadowForm : MonoBehaviour
         {
             animator.SetBool("isPlayer", true);
         }
+    }
+
+    void PlayerFormChange()
+    {
+        isInShadowForm = !isInShadowForm;
+        playerBoxCollider.enabled = true;
+        shadowBoxCollider.enabled = false;
+        transform.gameObject.layer = 7;
+    }
+    void ShadowFormChange()
+    {
+        isInShadowForm = !isInShadowForm;
+        playerBoxCollider.enabled = false;
+        shadowBoxCollider.enabled = true;
+        transform.gameObject.layer = 9;
     }
 }
