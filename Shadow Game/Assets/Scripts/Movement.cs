@@ -112,6 +112,11 @@ public class Movement : MonoBehaviour
 
     private void PlayerJump()
     {
+        if (shadowForm.isInShadowForm)
+        {
+            return;
+        }
+
         if (Input.GetButton("Jump"))
         {
             isGrounded = false;
