@@ -59,8 +59,6 @@ public class PauseMenuController : MonoBehaviour
 
     public void Exit()
     {
-        SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 1.0f;
         pauseMenu.SetActive(false);
         backgroundImage.SetActive(false);
     }
