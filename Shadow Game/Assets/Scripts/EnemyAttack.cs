@@ -21,19 +21,18 @@ public class EnemyAttack : MonoBehaviour
         playerObject = GameObject.Find("Player");
         playerRigidBody = playerObject.GetComponent<Rigidbody2D>();
         playerStatsScript = playerObject.GetComponent<PlayerStats>();
-        //playerSpriteRenderer = playerObject.GetComponent<SpriteRenderer>();
-        //defaultPlayerColor = playerSpriteRenderer.color;
         isPlayerTakingEnemyKnockback = false;
     }
 
     private void Update()
     {
-        //if(isPlayerTakingEnemyKnockback == true)
-        //{
-        //    Vector2 direction = (playerObject.transform.position - transform.position).normalized;
-        //    playerRigidBody.AddForce(new Vector2(direction.x * knockbackStrength, 0));
-        //    //playerRigidBody.AddForce(direction * knockbackStrength, ForceMode2D.Force);
-        //}
+        if(isPlayerTakingEnemyKnockback == true)
+        {
+            Vector2 direction = (playerObject.transform.position - transform.position).normalized;
+            //playerRigidBody.AddForce(new Vector2(direction.x * knockbackStrength, 0), ForceMode2D.Force);
+            //playerRigidBody.AddForce(direction * knockbackStrength, ForceMode2D.Force);
+            playerRigidBody.velocity = knockbackStrength * direction;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
