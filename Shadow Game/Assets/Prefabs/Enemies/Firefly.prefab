@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7112363330392966795}
   - component: {fileID: 7112363330392966804}
   - component: {fileID: 1246492500}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Firefly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
