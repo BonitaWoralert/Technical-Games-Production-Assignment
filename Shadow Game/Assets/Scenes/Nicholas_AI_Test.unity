@@ -1915,11 +1915,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1405702244381241127, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.97
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 1405702244381241127, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.95
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 1405702244381241127, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2369,13 +2369,13 @@ MonoBehaviour:
   isPlayerSpotted: 0
   patrolStartPointY: 0
   patrolEndPointX: 0
-  patrolEndPointOffsetX: 12
+  patrolEndPointOffsetX: 9
   patrolEndPointY: 0
   patrolPointRange: 0.5
   resetPosition: {x: 0, y: 0}
   normalMovementSpeed: 2
   chaseMovementMultiplier: 1.5
-  defaultTimeToMove: 5
+  defaultTimeToMove: 2
   movementForceY: 5
   movementForceX: 3
   playerDistanceBuffer: {x: 0, y: 0, z: 0}
@@ -2701,11 +2701,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1036197791832919693, guid: c8108633a190bba4f8457678c181425e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.88
+      value: -1.82
       objectReference: {fileID: 0}
     - target: {fileID: 1036197791832919693, guid: c8108633a190bba4f8457678c181425e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.15
+      value: -5.98
       objectReference: {fileID: 0}
     - target: {fileID: 1036197791832919693, guid: c8108633a190bba4f8457678c181425e, type: 3}
       propertyPath: m_LocalPosition.z
