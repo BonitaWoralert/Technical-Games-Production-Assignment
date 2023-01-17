@@ -1833,10 +1833,6 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1405702244381241120, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
-      propertyPath: m_UsedByComposite
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1405702244381241121, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -2089,7 +2085,7 @@ MonoBehaviour:
   currentAIState2: 0
   maxCheckTimer: 0.15
   destination: {x: 0, y: 0, z: 0}
-  playerDistanceBuffer: {x: 0.2, y: 0, z: 0}
+  playerDistanceBuffer: {x: 0.4, y: 0, z: 0}
 --- !u!114 &751454356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2107,7 +2103,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   playerRigidBody: {fileID: 0}
   isPlayerColliding: 0
-  forcePush: 10
+  forcePush: 300
 --- !u!114 &751454359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2287,8 +2283,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1549794503}
+  - component: {fileID: 1549794504}
   - component: {fileID: 1549794505}
-  - component: {fileID: 1549794506}
   m_Layer: 8
   m_Name: Attack Box
   m_TagString: Untagged
@@ -2311,23 +2307,7 @@ Transform:
   m_Father: {fileID: 751454351}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1549794505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549794502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a54594bf5ab84944a13efb203f46ba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackBoxCollider: {fileID: 1549794506}
-  knockbackStrength: 6
-  isPlayerTakingEnemyKnockback: 0
-  enemyDamage: 1
---- !u!61 &1549794506
+--- !u!61 &1549794504
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2338,10 +2318,9 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0006797239, y: 0.004316047}
-  m_Offset: {x: -0.004553005, y: -0.00971169}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
