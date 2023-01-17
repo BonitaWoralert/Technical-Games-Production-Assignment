@@ -5,45 +5,46 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float maxSpeed = 15f;
-    public float jumpForce = 5f;
-    public float jumpDecrease = 5f;
-    public float maxJumpForce;
-    public float dashSpace;
-    public float jumpTimer;
-    public float maxJumpTimer = 0.2f;
-    public float jumpCheckTimer = 0.2f;
-    public float maxJumpCheckTimer = 0.2f;
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float maxSpeed = 15f;
 
-    public bool isCoyote = true;
+    [Header("Jump")]
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float jumpDecrease = 5f;
+    [SerializeField] private float maxJumpForce;
+    [SerializeField] private float jumpTimer;
+    [SerializeField] private float maxJumpTimer = 0.2f;
+    [SerializeField] private float jumpCheckTimer = 0.2f;
+    [SerializeField] private float maxJumpCheckTimer = 0.2f;
+    [SerializeField] private bool isCoyote = true;
+    [SerializeField] private bool isGrounded = true;
 
-    public bool isDashing = false;
+    [Header("Dash")]
+    [SerializeField] private float dashSpace;
+    [SerializeField] private bool isDashing = false;
+    [SerializeField] private bool canDash = true;
+    [SerializeField] private float maxDashTimer;
+    [SerializeField] private float dashTimer;
+    [SerializeField] private int dashAmount;
 
-    public bool isAttacking = false;
+    [Header("Attack")]
+    [SerializeField] private bool isAttacking = false;
 
-    public bool isGrounded = true;
-
-    public LayerMask groundLayers;
-
-    public Transform groundCheck;
+    [Header("Ground Checks")]
+    [SerializeField] private LayerMask groundLayers;
+    [SerializeField] private Transform groundCheck;
     public GameObject leftCheck;
     public GameObject rightCheck;
 
-    //DASHING
-    public float maxDashTimer;
-
-    public float dashTimer;
-    public int dashAmount;
-
-    [HideInInspector] public Rigidbody2D rb;
-    Animator ani;
-    SpriteRenderer sprite;
+    private Rigidbody2D rb;
+    private Animator ani;
+    private SpriteRenderer sprite;
     private ShadowForm shadowForm;
-    float horizontalMovement;
+    private float horizontalMovement;
     RaycastHit2D hit;
     public enum MoveState { idle, running, jumping, falling, dashing, shadow, attack };
-    public MoveState state;
+    [SerializeField] private MoveState state;
 
     // Start is called before the first frame update
     void Start()
@@ -57,20 +58,33 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMove();
-        ShadowMove();
-        CheckGrounded();
-        PlayerJump();
-
         jumpCheckTimer -= Time.deltaTime;
 
         if (dashTimer > 0)
         {
             dashTimer -= Time.deltaTime;
         }
+        MoveInput();
     }
+
+    private void MoveInput()
+    {
+        // Get input for horizontal movement
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            isDashing = true;
+            Dash(dashSpace);
+        }
+    }
+
     private void FixedUpdate()
     {
+        PlayerMove();
+        ShadowMove();
+        CheckGrounded();
+        PlayerJump();
     }
 
     private void CheckGrounded()
@@ -107,27 +121,25 @@ public class Movement : MonoBehaviour
         if (Input.GetButton("Jump") && jumpTimer > 0 && jumpForce > 0)
         {
             Debug.Log("Jumping");
-            rb.AddForce(new Vector2(0f, jumpForce));
+            rb.AddForce(new Vector2(0f, jumpForce * (Time.fixedDeltaTime * 500)));
             jumpForce -= jumpDecrease; //or whatever amount
         }
         //inside Update
         if (isGrounded)
         {
+            canDash = true;
             jumpForce = maxJumpForce; //go back to original power
             jumpTimer = maxJumpTimer;
         }
         else
         {
-            jumpTimer -= Time.deltaTime;
+            jumpTimer -= Time.fixedDeltaTime;
         }
     }
 
     private void ShadowMove()
     {
         if (!shadowForm.isInShadowForm) { return; }
-
-        // Get input for horizontal movement
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
 
         // Set the velocity of the rigidbody
         if (Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && horizontalMovement < 0)
@@ -158,14 +170,11 @@ public class Movement : MonoBehaviour
         UpdateAnimations();
     }
 
-    void PlayerMove()
+    private void PlayerMove()
     {
         if (shadowForm.isInShadowForm) { return; }
 
-        // Get input for horizontal movement
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
-
-        float speedSet = horizontalMovement * moveSpeed;
+        float speedSet = horizontalMovement * moveSpeed * (Time.fixedDeltaTime * 500);
 
         // Set the velocity of the rigidbody
 
@@ -187,12 +196,6 @@ public class Movement : MonoBehaviour
             isDashing = false;
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            isDashing = true;
-            Dash(dashSpace);
-        }
-
         UpdateAnimations();
     }
 
@@ -200,25 +203,26 @@ public class Movement : MonoBehaviour
     {
         if (horizontalMovement < 0)
         {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x - dashSpace, dashTimer), 0);
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x - dashSpace, dashTimer * (Time.fixedDeltaTime * 500)), 0);
         }
         if (horizontalMovement > 0)
         {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer), 0);
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer * (Time.fixedDeltaTime * 500)), 0);
         }
     }
 
-    void Dash(float dashSpace)
+    private void Dash(float dashSpace)
     {
-        if (dashAmount >= 1 && rb.velocity.x != 0)
+        if (dashAmount >= 1 && rb.velocity.x != 0 && canDash)
         {
             Debug.Log("Dashing (through the snow)");
             dashAmount -= 1;
+            canDash = false;
             dashTimer = maxDashTimer;
         }
     }
 
-    public void DashAdd(int dashIncrement)
+    private void DashAdd(int dashIncrement)
     {
         if (dashAmount + dashIncrement >= 3)
         {
@@ -228,6 +232,11 @@ public class Movement : MonoBehaviour
         {
             dashAmount += dashIncrement;
         }
+    }
+
+    public bool GetGrounded()
+    {
+        return isGrounded;
     }
 
     void UpdateAnimations()

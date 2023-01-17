@@ -460,28 +460,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
   maxSpeed: 4.5
-  jumpForce: 18
+  jumpForce: 7.25
   jumpDecrease: 0.3
-  maxJumpForce: 18
-  dashSpace: 3
+  maxJumpForce: 7.25
   jumpTimer: 0.2
   maxJumpTimer: 0.2
   jumpCheckTimer: 0.3
   maxJumpCheckTimer: 0.3
   isCoyote: 1
-  isDashing: 0
-  isAttacking: 0
   isGrounded: 0
+  dashSpace: 3
+  isDashing: 0
+  maxDashTimer: 0.1
+  dashTimer: 0.1
+  dashAmount: 3
+  isAttacking: 0
   groundLayers:
     serializedVersion: 2
     m_Bits: 1
   groundCheck: {fileID: 6138690871593200435}
   leftCheck: {fileID: 4187124586237169611}
   rightCheck: {fileID: 5727251857932353995}
-  maxDashTimer: 0.1
-  dashTimer: 0.1
-  dashAmount: 3
-  rb: {fileID: 0}
   state: 0
 --- !u!50 &1877749973754294093
 Rigidbody2D:
