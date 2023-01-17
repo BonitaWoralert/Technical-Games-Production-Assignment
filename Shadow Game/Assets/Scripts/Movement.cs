@@ -88,7 +88,7 @@ public class Movement : MonoBehaviour
         PlayerJump();
     }
 
-    private void CheckGrounded()
+    public void CheckGrounded()
     {
         if (Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers) && jumpCheckTimer <= 0)
         {
@@ -238,6 +238,11 @@ public class Movement : MonoBehaviour
         {
             dashAmount += dashIncrement;
         }
+    }
+
+    public void SetGrounded(bool newState)
+    {
+        isGrounded = newState;
     }
 
     public bool GetGrounded()
