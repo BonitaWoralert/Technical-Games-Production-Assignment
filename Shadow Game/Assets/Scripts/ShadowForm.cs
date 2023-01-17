@@ -47,16 +47,19 @@ public class ShadowForm : MonoBehaviour
             if (isInShadowForm)
             {
                 isInShadowForm = !isInShadowForm;
+                transform.gameObject.layer = 7;
             }
             else if (!isInShadowForm && stats.shadowEnergy > 0f && intensity <= 0)
             {
                 isInShadowForm = !isInShadowForm;
+                transform.gameObject.layer = 9;
             }
         }
 
         if (stats.shadowEnergy <= 0)
         {
             isInShadowForm = false;
+            transform.gameObject.layer = 7;
         }
 
         //IS in Shadow Form
