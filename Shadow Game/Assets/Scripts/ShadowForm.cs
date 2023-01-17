@@ -80,11 +80,13 @@ public class ShadowForm : MonoBehaviour
         isInShadowForm = !isInShadowForm;
         playerBoxCollider.enabled = true;
         shadowBoxCollider.enabled = false;
+        transform.gameObject.layer = 7;
     }
     void ShadowFormChange()
     {
         isInShadowForm = !isInShadowForm;
         playerBoxCollider.enabled = false;
         shadowBoxCollider.enabled = true;
+        transform.gameObject.layer = 9;
     }
 }
