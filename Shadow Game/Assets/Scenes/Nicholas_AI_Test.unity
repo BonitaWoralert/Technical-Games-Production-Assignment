@@ -1915,11 +1915,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1405702244381241127, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.4
+      value: -3.76
       objectReference: {fileID: 0}
     - target: {fileID: 1405702244381241127, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.13
+      value: 1.19
       objectReference: {fileID: 0}
     - target: {fileID: 1405702244381241127, guid: d63f7f6e7ab415e42858c0aa3ae94486, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2378,7 +2378,7 @@ MonoBehaviour:
   defaultTimeToMove: 2
   movementForceY: 5
   movementForceX: 3
-  playerDistanceBuffer: {x: 0, y: 0, z: 0}
+  playerDistanceBuffer: {x: 1, y: 0, z: 0}
   isPatrolToMoveDirectionLeft: 0
   rb: {fileID: 1801319308}
   visionBoxObject: {fileID: 1304634908}
@@ -2739,6 +2739,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1036197791832919694, guid: c8108633a190bba4f8457678c181425e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 96f568c200c94cd4ca7a0aab68ea067a, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1036197791832919693, guid: c8108633a190bba4f8457678c181425e, type: 3}
