@@ -24,6 +24,8 @@ public class PauseMenuController : MonoBehaviour
             {
                 Time.timeScale = 1.0f;
                 pauseMenu.SetActive(false);
+                settingsMenu.SetActive(false);
+                controlsMenu.SetActive(false);
                 backgroundImage.SetActive(false);
             }
         }
