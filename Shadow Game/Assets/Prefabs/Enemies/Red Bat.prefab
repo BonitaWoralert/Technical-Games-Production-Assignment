@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6101941897939179044}
   - component: {fileID: 4116412182499758541}
   - component: {fileID: 6479225392935941573}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Red Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

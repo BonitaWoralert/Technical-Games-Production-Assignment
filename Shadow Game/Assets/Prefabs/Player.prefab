@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 1877749973754294094}
   - component: {fileID: 1877749973754294095}
   - component: {fileID: 1877749973754294080}
+  - component: {fileID: 4354898294533776782}
   - component: {fileID: 2860907512616319097}
   - component: {fileID: 2518738611042306878}
   - component: {fileID: 1877749973754294092}
@@ -338,7 +339,7 @@ Transform:
   - {fileID: 8515365117424835569}
   - {fileID: 3008466043395654960}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1877749973754294095
 SpriteRenderer:
@@ -418,6 +419,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18, y: 0.28}
   m_EdgeRadius: 0
+--- !u!61 &4354898294533776782
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877749973754294081}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01, y: -0.124}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.18, y: 0.07}
+  m_EdgeRadius: 0
 --- !u!114 &2860907512616319097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,6 +474,9 @@ MonoBehaviour:
   isInShadowForm: 0
   isInDarkness: 1
   shadowLight: {fileID: 5707208601521377497}
+  intensity: 0
+  playerBoxCollider: {fileID: 1877749973754294080}
+  shadowBoxCollider: {fileID: 4354898294533776782}
 --- !u!114 &1877749973754294092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,7 +514,6 @@ MonoBehaviour:
   leftCheck: {fileID: 4187124586237169611}
   rightCheck: {fileID: 5727251857932353995}
   state: 0
-  trailRenderer: {fileID: 235173673}
 --- !u!50 &1877749973754294093
 Rigidbody2D:
   serializedVersion: 4
