@@ -45,6 +45,7 @@ public class Movement : MonoBehaviour
     RaycastHit2D hit;
     public enum MoveState { idle, running, jumping, falling, dashing, shadow, attack };
     [SerializeField] private MoveState state;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -59,12 +60,11 @@ public class Movement : MonoBehaviour
     void Update()
     {
         jumpCheckTimer -= Time.deltaTime;
+        dashTimer -= Time.deltaTime;
 
-        if (dashTimer > 0)
-        {
-            dashTimer -= Time.deltaTime;
-        }
         MoveInput();
+
+        trailRenderer.enabled = (dashTimer + 0.25f > 0);
     }
 
     private void MoveInput()
