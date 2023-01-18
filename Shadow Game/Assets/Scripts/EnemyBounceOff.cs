@@ -32,7 +32,9 @@ public class EnemyBounceOff : MonoBehaviour
     {
         //playerRigidBody.AddForce((playerObject.transform.position - transform.position) * forcePush, ForceMode2D.Force);
         //playerRigidBody.AddForce((Vector2.right) * forcePush, ForceMode2D.Force);
-        playerRigidBody.AddForce((Vector2.right) * forcePush, ForceMode2D.Force);
+        //playerRigidBody.AddForce((Vector2.right) * forcePush, ForceMode2D.Force);
+        
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
