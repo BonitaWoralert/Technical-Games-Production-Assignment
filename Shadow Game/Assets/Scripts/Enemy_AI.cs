@@ -78,6 +78,9 @@ public class Enemy_AI : MonoBehaviour
     private GameObject playerObject;
     private float checkTimer;
     [SerializeField] private float maxCheckTimer = 1f;
+    Movement move;
+    ShadowMovement shadowMove;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -89,6 +92,8 @@ public class Enemy_AI : MonoBehaviour
         playerObject = GameObject.Find("Player");
         canMove = true;
         isPlayerSpotted = false;
+        move = playerObject.GetComponent<Movement>();
+        shadowMove = playerObject.GetComponent<ShadowMovement>();
 
         //suspiciousValue = 0f;
         //suspiciousFillUpSpeed = 30f;
@@ -195,9 +200,8 @@ public class Enemy_AI : MonoBehaviour
 
     private void FindCheck()
     {
-        Movement move;
-        move = playerObject.GetComponent<Movement>();
-        if (Vector2.Distance(gameObject.transform.position, move.leftCheck.transform.position) < Vector2.Distance(gameObject.transform.position, move.rightCheck.transform.position))
+        
+        if (Vector2.Distance(gameObject.transform.position, shadowMove.leftCheck.transform.position) < Vector2.Distance(gameObject.transform.position, shadowMove.rightCheck.transform.position))
         {
             MoveLeft();
         }

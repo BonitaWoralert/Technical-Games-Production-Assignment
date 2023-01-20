@@ -95,6 +95,7 @@ public class Enemy_Firefly_AI : MonoBehaviour
     public bool canMove;
 
     private Movement move;
+    private ShadowMovement shadowMove;
     private Animator animator;
     void Start()
     {
@@ -114,6 +115,10 @@ public class Enemy_Firefly_AI : MonoBehaviour
         position = startPosition;
 
         timeToMove = defaultTimeToMove;
+        move = playerObject.GetComponent<Movement>();
+        shadowMove = playerObject.GetComponent<ShadowMovement>();
+
+
 
         if (patrolStartPointX < patrolEndPointX)
         {
@@ -202,14 +207,13 @@ public class Enemy_Firefly_AI : MonoBehaviour
 
     private void FindCheck()
     {
-        move = playerObject.GetComponent<Movement>();
-        if (Vector2.Distance(gameObject.transform.position, move.leftCheck.transform.position) < Vector2.Distance(gameObject.transform.position, move.rightCheck.transform.position))
+        if (Vector2.Distance(gameObject.transform.position, shadowMove.leftCheck.transform.position) < Vector2.Distance(gameObject.transform.position, shadowMove.rightCheck.transform.position))
         {
-            ChangeDestination(move.leftCheck.transform.position - playerDistanceBuffer);
+            ChangeDestination(shadowMove.leftCheck.transform.position - playerDistanceBuffer);
         }
         else
         {
-            ChangeDestination(move.rightCheck.transform.position + playerDistanceBuffer);
+            ChangeDestination(shadowMove.rightCheck.transform.position + playerDistanceBuffer);
         }
     }
 
