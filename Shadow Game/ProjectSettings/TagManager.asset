@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - EnemyVision
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -16,10 +17,10 @@ TagManager:
   - EnemyVisionBox
   - Player
   - Enemy
-  - 
-  - 
-  - 
-  - 
+  - Shadow
+  - ShadowObjects
+  - NonShadowObjects
+  - Ground
   - 
   - 
   - 

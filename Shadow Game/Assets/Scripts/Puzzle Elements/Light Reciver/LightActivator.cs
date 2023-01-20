@@ -15,7 +15,7 @@ public class LightActivator : BaseSwitch
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (_lightReciver._intenisty > _requiredLight)
         {

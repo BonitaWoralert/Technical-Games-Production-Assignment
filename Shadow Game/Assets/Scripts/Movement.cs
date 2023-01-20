@@ -45,6 +45,7 @@ public class Movement : MonoBehaviour
     RaycastHit2D hit;
     public enum MoveState { idle, running, jumping, falling, dashing, shadow, attack };
     [SerializeField] private MoveState state;
+    private TrailRenderer trailRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -53,18 +54,18 @@ public class Movement : MonoBehaviour
         shadowForm = GetComponent<ShadowForm>();
         ani = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         jumpCheckTimer -= Time.deltaTime;
+        dashTimer -= Time.deltaTime;
 
-        if (dashTimer > 0)
-        {
-            dashTimer -= Time.deltaTime;
-        }
         MoveInput();
+
+        trailRenderer.enabled = (dashTimer + 0.25f > 0);
     }
 
     private void MoveInput()
@@ -87,18 +88,16 @@ public class Movement : MonoBehaviour
         PlayerJump();
     }
 
-    private void CheckGrounded()
+    public void CheckGrounded()
     {
+        //Debug.Log(Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers));
         if (Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers) && jumpCheckTimer <= 0)
         {
             isGrounded = true;
         }
         else
         {
-            if (jumpCheckTimer > 0)
-            {
-                isGrounded = false;
-            }
+            isGrounded = false;
             RemoveGrounded();
         }
         //isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers);
@@ -111,6 +110,11 @@ public class Movement : MonoBehaviour
 
     private void PlayerJump()
     {
+        if (shadowForm.isInShadowForm)
+        {
+            return;
+        }
+
         if (Input.GetButton("Jump"))
         {
             isGrounded = false;
@@ -122,13 +126,13 @@ public class Movement : MonoBehaviour
         {
             Debug.Log("Jumping");
             rb.AddForce(new Vector2(0f, jumpForce * (Time.fixedDeltaTime * 500)));
-            jumpForce -= jumpDecrease; //or whatever amount
+            jumpForce -= jumpDecrease; //Or Whatever amount
         }
-        //inside Update
+        //Inside Update
         if (isGrounded)
         {
             canDash = true;
-            jumpForce = maxJumpForce; //go back to original power
+            jumpForce = maxJumpForce; //Go Back to Original Power
             jumpTimer = maxJumpTimer;
         }
         else
@@ -232,6 +236,11 @@ public class Movement : MonoBehaviour
         {
             dashAmount += dashIncrement;
         }
+    }
+
+    public void SetGrounded(bool newState)
+    {
+        isGrounded = newState;
     }
 
     public bool GetGrounded()
