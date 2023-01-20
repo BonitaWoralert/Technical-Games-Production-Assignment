@@ -26,7 +26,7 @@ public class DisappearingBlock : MonoBehaviour
         }
         else
         {
-            TempColor.a = 0.6f;
+            TempColor.a = 0.4f;
         }
         _spriteRenderer.color = TempColor;
     }

@@ -12,7 +12,7 @@ public class Enemy_Slime_AI : MonoBehaviour
     /// <summary>
     /// The script should make the AI to:
     ///     Patrol
-    ///     Wonder (Suspicious)
+    ///     Wunder (Sus)
     ///     Chase
     ///     Return (Go back to patrol pattern location)
     /// </summary>

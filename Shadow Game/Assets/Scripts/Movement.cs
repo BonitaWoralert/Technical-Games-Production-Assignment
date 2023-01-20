@@ -88,9 +88,9 @@ public class Movement : MonoBehaviour
         PlayerJump();
     }
 
-    private void CheckGrounded()
+    public void CheckGrounded()
     {
-        Debug.Log(Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers));
+        //Debug.Log(Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers));
         if (Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers) && jumpCheckTimer <= 0)
         {
             isGrounded = true;
@@ -238,6 +238,11 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public void SetGrounded(bool newState)
+    {
+        isGrounded = newState;
+    }
+
     public bool GetGrounded()
     {
         return isGrounded;
@@ -300,5 +305,10 @@ public class Movement : MonoBehaviour
         }
 
         ani.SetInteger("state", (int)state);
+    }
+
+    private void StopAttackAni()
+    {
+        isAttacking = false;
     }
 }

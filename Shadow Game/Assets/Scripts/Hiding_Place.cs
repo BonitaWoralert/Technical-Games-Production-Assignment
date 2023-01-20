@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Hiding_Place : MonoBehaviour
 {
-    bool isPlayerInRange;
-    bool isPlayerHiding;
-    Color defaultColor;
-    Color changedColor;
-    SpriteRenderer spriteRenderer;
+    private bool isPlayerInRange;
+    private bool isPlayerHiding;
+    private Color defaultColor;
+    private Color changedColor;
+    private SpriteRenderer spriteRenderer;
 
-    GameObject playerObject;
-    SpriteRenderer playerSpriteRenderer;
-    Rigidbody2D playerRigidBody;
-    BoxCollider2D playerBoxCollider;
+    private GameObject playerObject;
+    private SpriteRenderer playerSpriteRenderer;
+    private Rigidbody2D playerRigidBody;
+    private BoxCollider2D playerBoxCollider;
+
+    private bool hideFrame;
 
     void Start()
     {
@@ -31,8 +33,11 @@ public class Hiding_Place : MonoBehaviour
 
     void Update()
     {
+        if (hideFrame)
+        {
+            PlayerHiding();
+        }
         PlayerHideInput();
-        PlayerHiding();
     }
 
     private void PlayerHideInput()
@@ -41,7 +46,16 @@ public class Hiding_Place : MonoBehaviour
         {
             if (Input.GetKeyDown("e"))
             {
-                isPlayerHiding = !isPlayerHiding;
+                if (isPlayerHiding == true)
+                {
+                    isPlayerHiding = false;
+                    hideFrame = true;
+                }
+                else
+                {
+                    isPlayerHiding = true;
+                    hideFrame = true;
+                }
             }
         }
     }
@@ -50,8 +64,11 @@ public class Hiding_Place : MonoBehaviour
     {
         //Player Box Collider is Disabled so that the enemy cannot detect the player.
         //Player Rigid Body Simulated is Disabled so that the player will not fall off the map (player can fall off the map because player box collider is disabled.))
+        hideFrame = false;
         if(isPlayerHiding == true)
         {
+            playerObject.transform.position = transform.position;
+            playerRigidBody.velocity = Vector3.zero;
             spriteRenderer.color = changedColor;
             playerSpriteRenderer.enabled = false;
             playerBoxCollider.enabled = false;
@@ -63,6 +80,7 @@ public class Hiding_Place : MonoBehaviour
             playerSpriteRenderer.enabled = true;
             playerBoxCollider.enabled = true;
             playerRigidBody.simulated = true;
+            playerObject.GetComponent<Movement>().CheckGrounded();
         }
     }
 
