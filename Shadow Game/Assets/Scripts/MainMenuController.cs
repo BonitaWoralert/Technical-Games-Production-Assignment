@@ -5,16 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public GameObject settingsMenu;
-    public GameObject controlsMenu;
-    public GameObject creditsMenu;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject levelsMenu;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject controlsMenu;
+    [SerializeField] private GameObject creditsMenu;
 
-    public void StartGame()
+    public void Levels()
     {
-        SceneManager.LoadScene("Aarons Scene");
+        mainMenu.SetActive(false);
+        levelsMenu.SetActive(true);
     }
-    
+
     public void Controls()
     {
         mainMenu.SetActive(false);
@@ -36,6 +38,7 @@ public class MainMenuController : MonoBehaviour
     public void Back()
     {
         mainMenu.SetActive(true);
+        levelsMenu.SetActive(false);
         controlsMenu.SetActive(false);
         settingsMenu.SetActive(false);
         creditsMenu.SetActive(false);
