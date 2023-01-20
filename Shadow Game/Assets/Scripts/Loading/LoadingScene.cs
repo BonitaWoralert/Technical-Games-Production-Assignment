@@ -11,6 +11,7 @@ public class LoadingScene : MonoBehaviour
 
     public void LoadScene(int sceneId)
     {
+        Time.timeScale = 1.0f;
         StartCoroutine(LoadSceneAsync(sceneId));
     }
 
