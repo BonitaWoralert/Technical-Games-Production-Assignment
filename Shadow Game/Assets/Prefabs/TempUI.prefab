@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8062525a8081f5439826c916f3a0646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 0}
+  playerStats: {fileID: 2860907512616319097, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
   fillImage: {fileID: 4449341060509636988}
   fill: {fileID: 4449341060509636990}
 --- !u!1 &4449341058940829976
@@ -254,7 +254,7 @@ RectTransform:
   - {fileID: 4449341060496378320}
   - {fileID: 4449341059231619605}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -473,7 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashText: {fileID: 4449341059231619604}
   currentDashCount: 0
-  movementScript: {fileID: 0}
+  movementScript: {fileID: 1877749973754294092, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
 --- !u!1 &4449341060433907855
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,9 +711,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 15
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6f9020f9448c745b1a2bd179fa4855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 0}
+  playerStats: {fileID: 2860907512616319097, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
   fillImage: {fileID: 4449341058940829982}
   fill: {fileID: 4449341058940829976}
 --- !u!1 &4449341060509636990

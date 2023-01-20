@@ -339,7 +339,7 @@ Transform:
   - {fileID: 8515365117424835569}
   - {fileID: 3008466043395654960}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1877749973754294095
 SpriteRenderer:
@@ -457,8 +457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f32cabae3f337e4d867c82e1b4cf073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 6
-  shadowEnergy: 4.73
+  health: 100
+  maxHealth: 100
+  shadowEnergy: 15
+  maxShadowEnergy: 15
 --- !u!114 &2518738611042306878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _intenisty: 0
+  _update: 0
 --- !u!96 &235173673
 TrailRenderer:
   serializedVersion: 3
