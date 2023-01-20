@@ -4934,6 +4934,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2840028550931320235, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840028550931320235, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2840028551188219714, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
       propertyPath: playerStats
       value: 
@@ -4942,6 +4950,14 @@ PrefabInstance:
       propertyPath: movementScript
       value: 
       objectReference: {fileID: 1967670052}
+    - target: {fileID: 2840028552516900297, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840028552516900297, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2840028552637859171, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
       propertyPath: playerStats
       value: 
