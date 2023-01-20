@@ -10,9 +10,15 @@ public class LightDetectorReceiver : MonoBehaviour
 {
     public float _intenisty = 0f;
 
+    public bool _update;
+
     private void Update()
     {
-        _intenisty = 0f;
+        if (_update)
+        {
+            _intenisty = 0f;
+        }
+        _update = !_update;
     }
 
     public void AddIntenisty(float intensity)
