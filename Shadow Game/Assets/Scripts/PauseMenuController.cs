@@ -5,25 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour
 {
+    public GameObject backgroundImage;
     public GameObject pauseMenu;
     public GameObject settingsMenu;
     public GameObject controlsMenu;
 
     void Update()
     {
-        
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Time.timeScale == 1.0f)
             {
                 Time.timeScale = 0.0f;
                 pauseMenu.SetActive(true);
+                backgroundImage.SetActive(true);
             }
             else if (Time.timeScale == 0.0f)
             {
                 Time.timeScale = 1.0f;
                 pauseMenu.SetActive(false);
+                settingsMenu.SetActive(false);
+                controlsMenu.SetActive(false);
+                backgroundImage.SetActive(false);
             }
         }
     }
@@ -32,9 +35,9 @@ public class PauseMenuController : MonoBehaviour
 
     public void Resume()
     {
-        pauseMenu.SetActive(false);
         Time.timeScale = 1.0f;
         pauseMenu.SetActive(false);
+        backgroundImage.SetActive(false);
     }
 
     public void Settings()
@@ -58,8 +61,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void Exit()
     {
-        SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 1.0f;
         pauseMenu.SetActive(false);
+        backgroundImage.SetActive(false);
     }
 }
