@@ -23,18 +23,20 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            SetDie();
         }
     }
 
-    void Die()
+    void SetDie()
     {
         Debug.Log("Enemy died!");
         //Play animation
-        animator.SetTrigger("deadTrigger");
+        animator.SetBool("isDead", true);
 
         //Disable enemy
-        GetComponent<Collider2D>().enabled = true;
-        this.enabled = false;
+    }
+    void Death()
+    {
+        Destroy(gameObject);
     }
 }

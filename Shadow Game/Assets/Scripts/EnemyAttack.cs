@@ -9,11 +9,15 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float knockbackStrength;
     [SerializeField] private bool isPlayerTakingEnemyKnockback;
     public int enemyDamage;
+    [SerializeField] private int enemyHealth;
     private PlayerStats playerStatsScript;
     private GameObject playerObject;
     //private SpriteRenderer playerSpriteRenderer;
     //private Color defaultPlayerColor;
     private Rigidbody2D playerRigidBody;
+    [SerializeField] Enemy enemyScript;
+    [SerializeField] private Player_Invincibility playerInvincibilitScript;
+    [SerializeField] private bool isPlayerColliding;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,9 @@ public class EnemyAttack : MonoBehaviour
         playerRigidBody = playerObject.GetComponent<Rigidbody2D>();
         playerStatsScript = playerObject.GetComponent<PlayerStats>();
         isPlayerTakingEnemyKnockback = false;
+        enemyScript = GetComponentInParent<Enemy>();
+        playerInvincibilitScript = playerObject.GetComponent<Player_Invincibility>();
+        isPlayerColliding = false;
     }
 
     private void Update()
@@ -37,20 +44,24 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.tag == "Player")
+        if(collider.gameObject.tag == "Player" )
         {
-            Debug.Log("PLAYER TAKES DAMAGE");
-            playerStatsScript.health -= enemyDamage;
-            Vector2 direction = (playerObject.transform.position - transform.position).normalized;
-            //playerRigidBody.AddForce(new Vector2(direction.x * knockbackStrength, 0), ForceMode2D.Impulse);
-            playerRigidBody.velocity = direction * knockbackStrength;
-            //playerSpriteRenderer.color = Color.white;
-            if (playerStatsScript.health <= 0)
+            if(playerInvincibilitScript.GetInvincibility() == false)
             {
-                //Player Death.
-                //Destroy(playerObject);
+                Vector2 direction = (playerObject.transform.position - transform.position).normalized;
+                playerRigidBody.velocity = direction * knockbackStrength;
+                //playerSpriteRenderer.color = Color.white;
+                isPlayerTakingEnemyKnockback = true;
+
+                if (enemyScript.currentHealth > 0)
+                {
+                    Debug.Log("PLAYER TAKES DAMAGE");
+                    playerStatsScript.health -= enemyDamage;
+                }
+                playerInvincibilitScript.SetInvincibility(true);
+                StartCoroutine(ResetAttackBox(playerInvincibilitScript.maxInvincibilityTime));
             }
-            isPlayerTakingEnemyKnockback = true;
+
         }
     }
 
@@ -60,6 +71,19 @@ public class EnemyAttack : MonoBehaviour
         {
             //playerSpriteRenderer.color = defaultPlayerColor;
             isPlayerTakingEnemyKnockback = false;
+            isPlayerColliding = false;
         }
+    }
+
+    private void SetAttackCollider(bool newState)
+    {
+        attackBoxCollider.enabled = newState;
+    }
+
+    private IEnumerator ResetAttackBox(float maxInvincibilityTime)
+    {
+        yield return new WaitForSeconds(maxInvincibilityTime);
+        attackBoxCollider.enabled = false;
+        attackBoxCollider.enabled = true;
     }
 }

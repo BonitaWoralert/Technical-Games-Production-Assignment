@@ -12,7 +12,7 @@ public class Enemy_Slime_AI : MonoBehaviour
     /// <summary>
     /// The script should make the AI to:
     ///     Patrol
-    ///     Wonder (Suspicious)
+    ///     Wunder (Sus)
     ///     Chase
     ///     Return (Go back to patrol pattern location)
     /// </summary>
@@ -187,7 +187,6 @@ public class Enemy_Slime_AI : MonoBehaviour
         {
             //rb.AddForce(new Vector2(0, movementForceY));
             rb.velocity += new Vector2(movementForceX, movementForceY);
-            Debug.Log("FORCE ADDED!");
         }
 
         velocityX = rb.velocity.x;
@@ -283,7 +282,6 @@ public class Enemy_Slime_AI : MonoBehaviour
         if(currentAIState2 != AIState2.NONE)
         {
             rb.velocity += new Vector2(-movementForceX, movementForceY);
-            Debug.Log("FORCE ADDED!");
             velocityX = rb.velocity.x;
             velocityY = rb.velocity.y;
             canMove = false;
@@ -295,7 +293,6 @@ public class Enemy_Slime_AI : MonoBehaviour
         if(currentAIState2 != AIState2.NONE)
         {   
             rb.velocity += new Vector2(movementForceX, movementForceY);
-            Debug.Log("FORCE ADDED!");
             velocityX = rb.velocity.x;
             velocityY = rb.velocity.y;
             canMove = false;
