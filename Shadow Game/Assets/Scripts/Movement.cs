@@ -306,4 +306,9 @@ public class Movement : MonoBehaviour
 
         ani.SetInteger("state", (int)state);
     }
+
+    private void StopAttackAni()
+    {
+        isAttacking = false;
+    }
 }
