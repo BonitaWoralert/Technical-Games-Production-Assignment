@@ -15,8 +15,9 @@ public class EnemyAttack : MonoBehaviour
     //private SpriteRenderer playerSpriteRenderer;
     //private Color defaultPlayerColor;
     private Rigidbody2D playerRigidBody;
+    private Rigidbody2D enemyRigidBody;
     [SerializeField] Enemy enemyScript;
-    [SerializeField] private Player_Invincibility playerInvincibilitScript;
+    [SerializeField] private Player_Invincibility playerInvincibilityScript;
     [SerializeField] private bool isPlayerColliding;
 
     // Start is called before the first frame update
@@ -27,7 +28,8 @@ public class EnemyAttack : MonoBehaviour
         playerStatsScript = playerObject.GetComponent<PlayerStats>();
         isPlayerTakingEnemyKnockback = false;
         enemyScript = GetComponentInParent<Enemy>();
-        playerInvincibilitScript = playerObject.GetComponent<Player_Invincibility>();
+        playerInvincibilityScript = playerObject.GetComponent<Player_Invincibility>();
+        enemyRigidBody = GetComponentInParent<Rigidbody2D>();
         isPlayerColliding = false;
     }
 
@@ -46,9 +48,9 @@ public class EnemyAttack : MonoBehaviour
     {
         if(collider.gameObject.tag == "Player" )
         {
-            if(playerInvincibilitScript.GetInvincibility() == false)
+            Vector2 direction = (playerObject.transform.position - transform.position).normalized;
+            if (playerInvincibilityScript.GetInvincibility() == false)
             {
-                Vector2 direction = (playerObject.transform.position - transform.position).normalized;
                 playerRigidBody.velocity = direction * knockbackStrength;
                 //playerSpriteRenderer.color = Color.white;
                 isPlayerTakingEnemyKnockback = true;
@@ -58,9 +60,10 @@ public class EnemyAttack : MonoBehaviour
                     Debug.Log("PLAYER TAKES DAMAGE");
                     playerStatsScript.health -= enemyDamage;
                 }
-                playerInvincibilitScript.SetInvincibility(true);
-                StartCoroutine(ResetAttackBox(playerInvincibilitScript.maxInvincibilityTime));
+                playerInvincibilityScript.SetInvincibility(true);
+                StartCoroutine(ResetAttackBox(playerInvincibilityScript.maxInvincibilityTime));
             }
+            enemyRigidBody.velocity = -direction * knockbackStrength * 0.5f;
 
         }
     }
@@ -82,6 +85,7 @@ public class EnemyAttack : MonoBehaviour
 
     private IEnumerator ResetAttackBox(float maxInvincibilityTime)
     {
+        //This is done to quickly re-enter the trigger box again. (I used OnTiggerEnter, not OnTriggerStay, to prevent multiple knockbacks registered)
         yield return new WaitForSeconds(maxInvincibilityTime);
         attackBoxCollider.enabled = false;
         attackBoxCollider.enabled = true;
