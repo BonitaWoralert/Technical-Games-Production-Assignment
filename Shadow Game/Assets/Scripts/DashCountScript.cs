@@ -18,6 +18,6 @@ public class DashCountScript : MonoBehaviour
     void Update()
     {
         currentDashCount = movementScript.dashAmount;
-        dashText.text = "Dash: " + currentDashCount.ToString();
+        dashText.text = "dash: " + currentDashCount.ToString();
     }
 }
