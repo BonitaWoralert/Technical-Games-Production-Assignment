@@ -20,6 +20,8 @@ public class Enemy_AI_v3 : MonoBehaviour
     private Path path;
     private int currentWayPoint = 0;
     private bool reachedEndOfPath = false;
+    private Vector3 defaultSpriteSize;
+    private Vector3 flipedSprite;
     //private Vector2 direction;
 
     Seeker seeker;
@@ -32,6 +34,7 @@ public class Enemy_AI_v3 : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         jumpTimer = defautJumpTimer;
+        defaultSpriteSize = transform.localScale / 6;
 
         InvokeRepeating("UpdatePath", 1f, pathUpdateSpeed);
     }
@@ -112,11 +115,11 @@ public class Enemy_AI_v3 : MonoBehaviour
 
         if (moveForce.x >= 0.01f)
         {
-            enemySprite.localScale = new Vector3(5f, 5f, 5f);
+            enemySprite.localScale = defaultSpriteSize;
         }
         else if (moveForce.x <= -0.01f)
         {
-            enemySprite.localScale = new Vector3(-5f, 5f, 5f);
+            enemySprite.localScale = new Vector3(-defaultSpriteSize.x, defaultSpriteSize.y, defaultSpriteSize.z);
         }
     }
 
