@@ -10,6 +10,8 @@ public class PreviousLevel : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            PlayerPrefs.SetInt("Spawn", 1);
+            PlayerPrefs.Save();
         }
     }
 }
