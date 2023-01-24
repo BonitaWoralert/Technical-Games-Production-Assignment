@@ -79,7 +79,7 @@ public class Movement : MonoBehaviour
         // Get input for horizontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Dash"))
         {
             isDashing = true;
             Dash(dashSpace);
@@ -89,7 +89,6 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerMove();
-        ShadowMove();
         CheckGrounded();
         PlayerJump();
     }
@@ -150,38 +149,8 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void ShadowMove()
-    {
-        if (!shadowForm.isInShadowForm) { return; }
+    
 
-        // Set the velocity of the rigidbody
-        if (Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && horizontalMovement < 0)
-        {
-            Debug.Log("Moving Left");
-            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
-        }
-        
-        if (Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && horizontalMovement > 0)
-        {
-            Debug.Log("Moving Right");
-            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
-        }
-
-
-        if (!Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x > 0.05f)
-        {
-            Debug.Log("Can't Move Right");
-            rb.velocity = Vector2.zero;
-        }
-
-        if (!Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x < 0.05f)
-        {
-            Debug.Log("Can't Move Left");
-            rb.velocity = Vector2.zero;
-        }
-
-        UpdateAnimations();
-    }
 
     private void PlayerMove()
     {
@@ -257,7 +226,7 @@ public class Movement : MonoBehaviour
         return isGrounded;
     }
 
-    void UpdateAnimations()
+    public void UpdateAnimations()
     {
         if (!isDashing)
         {

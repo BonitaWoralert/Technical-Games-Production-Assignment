@@ -16,7 +16,7 @@ public class InteractButton : BaseSwitch
 
     private void Update()
     {
-        if ((_playerInRange && Input.GetKeyDown("e")) || _state)
+        if ((_playerInRange && Input.GetButtonDown("Interact")) || _state)
         {
             _state = !_state;
         }

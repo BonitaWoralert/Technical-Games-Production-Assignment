@@ -20,7 +20,7 @@ public class Lever : BaseSwitch
 
     private void Update()
     {
-        if (_playerInRange && Input.GetKeyDown("e"))
+        if (_playerInRange && Input.GetButtonDown("Interact"))
         {
             _state = !_state;
         }
