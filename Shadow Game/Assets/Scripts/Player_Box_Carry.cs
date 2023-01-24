@@ -31,7 +31,7 @@ public class Player_Box_Carry : MonoBehaviour
 
     private void Update()
     { 
-        if(Input.GetKeyDown("c"))
+        if(Input.GetButtonDown("Pickup"))
         {
             if(isCarryingBox == true)
             {

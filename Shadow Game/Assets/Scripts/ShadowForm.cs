@@ -45,7 +45,7 @@ public class ShadowForm : MonoBehaviour
     {
         shadowLight.enabled = isInShadowForm;
 
-        if (Input.GetKeyDown(KeyCode.F) && isInDarkness && movement.GetGrounded())
+        if (Input.GetButtonDown("Shadow") && isInDarkness && movement.GetGrounded())
         {
             if (isInShadowForm)
             {

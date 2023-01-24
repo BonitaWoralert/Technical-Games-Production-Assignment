@@ -79,7 +79,7 @@ public class Movement : MonoBehaviour
         // Get input for horizontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Dash"))
         {
             isDashing = true;
             Dash(dashSpace);
