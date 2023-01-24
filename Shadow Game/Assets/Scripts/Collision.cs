@@ -7,11 +7,13 @@ public class Collision : MonoBehaviour
 {
     CameraController cam;
     bool isDead = false;
+    public Animator transition;
+    public float transitionTime = 1.0f;
 
     // Update is called once per frame
     void Update()
     {
-        SceneReset();
+        StartCoroutine (SceneReset());
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -24,10 +26,11 @@ public class Collision : MonoBehaviour
         }
     }
 
-    public void SceneReset()
+    IEnumerator SceneReset()
     {
-        if (Input.GetKeyDown(KeyCode.R) && isDead)
+        if (isDead)
         {
+            yield return new WaitForSeconds(transitionTime);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

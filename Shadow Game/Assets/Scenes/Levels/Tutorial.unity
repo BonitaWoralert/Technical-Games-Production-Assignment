@@ -245,6 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabdea0cc003d364bac8fdd6a0b90e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transition: {fileID: 0}
+  transitionTime: 1
 --- !u!61 &350721499
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6691,6 +6693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabdea0cc003d364bac8fdd6a0b90e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transition: {fileID: 0}
+  transitionTime: 1
 --- !u!61 &1164627941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6943,6 +6947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabdea0cc003d364bac8fdd6a0b90e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transition: {fileID: 198668805}
+  transitionTime: 1
 --- !u!1 &1934273531
 GameObject:
   m_ObjectHideFlags: 0
