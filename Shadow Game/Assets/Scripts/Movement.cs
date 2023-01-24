@@ -41,11 +41,13 @@ public class Movement : MonoBehaviour
     private Animator ani;
     private SpriteRenderer sprite;
     private ShadowForm shadowForm;
+    private PlayerStats playerStats;
     private float horizontalMovement;
     RaycastHit2D hit;
     public enum MoveState { idle, running, jumping, falling, dashing, shadow, attack };
     [SerializeField] private MoveState state;
     private TrailRenderer trailRenderer;
+    [SerializeField] private float speedDecrement;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +57,7 @@ public class Movement : MonoBehaviour
         ani = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         trailRenderer = GetComponent<TrailRenderer>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -64,14 +67,25 @@ public class Movement : MonoBehaviour
         {
             jumpCheckTimer -= Time.deltaTime;
         }
-        if (dashTimer > 0)
+        dashTimer -= Time.deltaTime;
+        if (playerStats.shadowEnergy < playerStats.maxShadowLevel)
         {
-            dashTimer -= Time.deltaTime;
+            playerStats.shadowEnergy += Time.deltaTime;
         }
 
         MoveInput();
 
         trailRenderer.enabled = (dashTimer + 0.25f > 0);
+
+        Resistance();
+    }
+
+    private void Resistance()
+    {
+        if (isGrounded && dashTimer <= -0.25)
+        {
+            rb.AddForce(new Vector2(-rb.velocity.x * (1/ speedDecrement), 0));
+        }
     }
 
     private void MoveInput()

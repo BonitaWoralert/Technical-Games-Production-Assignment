@@ -7,8 +7,10 @@ public class PlayerStats : MonoBehaviour
 {
     public int health;
     public int maxHealth;
+
     public float shadowEnergy;
-    public float maxShadowEnergy;
+    public int shadowLevel;
+    public int maxShadowLevel;
 
     private ShadowForm shadowForm;
 
@@ -16,7 +18,6 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        shadowEnergy = maxShadowEnergy;
         shadowForm = GetComponent<ShadowForm>();
     }
 
@@ -25,6 +26,8 @@ public class PlayerStats : MonoBehaviour
     {
         ChangeShadowEnergy(0);
         AdminCommands();
+
+        shadowLevel = Mathf.FloorToInt(shadowEnergy);
     }
 
     private void AdminCommands()
