@@ -1,0 +1,16 @@
+Axis:
+Horizontal - A/D, Left/Right, (Left Stick Horizontal), (D-Pad Horizontal)
+Vertical - W/S, Up/Down, (Left Stick Vertical), (D-Pad Vertical)
+
+Menu Buttons:
+Submit - Space, Enter, Return, (A)
+Cancel - Escape, (B)
+Menu - Escape, (+)/(Menu)
+
+Game Buttons:
+Jump - Space, (A)
+Shadow - F, (Left Bumper)
+Pickup - C, (Y)
+Interact - E, (B)
+Dash - Left Click, (Right Bumper)
+Attack - Right Click, (X)

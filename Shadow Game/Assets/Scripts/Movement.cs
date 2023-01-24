@@ -60,8 +60,14 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        jumpCheckTimer -= Time.deltaTime;
-        dashTimer -= Time.deltaTime;
+        if (jumpCheckTimer > 0)
+        {
+            jumpCheckTimer -= Time.deltaTime;
+        }
+        if (dashTimer > 0)
+        {
+            dashTimer -= Time.deltaTime;
+        }
 
         MoveInput();
 
@@ -73,7 +79,7 @@ public class Movement : MonoBehaviour
         // Get input for horizontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Dash"))
         {
             isDashing = true;
             Dash(dashSpace);
@@ -83,7 +89,6 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerMove();
-        ShadowMove();
         CheckGrounded();
         PlayerJump();
     }
@@ -137,42 +142,15 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            jumpTimer -= Time.fixedDeltaTime;
+            if (jumpCheckTimer > 0)
+            {
+                jumpTimer -= Time.fixedDeltaTime;
+            }
         }
     }
 
-    private void ShadowMove()
-    {
-        if (!shadowForm.isInShadowForm) { return; }
+    
 
-        // Set the velocity of the rigidbody
-        if (Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && horizontalMovement < 0)
-        {
-            Debug.Log("Moving Left");
-            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
-        }
-        
-        if (Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && horizontalMovement > 0)
-        {
-            Debug.Log("Moving Right");
-            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
-        }
-
-
-        if (!Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x > 0.05f)
-        {
-            Debug.Log("Can't Move Right");
-            rb.velocity = Vector2.zero;
-        }
-
-        if (!Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x < 0.05f)
-        {
-            Debug.Log("Can't Move Left");
-            rb.velocity = Vector2.zero;
-        }
-
-        UpdateAnimations();
-    }
 
     private void PlayerMove()
     {
@@ -217,7 +195,7 @@ public class Movement : MonoBehaviour
 
     private void Dash(float dashSpace)
     {
-        if (dashAmount >= 1 && rb.velocity.x != 0 && canDash)
+        if (dashAmount >= 1 && rb.velocity.x != 0 && canDash && horizontalMovement != 0)
         {
             Debug.Log("Dashing (through the snow)");
             dashAmount -= 1;
@@ -248,7 +226,7 @@ public class Movement : MonoBehaviour
         return isGrounded;
     }
 
-    void UpdateAnimations()
+    public void UpdateAnimations()
     {
         if (!isDashing)
         {

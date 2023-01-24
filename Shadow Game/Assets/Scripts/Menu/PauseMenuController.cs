@@ -12,7 +12,7 @@ public class PauseMenuController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("Menu"))
         {
             if (Time.timeScale == 1.0f)
             {

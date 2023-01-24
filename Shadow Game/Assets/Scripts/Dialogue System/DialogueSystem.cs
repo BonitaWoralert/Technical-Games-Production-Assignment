@@ -37,7 +37,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Submit"))
         {
             if (_index < _dialogue._text.Length-1)
             {
