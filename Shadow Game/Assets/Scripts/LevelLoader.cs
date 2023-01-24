@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class LevelLoader : MonoBehaviour
 {
-    public Animator transition;
-    public float transitionTime = 1.0f;
+    Animator transition;
+    private float transitionTime = 1.0f;
 
     public void OnTriggerEnter2D(Collider2D other)
     {

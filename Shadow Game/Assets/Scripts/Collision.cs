@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class Collision : MonoBehaviour
 {
     CameraController cam;
-    bool isDead = false;
-    public Animator transition;
-    public float transitionTime = 1.0f;
+    Animator transition;
+    private bool isDead = false;
+    private float transitionTime = 1.0f;
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine (SceneReset());
+        StartCoroutine ( SceneReset() );
     }
 
     public void OnTriggerEnter2D(Collider2D other)

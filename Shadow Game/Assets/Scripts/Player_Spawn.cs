@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Spawn : MonoBehaviour
 {
-    public GameObject player;
+    GameObject player;
     private Vector3 objpos;
 
     void Start()
