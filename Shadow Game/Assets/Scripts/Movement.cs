@@ -217,7 +217,7 @@ public class Movement : MonoBehaviour
 
     private void Dash(float dashSpace)
     {
-        if (dashAmount >= 1 && rb.velocity.x != 0 && canDash)
+        if (dashAmount >= 1 && rb.velocity.x != 0 && canDash && horizontalMovement != 0)
         {
             Debug.Log("Dashing (through the snow)");
             dashAmount -= 1;
