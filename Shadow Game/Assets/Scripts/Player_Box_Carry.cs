@@ -22,8 +22,8 @@ public class Player_Box_Carry : MonoBehaviour
 
     private void Start()
     {
-        isBoxInRange = false;
-        isCarryingBox = false;
+        //isBoxInRange = false;
+        //isCarryingBox = false;
         playerGameObject = GameObject.Find("Player");
         playerRigidbody = playerGameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInParent<SpriteRenderer>();
@@ -72,6 +72,8 @@ public class Player_Box_Carry : MonoBehaviour
             boxToGrab.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             boxRigidBody.simulated = false;
             isCarryingBox = true;
+            grabColliderBox.enabled = false;
+            //puzzleBoxBoxCollider.enabled = false;
         }
     }
 
@@ -97,7 +99,7 @@ public class Player_Box_Carry : MonoBehaviour
             //Vector2 direction = (transform.position - boxToGrab.transform.position).normalized;
             boxRigidBody.velocity += new Vector2((throwStrength * direction.x), (throwStrength * direction.y));
             boxRigidBody.velocity += playerRigidbody.velocity;
-
+            isBoxInRange = false;
         }
         else
         {
@@ -114,6 +116,8 @@ public class Player_Box_Carry : MonoBehaviour
 
 
         boxToGrab.transform.SetParent(null, true);
+        grabColliderBox.enabled = true;
+        //puzzleBoxBoxCollider.enabled = true;
         isCarryingBox = false;
     }
 
@@ -132,7 +136,7 @@ public class Player_Box_Carry : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(isCarryingBox == false)
+        if(isCarryingBox == false && collision.gameObject.tag == "PuzzleBox")
         {
             isBoxInRange = false;
             boxToGrab = null;

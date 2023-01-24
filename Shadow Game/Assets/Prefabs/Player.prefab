@@ -586,7 +586,7 @@ MonoBehaviour:
   dashSpace: 3
   isDashing: 0
   canDash: 1
-  maxDashTimer: 0.4
+  maxDashTimer: 0.1
   dashTimer: 0.1
   dashAmount: 3
   isAttacking: 0

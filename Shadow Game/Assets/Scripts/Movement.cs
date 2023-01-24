@@ -60,8 +60,14 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        jumpCheckTimer -= Time.deltaTime;
-        dashTimer -= Time.deltaTime;
+        if (jumpCheckTimer > 0)
+        {
+            jumpCheckTimer -= Time.deltaTime;
+        }
+        if (dashTimer > 0)
+        {
+            dashTimer -= Time.deltaTime;
+        }
 
         MoveInput();
 
@@ -137,7 +143,10 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            jumpTimer -= Time.fixedDeltaTime;
+            if (jumpCheckTimer > 0)
+            {
+                jumpTimer -= Time.fixedDeltaTime;
+            }
         }
     }
 
@@ -217,7 +226,7 @@ public class Movement : MonoBehaviour
 
     private void Dash(float dashSpace)
     {
-        if (dashAmount >= 1 && rb.velocity.x != 0 && canDash)
+        if (dashAmount >= 1 && rb.velocity.x != 0 && canDash && horizontalMovement != 0)
         {
             Debug.Log("Dashing (through the snow)");
             dashAmount -= 1;
