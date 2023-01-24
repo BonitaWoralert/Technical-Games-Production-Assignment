@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpCheckTimer = 0.2f;
     [SerializeField] private float maxJumpCheckTimer = 0.2f;
     [SerializeField] private bool isCoyote = true;
-    public bool isGrounded = true;
+    [SerializeField] private bool isGrounded = true;
 
     [Header("Dash")]
     [SerializeField] private float dashSpace;
@@ -34,7 +34,8 @@ public class Movement : MonoBehaviour
     [Header("Ground Checks")]
     [SerializeField] private LayerMask groundLayers;
     [SerializeField] private Transform groundCheck;
-
+    public GameObject leftCheck;
+    public GameObject rightCheck;
 
     private Rigidbody2D rb;
     private Animator ani;
@@ -82,6 +83,7 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerMove();
+        ShadowMove();
         CheckGrounded();
         PlayerJump();
     }
@@ -137,6 +139,39 @@ public class Movement : MonoBehaviour
         {
             jumpTimer -= Time.fixedDeltaTime;
         }
+    }
+
+    private void ShadowMove()
+    {
+        if (!shadowForm.isInShadowForm) { return; }
+
+        // Set the velocity of the rigidbody
+        if (Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && horizontalMovement < 0)
+        {
+            Debug.Log("Moving Left");
+            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
+        }
+        
+        if (Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && horizontalMovement > 0)
+        {
+            Debug.Log("Moving Right");
+            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
+        }
+
+
+        if (!Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x > 0.05f)
+        {
+            Debug.Log("Can't Move Right");
+            rb.velocity = Vector2.zero;
+        }
+
+        if (!Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x < 0.05f)
+        {
+            Debug.Log("Can't Move Left");
+            rb.velocity = Vector2.zero;
+        }
+
+        UpdateAnimations();
     }
 
     private void PlayerMove()
@@ -213,7 +248,7 @@ public class Movement : MonoBehaviour
         return isGrounded;
     }
 
-    public void UpdateAnimations()
+    void UpdateAnimations()
     {
         if (!isDashing)
         {

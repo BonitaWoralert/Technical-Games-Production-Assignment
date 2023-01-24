@@ -79,7 +79,6 @@ public class Enemy_Slime_AI : MonoBehaviour
     public bool canMove;
 
     private Movement move;
-    private ShadowMovement shadowMove;
     private Animator animator;
     void Start()
     {
@@ -94,7 +93,7 @@ public class Enemy_Slime_AI : MonoBehaviour
         canMove = true;
         isPlayerSpotted = false;
         destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
-        shadowMove = playerObject.GetComponent<ShadowMovement>();
+
         timeToMove = defaultTimeToMove;
 
         if (patrolStartPointX < patrolEndPointX)
@@ -201,13 +200,13 @@ public class Enemy_Slime_AI : MonoBehaviour
     private void FindCheck()
     {
         move = playerObject.GetComponent<Movement>();
-        if (Vector2.Distance(gameObject.transform.position, shadowMove.leftCheck.transform.position) < Vector2.Distance(gameObject.transform.position, shadowMove.rightCheck.transform.position))
+        if (Vector2.Distance(gameObject.transform.position, move.leftCheck.transform.position) < Vector2.Distance(gameObject.transform.position, move.rightCheck.transform.position))
         {
-            ChangeDestination(shadowMove.leftCheck.transform.position - playerDistanceBuffer);
+            ChangeDestination(move.leftCheck.transform.position - playerDistanceBuffer);
         }
         else
         {
-            ChangeDestination(shadowMove.rightCheck.transform.position + playerDistanceBuffer);
+            ChangeDestination(move.rightCheck.transform.position + playerDistanceBuffer);
         }
     }
 
