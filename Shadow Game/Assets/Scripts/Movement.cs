@@ -88,7 +88,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerMove();dw
+        PlayerMove();
         CheckGrounded();
         PlayerJump();
     }
