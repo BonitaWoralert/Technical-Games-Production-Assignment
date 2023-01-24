@@ -1,10 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class Enemy_Slime_AI : MonoBehaviour

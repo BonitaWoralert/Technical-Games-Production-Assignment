@@ -1,10 +1,5 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class Enemy_AI_v2 : MonoBehaviour
@@ -84,7 +79,10 @@ public class Enemy_AI_v2 : MonoBehaviour
     [SerializeField] private AIState2 currentAIState2;
     private GameObject playerObject;
     private float checkTimer;
+    private float turnTimer;
     [SerializeField] private float maxCheckTimer = 1f;
+    [SerializeField] private float maxTurnTimer = 1f;
+
     [SerializeField] private Vector3 destination;
     [SerializeField] private Vector3 playerDistanceBuffer;
     private Movement move;
@@ -212,6 +210,43 @@ public class Enemy_AI_v2 : MonoBehaviour
         }
     }
 
+    private void TimeToTurn()
+    {
+        //This function would determine the time in between turning while patroling. (Prevent jittery turning)
+        turnTimer -= Time.deltaTime;
+        if (turnTimer <= 0f)
+        {
+            turnTimer = maxTurnTimer;
+            animator.SetBool("isSuspicious", false);
+            if (currentAIState2 == AIState2.PATROLTO)
+            {
+                destination = new Vector3(patrolStartPointX, patrolStartPointY, 0);
+                canMove = true;
+                //Enemy is in range of patrolEndPoint. Start going back.
+                currentAIState2 = AIState2.PATROLBACK;
+
+                //Change Movement Direction
+                isMoveLeft = !isPatrolToMoveDirectionLeft;
+            }
+            else if (currentAIState2 == AIState2.PATROLBACK)
+            {
+                destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
+                canMove = true;
+                //Enemy is in range of patrolStartPoint. Start going to.
+                currentAIState2 = AIState2.PATROLTO;
+
+                //Change Movement Direction
+                isMoveLeft = isPatrolToMoveDirectionLeft;
+            }
+        }
+        else
+        {
+            canMove = false;
+            animator.SetBool("isSuspicious", true);
+        }
+
+    }
+
     private void FindCheck()
     {
         move = playerObject.GetComponent<Movement>();
@@ -235,13 +270,7 @@ public class Enemy_AI_v2 : MonoBehaviour
     {
         if(patrolEndPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolEndPointX + patrolPointRange)
         {
-            destination = new Vector3(patrolStartPointX, patrolStartPointY, 0);
-            canMove = true;
-            //Enemy is in range of patrolEndPoint. Start going back.
-            currentAIState2 = AIState2.PATROLBACK;
-       
-            //Change Movement Direction
-            isMoveLeft = !isPatrolToMoveDirectionLeft;
+            TimeToTurn();
         }
     }
 
@@ -250,13 +279,7 @@ public class Enemy_AI_v2 : MonoBehaviour
     {
         if(patrolStartPointX - patrolPointRange <= transform.position.x && transform.position.x <= patrolStartPointX + patrolPointRange)
         {
-            destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
-            canMove = true;
-            //Enemy is in range of patrolStartPoint. Start going to.
-            currentAIState2 = AIState2.PATROLTO;
-
-            //Change Movement Direction
-            isMoveLeft = isPatrolToMoveDirectionLeft;
+            TimeToTurn();
         }
     }
 

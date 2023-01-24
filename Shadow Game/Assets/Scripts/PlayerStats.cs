@@ -6,13 +6,17 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public int health;
+    public int maxHealth;
     public float shadowEnergy;
+    public float maxShadowEnergy;
 
     private ShadowForm shadowForm;
 
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
+        shadowEnergy = maxShadowEnergy;
         shadowForm = GetComponent<ShadowForm>();
     }
 

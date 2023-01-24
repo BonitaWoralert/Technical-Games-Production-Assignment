@@ -17,15 +17,18 @@ public class LightActivator : BaseSwitch
 
     private void LateUpdate()
     {
-        if (_lightReciver._intenisty > _requiredLight)
+        if (_lightReciver._update)
         {
-            _state = true;
-            animator.SetBool("isActive", true);
-        }
-        else
-        {
-            _state = false;
-            animator.SetBool("isActive", false);
+            if (_lightReciver._intenisty > _requiredLight)
+            {
+                _state = true;
+                animator.SetBool("isActive", true);
+            }
+            else
+            {
+                _state = false;
+                animator.SetBool("isActive", false);
+            }
         }
     }
 }

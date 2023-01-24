@@ -5,6 +5,7 @@ using UnityEngine;
 public class SavePrefs : MonoBehaviour
 {
     //all variables to be saved
+    int level = 0;
     int checkpointFlag = 0;
     int health;
     int collectible;
@@ -29,6 +30,9 @@ public class SavePrefs : MonoBehaviour
 
     public void SaveGame() //files are saved in Registry Editor: Computer\HKEY_CURRENT_USER\SOFTWARE\Unity\UnityEditor\DefaultCompany\Shadow Game
     {
+        //level
+        PlayerPrefs.SetInt("Level", level);
+
         //save index of current checkpoint in the list of checkpoints
         //player location
         checkpointFlag = checkpointManager.GetCurrentCheckpoint();
@@ -49,6 +53,8 @@ public class SavePrefs : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("CheckpointFlag")) //making sure playerprefs isn't empty
         {
+            level = PlayerPrefs.GetInt("Level"); //get level
+
             checkpointFlag = PlayerPrefs.GetInt("CheckpointFlag"); //set checkpointflag variable to data inside save file
             checkpointManager.SetCurrentCheckpoint(checkpointFlag); //set current checkpoint
             player.transform.position = checkpointManager.GetCheckpointPos(); //set player position
@@ -69,6 +75,7 @@ public class SavePrefs : MonoBehaviour
     {
         PlayerPrefs.DeleteAll(); //delete all data in playerprefs
         //reset all variables to 0
+        level = 0; 
         checkpointFlag = 0;
         health = 0;
         collectible = 0;
