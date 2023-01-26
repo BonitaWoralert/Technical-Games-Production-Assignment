@@ -155,9 +155,11 @@ public class Enemy_AI_v2 : MonoBehaviour
                 break;
         }
 
+        //Enables the Chasing AI Script (Enemy_AI_v3)
         if(currentAIState2 == AIState2.CHASE)
         {
             enemyChaseAI.enabled = true;
+            canMove = false;
         }
         else
         {
@@ -165,6 +167,7 @@ public class Enemy_AI_v2 : MonoBehaviour
             canMove = true;
         }
 
+        //Increases the Suspicious Value if player is seen.
         if(isPlayerSpotted)
         {
             if(suspiciousValue > suspiciousValueMax)

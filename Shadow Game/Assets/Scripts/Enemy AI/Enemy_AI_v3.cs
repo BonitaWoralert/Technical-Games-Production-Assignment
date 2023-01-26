@@ -8,7 +8,11 @@ public class Enemy_AI_v3 : MonoBehaviour
     //This script attempts to use A* Pathfinding for the AI.
 
     [SerializeField] private Transform target;
+    [SerializeField] private Transform enemyVisionBox;
+    [SerializeField] private GameObject enemySpriteGameObject;
+    [SerializeField] private SpriteRenderer enemySpriteRenderer;
     [SerializeField] private float speed; //200f //400f
+    [SerializeField] private float moveSpeed; //200f //400f
     [SerializeField] private float nextWayPointDistance; //1f
     [SerializeField] private float pathUpdateSpeed; //0.5f
     [SerializeField] private float jumpStrength;
@@ -21,20 +25,20 @@ public class Enemy_AI_v3 : MonoBehaviour
     private int currentWayPoint = 0;
     private bool reachedEndOfPath = false;
     private Vector3 defaultSpriteSize;
-    private Vector3 flipedSprite;
+    private Vector3 defaultVisionBoxPos;
     //private Vector2 direction;
 
     Seeker seeker;
     Rigidbody2D rb;
 
-    [SerializeField] private Transform enemySprite;
-
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        enemySpriteRenderer = enemySpriteGameObject.GetComponent<SpriteRenderer>();
         jumpTimer = defautJumpTimer;
         defaultSpriteSize = transform.localScale / 6;
+        defaultVisionBoxPos = enemyVisionBox.transform.localPosition;
 
         InvokeRepeating("UpdatePath", 1f, pathUpdateSpeed);
     }
@@ -99,7 +103,21 @@ public class Enemy_AI_v3 : MonoBehaviour
         {
             //Moving Left or Right.
             rb.AddForce(moveForce);
+            //if(direction.x < 0)
+            //{
+            //    rb.velocity = new Vector2(-moveSpeed, 0);
+            //}
+            //else if(direction.x > 0)
+            //{
+            //    rb.velocity = new Vector2(moveSpeed, 0);
+            //}
+            //else
+            //{
+            //    rb.AddForce(moveForce);
+            //}
         }
+
+
 
         if(moveForce.y > jumpThreshold)
         {
@@ -115,11 +133,14 @@ public class Enemy_AI_v3 : MonoBehaviour
 
         if (moveForce.x >= 0.01f)
         {
-            enemySprite.localScale = defaultSpriteSize;
+            enemySpriteRenderer.flipX = false;
+            enemyVisionBox.transform.localPosition = defaultVisionBoxPos;
         }
         else if (moveForce.x <= -0.01f)
         {
-            enemySprite.localScale = new Vector3(-defaultSpriteSize.x, defaultSpriteSize.y, defaultSpriteSize.z);
+            //enemySprite.localScale = new Vector3(-defaultSpriteSize.x, defaultSpriteSize.y, defaultSpriteSize.z);
+            enemySpriteRenderer.flipX = true;
+            enemyVisionBox.localPosition = -defaultVisionBoxPos;
         }
     }
 
