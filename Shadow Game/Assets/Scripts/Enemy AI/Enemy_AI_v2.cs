@@ -159,12 +159,10 @@ public class Enemy_AI_v2 : MonoBehaviour
         if(currentAIState2 == AIState2.CHASE)
         {
             enemyChaseAI.enabled = true;
-            canMove = false;
         }
         else
         {
             enemyChaseAI.enabled = false;
-            canMove = true;
         }
 
         //Increases the Suspicious Value if player is seen.
@@ -193,7 +191,8 @@ public class Enemy_AI_v2 : MonoBehaviour
 
         }
 
-        if(canMove)
+        //The Chase State has its own movement properties.
+        if(canMove && currentAIState2 != AIState2.CHASE)
         {
             if (destination.x - gameObject.transform.position.x < 0f)
             {
