@@ -86,7 +86,7 @@ public class Movement : MonoBehaviour
 
     private void Resistance()
     {
-        if (isGrounded && dashTimer <= -0.25)
+        if (isGrounded && dashTimer <= -0.1)
         {
             rb.AddForce(new Vector2(-rb.velocity.x * (1/ speedDecrement), 0));
         }
