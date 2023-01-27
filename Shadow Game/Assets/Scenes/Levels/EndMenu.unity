@@ -232,9 +232,9 @@ RectTransform:
   m_Father: {fileID: 480062396}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 512, y: -264.80563}
   m_SizeDelta: {x: 230, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &198663805
@@ -422,6 +422,8 @@ GameObject:
   - component: {fileID: 223370722}
   - component: {fileID: 223370721}
   - component: {fileID: 223370720}
+  - component: {fileID: 223370724}
+  - component: {fileID: 223370723}
   m_Layer: 5
   m_Name: Level 3
   m_TagString: Untagged
@@ -544,6 +546,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223370718}
   m_CullTransparentMesh: 1
+--- !u!114 &223370723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223370718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 223370724}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 223370724}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &223370724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223370718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &226252469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,6 +1241,8 @@ GameObject:
   - component: {fileID: 385821750}
   - component: {fileID: 385821749}
   - component: {fileID: 385821748}
+  - component: {fileID: 385821752}
+  - component: {fileID: 385821751}
   m_Layer: 5
   m_Name: Level Select
   m_TagString: Untagged
@@ -1201,9 +1266,9 @@ RectTransform:
   m_Father: {fileID: 480062396}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 512, y: -312.11127}
   m_SizeDelta: {x: 230, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &385821748
@@ -1300,6 +1365,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385821746}
   m_CullTransparentMesh: 1
+--- !u!114 &385821751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385821746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 385821752}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 385821752}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &385821752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385821746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &401471075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,6 +1645,8 @@ GameObject:
   - component: {fileID: 447307212}
   - component: {fileID: 447307211}
   - component: {fileID: 447307210}
+  - component: {fileID: 447307214}
+  - component: {fileID: 447307213}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -1641,6 +1769,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447307208}
   m_CullTransparentMesh: 1
+--- !u!114 &447307213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447307208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 447307214}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 447307214}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &447307214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447307208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &472364328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,7 +2016,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480062395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
@@ -2110,6 +2299,8 @@ GameObject:
   - component: {fileID: 500204921}
   - component: {fileID: 500204920}
   - component: {fileID: 500204919}
+  - component: {fileID: 500204923}
+  - component: {fileID: 500204922}
   m_Layer: 5
   m_Name: Level 2
   m_TagString: Untagged
@@ -2232,6 +2423,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500204917}
   m_CullTransparentMesh: 1
+--- !u!114 &500204922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500204917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 500204923}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 500204923}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &500204923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500204917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &508999201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,6 +2496,8 @@ GameObject:
   - component: {fileID: 508999205}
   - component: {fileID: 508999204}
   - component: {fileID: 508999203}
+  - component: {fileID: 508999207}
+  - component: {fileID: 508999206}
   m_Layer: 5
   m_Name: Level 10
   m_TagString: Untagged
@@ -2354,6 +2608,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508999201}
   m_CullTransparentMesh: 1
+--- !u!114 &508999206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508999201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 508999207}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 508999207}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &508999207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508999201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &510843222
 GameObject:
   m_ObjectHideFlags: 0
@@ -2432,6 +2747,8 @@ GameObject:
   - component: {fileID: 517413698}
   - component: {fileID: 517413697}
   - component: {fileID: 517413696}
+  - component: {fileID: 517413700}
+  - component: {fileID: 517413699}
   m_Layer: 5
   m_Name: Level 8
   m_TagString: Untagged
@@ -2542,6 +2859,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517413694}
   m_CullTransparentMesh: 1
+--- !u!114 &517413699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517413694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 517413700}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 517413700}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &517413700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517413694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &539428743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,9 +3088,9 @@ RectTransform:
   m_Father: {fileID: 480062396}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 512, y: -523.8338}
   m_SizeDelta: {x: 230, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &574719755
@@ -2841,6 +3219,8 @@ GameObject:
   - component: {fileID: 624204158}
   - component: {fileID: 624204157}
   - component: {fileID: 624204156}
+  - component: {fileID: 624204160}
+  - component: {fileID: 624204159}
   m_Layer: 5
   m_Name: Level 5
   m_TagString: Untagged
@@ -2963,6 +3343,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624204154}
   m_CullTransparentMesh: 1
+--- !u!114 &624204159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624204154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 624204160}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 624204160}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &624204160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624204154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &655831988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3186,6 +3627,8 @@ GameObject:
   - component: {fileID: 764962077}
   - component: {fileID: 764962076}
   - component: {fileID: 764962075}
+  - component: {fileID: 764962079}
+  - component: {fileID: 764962078}
   m_Layer: 5
   m_Name: Level 9
   m_TagString: Untagged
@@ -3296,6 +3739,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764962073}
   m_CullTransparentMesh: 1
+--- !u!114 &764962078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764962073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 764962079}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 764962079}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &764962079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764962073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &773748480
 GameObject:
   m_ObjectHideFlags: 0
@@ -3389,6 +3893,8 @@ GameObject:
   - component: {fileID: 862374902}
   - component: {fileID: 862374901}
   - component: {fileID: 862374900}
+  - component: {fileID: 862374904}
+  - component: {fileID: 862374903}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -3412,9 +3918,9 @@ RectTransform:
   m_Father: {fileID: 480062396}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 512, y: -421.72253}
   m_SizeDelta: {x: 230, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &862374900
@@ -3511,6 +4017,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862374898}
   m_CullTransparentMesh: 1
+--- !u!114 &862374903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862374898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 862374904}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 862374904}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &862374904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862374898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &899367954
 GameObject:
   m_ObjectHideFlags: 0
@@ -3869,6 +4436,8 @@ GameObject:
   - component: {fileID: 949239800}
   - component: {fileID: 949239799}
   - component: {fileID: 949239798}
+  - component: {fileID: 949239802}
+  - component: {fileID: 949239801}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -3892,9 +4461,9 @@ RectTransform:
   m_Father: {fileID: 480062396}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 512, y: -366.9169}
   m_SizeDelta: {x: 230, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &949239798
@@ -3991,6 +4560,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949239796}
   m_CullTransparentMesh: 1
+--- !u!114 &949239801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949239796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 949239802}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 949239802}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &949239802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949239796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &978628888
 GameObject:
   m_ObjectHideFlags: 0
@@ -4183,6 +4813,8 @@ GameObject:
   - component: {fileID: 990194917}
   - component: {fileID: 990194916}
   - component: {fileID: 990194915}
+  - component: {fileID: 990194919}
+  - component: {fileID: 990194918}
   m_Layer: 5
   m_Name: Level 6
   m_TagString: Untagged
@@ -4293,6 +4925,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990194913}
   m_CullTransparentMesh: 1
+--- !u!114 &990194918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990194913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 990194919}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 990194919}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &990194919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990194913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &994762105
 GameObject:
   m_ObjectHideFlags: 0
@@ -4645,6 +5338,8 @@ GameObject:
   - component: {fileID: 1154378273}
   - component: {fileID: 1154378272}
   - component: {fileID: 1154378271}
+  - component: {fileID: 1154378275}
+  - component: {fileID: 1154378274}
   m_Layer: 5
   m_Name: Level 4
   m_TagString: Untagged
@@ -4767,6 +5462,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154378269}
   m_CullTransparentMesh: 1
+--- !u!114 &1154378274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154378269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1154378275}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1154378275}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1154378275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154378269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &1155091932
 GameObject:
   m_ObjectHideFlags: 0
@@ -4856,7 +5612,7 @@ GameObject:
   - component: {fileID: 1171558693}
   - component: {fileID: 1171558692}
   m_Layer: 5
-  m_Name: Placeholder for Credits
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6377,6 +7133,8 @@ GameObject:
   - component: {fileID: 1708225792}
   - component: {fileID: 1708225791}
   - component: {fileID: 1708225790}
+  - component: {fileID: 1708225794}
+  - component: {fileID: 1708225793}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -6499,6 +7257,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708225788}
   m_CullTransparentMesh: 1
+--- !u!114 &1708225793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708225788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1708225794}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1708225794}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1708225794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708225788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &1716965773
 GameObject:
   m_ObjectHideFlags: 0
@@ -6646,6 +7465,8 @@ GameObject:
   - component: {fileID: 1763427382}
   - component: {fileID: 1763427381}
   - component: {fileID: 1763427380}
+  - component: {fileID: 1763427384}
+  - component: {fileID: 1763427383}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -6768,6 +7589,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763427378}
   m_CullTransparentMesh: 1
+--- !u!114 &1763427383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763427378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1763427384}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1763427384}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1763427384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763427378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &1776799284
 GameObject:
   m_ObjectHideFlags: 0
@@ -6780,6 +7662,8 @@ GameObject:
   - component: {fileID: 1776799288}
   - component: {fileID: 1776799287}
   - component: {fileID: 1776799286}
+  - component: {fileID: 1776799290}
+  - component: {fileID: 1776799289}
   m_Layer: 5
   m_Name: Level 1
   m_TagString: Untagged
@@ -6902,6 +7786,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776799284}
   m_CullTransparentMesh: 1
+--- !u!114 &1776799289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776799284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1776799290}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1776799290}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1776799290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776799284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &1781590640
 GameObject:
   m_ObjectHideFlags: 0
@@ -7392,6 +8337,8 @@ GameObject:
   - component: {fileID: 1912784459}
   - component: {fileID: 1912784458}
   - component: {fileID: 1912784457}
+  - component: {fileID: 1912784461}
+  - component: {fileID: 1912784460}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -7415,9 +8362,9 @@ RectTransform:
   m_Father: {fileID: 480062396}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 512, y: -476.52817}
   m_SizeDelta: {x: 230, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1912784457
@@ -7514,6 +8461,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912784455}
   m_CullTransparentMesh: 1
+--- !u!114 &1912784460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912784455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1912784461}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1912784461}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1912784461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912784455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &1920580376
 GameObject:
   m_ObjectHideFlags: 0
@@ -7526,6 +8534,8 @@ GameObject:
   - component: {fileID: 1920580380}
   - component: {fileID: 1920580379}
   - component: {fileID: 1920580378}
+  - component: {fileID: 1920580382}
+  - component: {fileID: 1920580381}
   m_Layer: 5
   m_Name: Level 7
   m_TagString: Untagged
@@ -7636,6 +8646,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920580376}
   m_CullTransparentMesh: 1
+--- !u!114 &1920580381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920580376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1920580382}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1920580382}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1920580382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920580376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1 &1932588890
 GameObject:
   m_ObjectHideFlags: 0
@@ -7929,6 +9000,8 @@ GameObject:
   - component: {fileID: 2100365155}
   - component: {fileID: 2100365154}
   - component: {fileID: 2100365153}
+  - component: {fileID: 2100365157}
+  - component: {fileID: 2100365156}
   m_Layer: 5
   m_Name: DeleteSave
   m_TagString: Untagged
@@ -8051,6 +9124,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100365151}
   m_CullTransparentMesh: 1
+--- !u!114 &2100365156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100365151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2100365157}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2100365157}
+          m_TargetAssemblyTypeName: FloatingButtons, Assembly-CSharp
+          m_MethodName: SetDance
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &2100365157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100365151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba26e24cf91ce5143897c6910a746bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1.4
+  frequency: 1.2
+  canDance: 0
 --- !u!1001 &500906254740591010
 PrefabInstance:
   m_ObjectHideFlags: 0
