@@ -23,8 +23,8 @@ TagManager:
   - NonShadowObjects
   - Ground
   - Obstacle
-  - 
-  - 
+  - PuzzleBox
+  - Floors/Roofs
   - 
   - 
   - 

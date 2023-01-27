@@ -13,7 +13,7 @@ public class Enemy_AI_v2 : MonoBehaviour
     /// </summary>
 
     private bool isSpriteFlip;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private Color defaultColor;
     private Vector2 defaultVisionBoxPos;
     private Vector2 defaultAttackBoxPos;
@@ -28,6 +28,7 @@ public class Enemy_AI_v2 : MonoBehaviour
     [SerializeField] private float patrolEndPointX;
     [SerializeField] private float patrolEndPointOffsetX;
     [SerializeField] private float patrolEndPointY;
+    [SerializeField] private Enemy_AI_v3 enemyChaseAI;
 
     [Tooltip("Keep this value around 0.5 - 3")]
     [SerializeField] private float patrolPointRange;
@@ -94,7 +95,7 @@ public class Enemy_AI_v2 : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        //spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponent<Animator>();
         defaultColor = spriteRenderer.color;
         defaultVisionBoxPos = visionBoxObject.transform.localPosition;
@@ -154,6 +155,17 @@ public class Enemy_AI_v2 : MonoBehaviour
                 break;
         }
 
+        //Enables the Chasing AI Script (Enemy_AI_v3)
+        if(currentAIState2 == AIState2.CHASE)
+        {
+            enemyChaseAI.enabled = true;
+        }
+        else
+        {
+            enemyChaseAI.enabled = false;
+        }
+
+        //Increases the Suspicious Value if player is seen.
         if(isPlayerSpotted)
         {
             if(suspiciousValue > suspiciousValueMax)
@@ -179,7 +191,8 @@ public class Enemy_AI_v2 : MonoBehaviour
 
         }
 
-        if(canMove)
+        //The Chase State has its own movement properties.
+        if(canMove && currentAIState2 != AIState2.CHASE)
         {
             if (destination.x - gameObject.transform.position.x < 0f)
             {
@@ -284,25 +297,27 @@ public class Enemy_AI_v2 : MonoBehaviour
     //Chase the player.
     private void Chase()
     {
-        CheckTimer();
-        canMove = true;
-        if (transform.position.x <= playerObject.transform.position.x)
-        {
-            isMoveLeft = false;
-        }
-        else
-        {
-            isMoveLeft = true;
-        }
-
-        if(-attackRange < destination.x - gameObject.transform.position.x && destination.x - gameObject.transform.position.x < attackRange)
-        {
-            if(isAttacking == false)
-            {
-                isAttacking = true;
-                Attack();
-            }
-        }
+        //CheckTimer();
+        //canMove = true;
+        //if (transform.position.x <= playerObject.transform.position.x)
+        //{
+        //    isMoveLeft = false;
+        //}
+        //else
+        //{
+        //    isMoveLeft = true;
+        //}
+        //
+        //if(-attackRange < destination.x - gameObject.transform.position.x && destination.x - gameObject.transform.position.x < attackRange)
+        //{
+        //    if(isAttacking == false)
+        //    {
+        //        isAttacking = true;
+        //        Attack();
+        //    }
+        //}
+        //enemyChaseAI.enabled = true;
+        canMove = false;
     }
 
     private void Attack()

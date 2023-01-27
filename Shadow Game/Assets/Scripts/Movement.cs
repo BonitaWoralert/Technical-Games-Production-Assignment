@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float maxSpeed = 15f;
+    [Range(0.1f, 15)]
+    [SerializeField] private float speedDecrement = 6.0f;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 5f;
@@ -41,11 +43,12 @@ public class Movement : MonoBehaviour
     private Animator ani;
     private SpriteRenderer sprite;
     private ShadowForm shadowForm;
+    private PlayerStats playerStats;
     private float horizontalMovement;
-    RaycastHit2D hit;
     public enum MoveState { idle, running, jumping, falling, dashing, shadow, attack };
     [SerializeField] private MoveState state;
     private TrailRenderer trailRenderer;
+    [SerializeField] bool facingRight;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +58,7 @@ public class Movement : MonoBehaviour
         ani = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         trailRenderer = GetComponent<TrailRenderer>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -64,14 +68,36 @@ public class Movement : MonoBehaviour
         {
             jumpCheckTimer -= Time.deltaTime;
         }
-        if (dashTimer > 0)
+        dashTimer -= Time.deltaTime;
+        if (playerStats.shadowEnergy < playerStats.maxShadowLevel)
         {
-            dashTimer -= Time.deltaTime;
+            playerStats.shadowEnergy += Time.deltaTime;
+        }
+
+        if (dashTimer > -0.3f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
         }
 
         MoveInput();
 
         trailRenderer.enabled = (dashTimer + 0.25f > 0);
+
+        Resistance();
+    }
+    private void FixedUpdate()
+    {
+        PlayerMove();
+        CheckGrounded();
+        PlayerJump();
+    }
+
+    private void Resistance()
+    {
+        if (isGrounded && dashTimer <= -0.25)
+        {
+            rb.AddForce(new Vector2(-rb.velocity.x * (1/ speedDecrement), 0));
+        }
     }
 
     private void MoveInput()
@@ -84,13 +110,6 @@ public class Movement : MonoBehaviour
             isDashing = true;
             Dash(dashSpace);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        PlayerMove();
-        CheckGrounded();
-        PlayerJump();
     }
 
     public void CheckGrounded()
@@ -149,9 +168,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    
-
-
     private void PlayerMove()
     {
         if (shadowForm.isInShadowForm) { return; }
@@ -191,11 +207,22 @@ public class Movement : MonoBehaviour
         {
             rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer * (Time.fixedDeltaTime * 500)), 0);
         }
+        if (horizontalMovement == 0)
+        {
+            if (facingRight == true)
+            {
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer * (Time.fixedDeltaTime * 500)), 0);
+            }
+            if (facingRight == false)
+            {
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x - dashSpace, dashTimer * (Time.fixedDeltaTime * 500)), 0);
+            }
+        }
     }
 
     private void Dash(float dashSpace)
     {
-        if (dashAmount >= 1 && rb.velocity.x != 0 && canDash && horizontalMovement != 0)
+        if (dashAmount >= 1 && canDash)
         {
             Debug.Log("Dashing (through the snow)");
             dashAmount -= 1;
@@ -234,11 +261,13 @@ public class Movement : MonoBehaviour
             {
                 state = MoveState.running;
                 sprite.flipX = false;
+                facingRight = true;
             }
             else if (horizontalMovement < 0f)
             {
                 state = MoveState.running;
                 sprite.flipX = true;
+                facingRight = false;
             }
             else
             {
@@ -283,10 +312,5 @@ public class Movement : MonoBehaviour
         }
 
         ani.SetInteger("state", (int)state);
-    }
-
-    private void StopAttackAni()
-    {
-        isAttacking = false;
     }
 }
