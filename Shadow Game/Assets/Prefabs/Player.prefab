@@ -428,7 +428,7 @@ Transform:
   - {fileID: 3680043439202123331}
   - {fileID: 458810515230651375}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1877749973754294095
 SpriteRenderer:
@@ -548,8 +548,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  shadowEnergy: 10
-  maxShadowEnergy: 10
+  shadowEnergy: 1
+  shadowLevel: 1
+  maxShadowLevel: 1
+  shadowDecreaseSpeed: 0.2
+  shadowIncreaseSpeed: 0.4
 --- !u!114 &2518738611042306878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
   maxSpeed: 4.5
+  speedDecrement: 6
   jumpForce: 7.25
   jumpDecrease: 0.3
   maxJumpForce: 7.25
@@ -605,6 +609,7 @@ MonoBehaviour:
   leftCheck: {fileID: 4187124586237169611}
   rightCheck: {fileID: 5727251857932353995}
   state: 0
+  facingRight: 0
 --- !u!50 &1877749973754294093
 Rigidbody2D:
   serializedVersion: 4

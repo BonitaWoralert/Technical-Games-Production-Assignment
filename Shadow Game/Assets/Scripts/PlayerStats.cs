@@ -9,10 +9,12 @@ public class PlayerStats : MonoBehaviour
     public int maxHealth;
 
     public float shadowEnergy;
-    public int shadowLevel;
-    public int maxShadowLevel;
-
+    public int maxShadowEnergy = 1;
     private ShadowForm shadowForm;
+    [SerializeField] private float shadowDecreaseSpeed = 0.2f;
+    [SerializeField] private float shadowIncreaseSpeed = 0.4f;
+
+    public int dashAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,6 @@ public class PlayerStats : MonoBehaviour
         ChangeShadowEnergy(0);
         AdminCommands();
 
-        shadowLevel = Mathf.FloorToInt(shadowEnergy);
     }
 
     private void AdminCommands()
@@ -46,7 +47,11 @@ public class PlayerStats : MonoBehaviour
     {
         if (shadowForm.isInShadowForm)
         {
-            shadowEnergy -= Time.deltaTime;
+            shadowEnergy -= Time.deltaTime * shadowDecreaseSpeed;
+        }
+        if(!shadowForm.isInShadowForm && shadowEnergy < maxShadowEnergy)
+        {
+            shadowEnergy += Time.deltaTime * shadowIncreaseSpeed;
         }
         shadowEnergy += change;
     }

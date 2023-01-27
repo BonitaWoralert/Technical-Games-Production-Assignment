@@ -28,7 +28,6 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool canDash = true;
     [SerializeField] private float maxDashTimer;
     [SerializeField] private float dashTimer;
-    [SerializeField] public int dashAmount;
 
     [Header("Attack")]
     [SerializeField] private bool isAttacking = false;
@@ -70,10 +69,7 @@ public class Movement : MonoBehaviour
             jumpCheckTimer -= Time.deltaTime;
         }
         dashTimer -= Time.deltaTime;
-        if (playerStats.shadowEnergy < playerStats.maxShadowLevel)
-        {
-            playerStats.shadowEnergy += Time.deltaTime;
-        }
+        
 
         MoveInput();
 
@@ -116,6 +112,7 @@ public class Movement : MonoBehaviour
     public void CheckGrounded()
     {
         //Debug.Log(Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers));
+        Physics2D.queriesHitTriggers = false;
         if (Physics2D.OverlapCircle(groundCheck.position, 0.35f, groundLayers) && jumpCheckTimer <= 0)
         {
             isGrounded = true;
@@ -223,10 +220,10 @@ public class Movement : MonoBehaviour
 
     private void Dash(float dashSpace)
     {
-        if (dashAmount >= 1 && canDash)
+        if (playerStats.dashAmount >= 1 && canDash)
         {
             Debug.Log("Dashing (through the snow)");
-            dashAmount -= 1;
+            playerStats.dashAmount -= 1;
             canDash = false;
             dashTimer = maxDashTimer;
             rb.velocity = new Vector2(rb.velocity.x, 0);
@@ -242,13 +239,13 @@ public class Movement : MonoBehaviour
 
     private void DashAdd(int dashIncrement)
     {
-        if (dashAmount + dashIncrement >= 3)
+        if (playerStats.dashAmount + dashIncrement >= 3)
         {
-            dashAmount = 3;
+            playerStats.dashAmount = 3;
         }
         else
         {
-            dashAmount += dashIncrement;
+            playerStats.dashAmount += dashIncrement;
         }
     }
 

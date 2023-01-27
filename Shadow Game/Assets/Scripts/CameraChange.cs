@@ -7,12 +7,18 @@ public class CameraChange : MonoBehaviour
 {
     /* Notes for using prefab
      * Delete the old camera :)
+     * Platformer camera -> Follow player
      * Move puzzle camera X and Y to desired location, you can also change the FOV. 
      * The box collider 2D under the "Cameras" gameobject will change the camera to Puzzle cam when entered, edit as required
      */
 
     [SerializeField] //Assign platformer cam and puzzle cam in editor where this script is
     private CinemachineVirtualCamera platformerCam, puzzleCam;
+    private void Start()
+    {
+        //set puzzlecam Z value to same as platformercam
+        puzzleCam.transform.position = new Vector3(puzzleCam.transform.position.x, puzzleCam.transform.position.y, platformerCam.transform.position.z); ;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
