@@ -7311,6 +7311,22 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7992819827427048663, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
+      propertyPath: m_LookaheadTime
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992819827427048663, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
+      propertyPath: m_SoftZoneWidth
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992819827427048663, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
+      propertyPath: m_SoftZoneHeight
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992819827427048663, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
+      propertyPath: m_UnlimitedSoftZone
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7992819827648947442, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
       propertyPath: m_LocalPosition.x
       value: -41.928158
@@ -7318,10 +7334,6 @@ PrefabInstance:
     - target: {fileID: 7992819827648947442, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
       propertyPath: m_LocalPosition.y
       value: 7.0433645
-      objectReference: {fileID: 0}
-    - target: {fileID: 7992819827648947443, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
-      propertyPath: field of view
-      value: 56.23
       objectReference: {fileID: 0}
     - target: {fileID: 7992819827751723743, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
       propertyPath: m_Follow
@@ -7374,10 +7386,6 @@ PrefabInstance:
     - target: {fileID: 7992819828881301379, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
       propertyPath: m_Name
       value: Cameras
-      objectReference: {fileID: 0}
-    - target: {fileID: 7992819829346313913, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
-      propertyPath: m_Priority
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
