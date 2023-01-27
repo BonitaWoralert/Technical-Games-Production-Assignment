@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPos: 2
-  amplitude: -1
+  amplitude: -10
   frequency: 0.3
 --- !u!1 &500906254934867247
 GameObject:
@@ -759,5 +759,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPos: -0.5
-  amplitude: 1.5
+  amplitude: 10
   frequency: 0.3
