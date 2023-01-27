@@ -6,21 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Levels/MainMenu.unity
     guid: 99ca0741c97eea746a3e4072afe7733d
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
+    path: Assets/Scenes/Levels/Tutorial.unity
     guid: cbd2b12883cffd04a81c88a461e4d201
   - enabled: 1
-    path: Assets/Scenes/Level One.unity
+    path: Assets/Scenes/Levels/Level One.unity
     guid: 6fc706ce356fb264b85153eefc376b37
   - enabled: 1
     path: Assets/Scenes/Levels/Level Two.unity
     guid: b469b90c2478f544a9974eca6afd6d9b
   - enabled: 1
-    path: Assets/Scenes/Alex_Box_Puzzle.unity
+    path: Assets/Scenes/Levels/Alex_Box_Puzzle.unity
     guid: 550700e9b6891b242bcedcffa8f31f81
   - enabled: 1
-    path: Assets/Scenes/Alex_Light_Puzzle.unity
+    path: Assets/Scenes/Levels/Alex_Light_Puzzle.unity
     guid: 997dd556282d04642b883993d82bf74d
+  - enabled: 1
+    path: Assets/Scenes/Levels/EndMenu.unity
+    guid: 4466debbf95e7c945b79b80c47d0e586
   m_configObjects: {}
