@@ -26,6 +26,7 @@ public class Enemy_AI_v3 : MonoBehaviour
     private bool reachedEndOfPath = false;
     private Vector3 defaultSpriteSize;
     private Vector3 defaultVisionBoxPos;
+    private Vector2 additionalSpeed;
     //private Vector2 direction;
 
     Seeker seeker;
@@ -36,6 +37,7 @@ public class Enemy_AI_v3 : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         enemySpriteRenderer = enemySpriteGameObject.GetComponent<SpriteRenderer>();
+        additionalSpeed = new Vector2(5f, 0f);
         jumpTimer = defautJumpTimer;
         defaultSpriteSize = transform.localScale / 6;
         defaultVisionBoxPos = enemyVisionBox.transform.localPosition;
@@ -98,11 +100,13 @@ public class Enemy_AI_v3 : MonoBehaviour
         if(isJumping == true)
         {
             rb.AddForce(moveForceX);
+            Debug.Log("moveForceX");
         }
         else
         {
             //Moving Left or Right.
-            rb.AddForce(moveForce);
+            rb.AddForce(moveForce + additionalSpeed);
+            Debug.Log("moveForce");
             //if(direction.x < 0)
             //{
             //    rb.velocity = new Vector2(-moveSpeed, 0);
@@ -117,12 +121,14 @@ public class Enemy_AI_v3 : MonoBehaviour
             //}
         }
 
-
-
         if(moveForce.y > jumpThreshold)
         {
             Jump();
         }
+        //else if()
+        //{
+        //
+        //}
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWayPoint]);
 
