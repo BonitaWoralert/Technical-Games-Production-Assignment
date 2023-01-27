@@ -549,7 +549,8 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   shadowEnergy: 10
-  maxShadowEnergy: 10
+  shadowLevel: 0
+  maxShadowLevel: 0
 --- !u!114 &2518738611042306878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
   maxSpeed: 4.5
+  speedDecrement: 6
   jumpForce: 7.25
   jumpDecrease: 0.3
   maxJumpForce: 7.25
@@ -595,7 +597,7 @@ MonoBehaviour:
   isDashing: 0
   canDash: 1
   maxDashTimer: 0.1
-  dashTimer: 0.1
+  dashTimer: 0
   dashAmount: 3
   isAttacking: 0
   groundLayers:
@@ -605,6 +607,7 @@ MonoBehaviour:
   leftCheck: {fileID: 4187124586237169611}
   rightCheck: {fileID: 5727251857932353995}
   state: 0
+  facingRight: 0
 --- !u!50 &1877749973754294093
 Rigidbody2D:
   serializedVersion: 4
