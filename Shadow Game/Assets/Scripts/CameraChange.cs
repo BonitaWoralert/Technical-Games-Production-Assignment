@@ -6,6 +6,7 @@ using Cinemachine;
 public class CameraChange : MonoBehaviour
 {
     /* Notes for using prefab
+     * Delete the old camera :)
      * Move puzzle camera X and Y to desired location, you can also change the FOV. 
      * The box collider 2D under the "Cameras" gameobject will change the camera to Puzzle cam when entered, edit as required
      */

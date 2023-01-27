@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Collision : MonoBehaviour
 {
-    CameraController cam;
+    private CinemachineBrain cam;
     bool isDead = false;
 
     // Update is called once per frame
@@ -18,7 +19,7 @@ public class Collision : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            cam = GameObject.FindObjectOfType<CameraController>();
+            cam = GameObject.FindObjectOfType<CinemachineBrain>();
             cam.enabled = false;
             isDead = true;
         }
