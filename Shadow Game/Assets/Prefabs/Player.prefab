@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 7151996603628060988}
   - component: {fileID: 4060480681007559666}
   - component: {fileID: 4027343391633403307}
+  - component: {fileID: 2124771310}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -429,7 +430,7 @@ Transform:
   - {fileID: 3680043439202123331}
   - {fileID: 458810515230651375}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1877749973754294095
 SpriteRenderer:
@@ -495,9 +496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950b5847f3b6ec345aeee121a995d77d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  moveSpeed: 3.5
   maxSpeed: 4.5
-  speedDecrement: 6
+  speedDecrement: 8
   jumpForce: 7.25
   jumpDecrease: 0.3
   maxJumpForce: 7.25
@@ -512,7 +513,6 @@ MonoBehaviour:
   canDash: 1
   maxDashTimer: 0.1
   dashTimer: 0
-  dashAmount: 3
   isAttacking: 0
   groundLayers:
     serializedVersion: 2
@@ -589,8 +589,10 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   shadowEnergy: 10
-  shadowLevel: 0
-  maxShadowLevel: 0
+  maxShadowEnergy: 1
+  shadowDecreaseSpeed: 0.2
+  shadowIncreaseSpeed: 0.4
+  dashAmount: 3
 --- !u!114 &2518738611042306878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,12 +666,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1192468094}
   attackPoint: {fileID: 3008466043395654960}
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  attackDamage: 50
-  attackRange: 2
-  attackRate: 2
 --- !u!114 &6860718859273022401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ab5041c4f8fdc458e28588fa0b67bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 1877749973754294092}
+  stats: {fileID: 0}
 --- !u!114 &4027343391633403307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,7 +892,19 @@ MonoBehaviour:
   - {x: -0.036860917, y: -0.15832403, z: 0}
   m_ShapePathHash: 615085551
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1764912
+  m_InstanceId: -309268
+--- !u!114 &2124771310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877749973754294081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb83dce7e9717f43a71301c95814a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3631576584005395349
 GameObject:
   m_ObjectHideFlags: 0
