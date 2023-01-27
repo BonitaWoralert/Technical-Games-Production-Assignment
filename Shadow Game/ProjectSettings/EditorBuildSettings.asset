@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/MainMenu.unity
     guid: 99ca0741c97eea746a3e4072afe7733d
   - enabled: 1
-    path: Assets/Scenes/Levels/Tutorial.unity
+    path: Assets/Scenes/The Plains of Grass/2 - 1.unity
     guid: cbd2b12883cffd04a81c88a461e4d201
   - enabled: 1
-    path: Assets/Scenes/Levels/Level One.unity
+    path: Assets/Scenes/The Plains of Grass/Level One.unity
     guid: 6fc706ce356fb264b85153eefc376b37
   - enabled: 1
     path: Assets/Scenes/Levels/Level Two.unity
