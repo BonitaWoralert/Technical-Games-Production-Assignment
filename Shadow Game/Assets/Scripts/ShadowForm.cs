@@ -18,6 +18,7 @@ public class ShadowForm : MonoBehaviour
     private Movement movement;
     private LightDetectorReceiver lightDetectorReceiver;
     private Rigidbody2D rb;
+    private PlayerStats playerStats;
 
     private ShadowMovement ShadowMovement;
 
@@ -26,6 +27,7 @@ public class ShadowForm : MonoBehaviour
     {
         isInShadowForm = false;
         playerSprite = GetComponent<Sprite>();
+        playerStats = GetComponent<PlayerStats>();
         stats = GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
         movement = GetComponent<Movement>();
@@ -46,6 +48,8 @@ public class ShadowForm : MonoBehaviour
         {
             rb.gravityScale = 0;
         }
+
+        
     }
     private void LateUpdate()
     {

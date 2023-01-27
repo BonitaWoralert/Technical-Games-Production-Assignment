@@ -8,16 +8,17 @@ public class DashCountScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI dashText;
     [SerializeField] private int currentDashCount;
-    [SerializeField] private Movement movementScript;
+    [SerializeField] private PlayerStats statsScript;
 
     private void Start()
     {
-        currentDashCount = movementScript.dashAmount;
+        statsScript = FindObjectOfType<PlayerStats>();
+        currentDashCount = statsScript.dashAmount;
     }
     // Update is called once per frame
     void Update()
     {
-        currentDashCount = movementScript.dashAmount;
+        currentDashCount = statsScript.dashAmount;
         dashText.text = "dash: " + currentDashCount.ToString();
     }
 }

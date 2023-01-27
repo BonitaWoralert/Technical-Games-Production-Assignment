@@ -41,6 +41,7 @@ public class PlayerShadowBar : MonoBehaviour
         //}
         float fillValue = (float)playerStats.shadowEnergy;
         slider.value = fillValue;
+        slider.maxValue = playerStats.maxShadowEnergy;
     }
 
     public void ChangeHealthBarColor(Color newColor)
