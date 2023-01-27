@@ -49,6 +49,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private MoveState state;
     private TrailRenderer trailRenderer;
     [SerializeField] bool facingRight;
+    private bool dashGravity;
 
     // Start is called before the first frame update
     void Start()
@@ -74,11 +75,6 @@ public class Movement : MonoBehaviour
             playerStats.shadowEnergy += Time.deltaTime;
         }
 
-        if (dashTimer > -0.3f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-        }
-
         MoveInput();
 
         trailRenderer.enabled = (dashTimer + 0.25f > 0);
@@ -102,6 +98,11 @@ public class Movement : MonoBehaviour
 
     private void MoveInput()
     {
+        if (shadowForm.isInShadowForm)
+        {
+            return;
+        }
+
         // Get input for horizontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
@@ -228,7 +229,15 @@ public class Movement : MonoBehaviour
             dashAmount -= 1;
             canDash = false;
             dashTimer = maxDashTimer;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.gravityScale = 0;
+            Invoke("ChangeGravity", 0.3f);
         }
+    }
+
+    private void ChangeGravity()
+    {
+        rb.gravityScale = 1.7f;
     }
 
     private void DashAdd(int dashIncrement)
