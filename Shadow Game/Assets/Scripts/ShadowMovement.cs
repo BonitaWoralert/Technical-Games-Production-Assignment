@@ -171,7 +171,6 @@ public class ShadowMovement : MonoBehaviour
         //Basic Checks to Determine Interactions
         Physics2D.queriesHitTriggers = false;
         LeftCheckBool = Physics2D.Raycast(LeftCheck.transform.position, -transform.right, checkDistance);
-        UpCheckBool = Physics2D.Raycast(UpCheck.transform.position, transform.up, checkDistance);
         RightCheckBool = Physics2D.Raycast(RightCheck.transform.position, transform.right, checkDistance);
         DownCheckBool = Physics2D.Raycast(DownCheck.transform.position, -transform.up, checkDistance);
     }
@@ -179,9 +178,11 @@ public class ShadowMovement : MonoBehaviour
     private void ShadowMove()
     {
         // Set the velocity of the rigidbody
+        //It mobes
         switch (state)
         {
             case (State.Normal):
+                //Left Movement for Normal State
                 if (Physics2D.Raycast(leftSideCheck.transform.position, -transform.up, 0.1f) && horizontal < 0)
                 {
                     if (rb.velocity.x > -maxSpeed && horizontal < 0)
@@ -189,23 +190,13 @@ public class ShadowMovement : MonoBehaviour
                         rb.AddForce(new Vector2(-moveSpeed, 0));
                     }
                 }
-
+                //Right Movement for Normal State
                 if (Physics2D.Raycast(rightSideCheck.transform.position, -transform.up, 0.1f) && horizontal > 0)
                 {
                     if (rb.velocity.x < maxSpeed && horizontal > 0)
                     {
                         rb.AddForce(new Vector2(moveSpeed, 0));
                     }
-                }
-
-                if (!Physics2D.Raycast(rightSideCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x > 0.05f && horizontal > 0)
-                {
-                    rb.velocity = Vector2.zero;
-                }
-
-                if (!Physics2D.Raycast(leftSideCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x < 0.05f && horizontal < 0)
-                {
-                    rb.velocity = Vector2.zero;
                 }
                 break;
             case (State.Left):
@@ -224,16 +215,6 @@ public class ShadowMovement : MonoBehaviour
                         rb.AddForce(new Vector2(0, -moveSpeed));
                     }
                 }
-
-                if (!Physics2D.Raycast(rightSideCheck.transform.position, -transform.up, 0.1f) && rb.velocity.y > 0.05f && vertical < 0)
-                {
-                    rb.velocity = Vector2.zero;
-                }
-
-                if (!Physics2D.Raycast(leftSideCheck.transform.position, -transform.up, 0.1f) && rb.velocity.y < 0.05f && vertical > 0)
-                {
-                    rb.velocity = Vector2.zero;
-                }
                 break;
             case (State.UpsideDown):
                 if (Physics2D.Raycast(leftSideCheck.transform.position, -transform.up, 0.1f) && horizontal > 0)
@@ -250,16 +231,6 @@ public class ShadowMovement : MonoBehaviour
                     {
                         rb.AddForce(new Vector2(-moveSpeed, 0));
                     }
-                }
-
-                if (!Physics2D.Raycast(leftSideCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x > 0.05f && horizontal > 0)
-                {
-                    rb.velocity = Vector2.zero;
-                }
-
-                if (!Physics2D.Raycast(rightSideCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x < 0.05f && horizontal < 0)
-                {
-                    rb.velocity = Vector2.zero;
                 }
                 break;
             case (State.Right):
@@ -278,19 +249,14 @@ public class ShadowMovement : MonoBehaviour
                         rb.AddForce(new Vector2(0, -moveSpeed));
                     }
                 }
-
-                if (!Physics2D.Raycast(leftSideCheck.transform.position, -transform.up, 0.1f) && rb.velocity.y > 0.05f && vertical < 0)
-                {
-                    rb.velocity = Vector2.zero;
-                }
-
-                if (!Physics2D.Raycast(rightSideCheck.transform.position, -transform.up, 0.1f) && rb.velocity.y < 0.05f && vertical > 0)
-                {
-                    rb.velocity = Vector2.zero;
-                }
                 break;
 
         }
+        if (!Physics2D.Raycast(DownCheck.transform.position, -transform.up, 0.1f))
+        {
+            rb.velocity = Vector2.zero;
+        }
+
 
 
         movement.UpdateAnimations();

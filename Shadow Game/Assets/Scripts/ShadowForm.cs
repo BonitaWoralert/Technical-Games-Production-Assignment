@@ -62,6 +62,11 @@ public class ShadowForm : MonoBehaviour
             }
         }
 
+        if (intensity > 0.05f && isInShadowForm)
+        {
+            PlayerFormChange();
+        }
+
         if (stats.shadowEnergy <= 0 && isInShadowForm)
         {
             PlayerFormChange();
