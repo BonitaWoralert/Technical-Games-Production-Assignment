@@ -6,6 +6,7 @@ public class LightActivator : BaseSwitch
 {
     private LightDetectorReceiver _lightReciver;
     private Animator animator;
+    private ParticleSystem _paricles;
 
     [SerializeField] private float _requiredLight;
 
@@ -13,6 +14,12 @@ public class LightActivator : BaseSwitch
     {
         _lightReciver = GetComponent<LightDetectorReceiver>();
         animator = GetComponent<Animator>();
+        _paricles = GetComponent<ParticleSystem>();
+    }
+
+    private void Update()
+    {
+        _paricles.enableEmission = _state;
     }
 
     private void LateUpdate()
