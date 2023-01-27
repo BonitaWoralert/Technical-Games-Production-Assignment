@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class Collision : MonoBehaviour
 {
+    Animator transition;
+    private bool isDead = false;
+    private float transitionTime = 1.0f;
     private CinemachineBrain cam;
-    bool isDead = false;
 
     // Update is called once per frame
     void Update()
     {
-        SceneReset();
+        StartCoroutine ( SceneReset() );
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -25,10 +27,11 @@ public class Collision : MonoBehaviour
         }
     }
 
-    public void SceneReset()
+    IEnumerator SceneReset()
     {
-        if (Input.GetKeyDown(KeyCode.R) && isDead)
+        if (isDead)
         {
+            yield return new WaitForSeconds(transitionTime);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
