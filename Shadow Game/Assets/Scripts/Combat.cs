@@ -7,12 +7,12 @@ public class Combat : MonoBehaviour
     public Animator animator;
 
     public Transform attackPoint;
-    public LayerMask enemyLayers;
+    private LayerMask enemyLayers;
 
-    public int attackDamage = 50;
-    public float attackRange = 0.5f;
-    public float attackRate = 10.0f;
-    float nextAttackTime;
+    private int attackDamage = 50;
+    private float attackRange = 0.5f;
+    private float attackRate = 10.0f;
+    private float nextAttackTime;
 
     // Update is called once per frame
     void Update()
