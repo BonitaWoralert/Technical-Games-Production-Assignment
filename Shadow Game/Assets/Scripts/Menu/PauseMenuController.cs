@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour
 {
-    public GameObject backgroundImage;
-    public GameObject pauseMenu;
-    public GameObject settingsMenu;
-    public GameObject controlsMenu;
+    [SerializeField] private GameObject backgroundImage;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject controlsMenu;
+    [SerializeField] private GameObject keyboardMenu;
+    [SerializeField] private GameObject controllerMenu;
+
+    private bool switchMenu = false;
 
     void Update()
     {
@@ -50,6 +54,22 @@ public class PauseMenuController : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         controlsMenu.SetActive(true);
+    }
+
+    public void Switch()
+    {
+        switchMenu = !switchMenu;
+
+        if (!switchMenu)
+        {
+            keyboardMenu.SetActive(true);
+            controllerMenu.SetActive(false);
+        }
+        else if (switchMenu)
+        {
+            keyboardMenu.SetActive(false);
+            controllerMenu.SetActive(true);
+        }
     }
 
     public void Back()
