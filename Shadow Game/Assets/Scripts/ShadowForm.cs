@@ -41,6 +41,11 @@ public class ShadowForm : MonoBehaviour
         //Logic for if Player is in Darkness
 
         Change();
+
+        if (isInShadowForm && rb.gravityScale != 0)
+        {
+            rb.gravityScale = 0;
+        }
     }
     private void LateUpdate()
     {
