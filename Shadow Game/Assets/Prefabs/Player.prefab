@@ -382,11 +382,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1877749973754294094}
   - component: {fileID: 1877749973754294095}
+  - component: {fileID: 1877749973754294092}
   - component: {fileID: 1877749973754294080}
   - component: {fileID: 4354898294533776782}
   - component: {fileID: 2860907512616319097}
   - component: {fileID: 2518738611042306878}
-  - component: {fileID: 1877749973754294092}
   - component: {fileID: 1877749973754294093}
   - component: {fileID: 1192468094}
   - component: {fileID: 5034061907921258278}
@@ -482,6 +482,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1877749973754294092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877749973754294081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950b5847f3b6ec345aeee121a995d77d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2.5
+  maxSpeed: 4.5
+  speedDecrement: 6
+  jumpForce: 7.25
+  jumpDecrease: 0.3
+  maxJumpForce: 7.25
+  jumpTimer: 0.2
+  maxJumpTimer: 0.2
+  jumpCheckTimer: 0.06
+  maxJumpCheckTimer: 0.06
+  isCoyote: 1
+  isGrounded: 0
+  dashSpace: 3
+  isDashing: 0
+  canDash: 1
+  maxDashTimer: 0.1
+  dashTimer: 0
+  dashAmount: 3
+  isAttacking: 0
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  groundCheck: {fileID: 6138690871593200435}
+  leftCheck: {fileID: 4187124586237169611}
+  rightCheck: {fileID: 5727251857932353995}
+  state: 0
+  facingRight: 0
 --- !u!61 &1877749973754294080
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -549,7 +588,8 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   shadowEnergy: 10
-  maxShadowEnergy: 10
+  shadowLevel: 0
+  maxShadowLevel: 0
 --- !u!114 &2518738611042306878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,43 +608,6 @@ MonoBehaviour:
   intensity: 0
   playerBoxCollider: {fileID: 1877749973754294080}
   shadowBoxCollider: {fileID: 4354898294533776782}
---- !u!114 &1877749973754294092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877749973754294081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 950b5847f3b6ec345aeee121a995d77d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2.5
-  maxSpeed: 4.5
-  jumpForce: 7.25
-  jumpDecrease: 0.3
-  maxJumpForce: 7.25
-  jumpTimer: 0.2
-  maxJumpTimer: 0.2
-  jumpCheckTimer: 0.06
-  maxJumpCheckTimer: 0.06
-  isCoyote: 1
-  isGrounded: 0
-  dashSpace: 3
-  isDashing: 0
-  canDash: 1
-  maxDashTimer: 0.1
-  dashTimer: 0.1
-  dashAmount: 3
-  isAttacking: 0
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 1
-  groundCheck: {fileID: 6138690871593200435}
-  leftCheck: {fileID: 4187124586237169611}
-  rightCheck: {fileID: 5727251857932353995}
-  state: 0
 --- !u!50 &1877749973754294093
 Rigidbody2D:
   serializedVersion: 4
