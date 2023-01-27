@@ -6,11 +6,17 @@ public class ActiveTrigger : BaseSwitch
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _state = true;
+        if (collision.gameObject.tag == "Player")
+        {
+            _state = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _state = false;
+        if (collision.gameObject.tag == "Player")
+        {
+            _state = false;
+        }
     }
 }

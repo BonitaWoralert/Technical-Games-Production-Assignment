@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float maxSpeed = 15f;
+    [Range(0.1f, 15)]
+    [SerializeField] private float speedDecrement = 6.0f;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 5f;
@@ -41,11 +43,13 @@ public class Movement : MonoBehaviour
     private Animator ani;
     private SpriteRenderer sprite;
     private ShadowForm shadowForm;
+    private PlayerStats playerStats;
     private float horizontalMovement;
-    RaycastHit2D hit;
     public enum MoveState { idle, running, jumping, falling, dashing, shadow, attack };
     [SerializeField] private MoveState state;
     private TrailRenderer trailRenderer;
+    [SerializeField] bool facingRight;
+    private bool dashGravity;
 
     // Start is called before the first frame update
     void Start()
@@ -55,37 +59,58 @@ public class Movement : MonoBehaviour
         ani = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         trailRenderer = GetComponent<TrailRenderer>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        jumpCheckTimer -= Time.deltaTime;
+        if (jumpCheckTimer > 0)
+        {
+            jumpCheckTimer -= Time.deltaTime;
+        }
         dashTimer -= Time.deltaTime;
+        if (playerStats.shadowEnergy < playerStats.maxShadowLevel)
+        {
+            playerStats.shadowEnergy += Time.deltaTime;
+        }
 
         MoveInput();
 
         trailRenderer.enabled = (dashTimer + 0.25f > 0);
+
+        Resistance();
+    }
+    private void FixedUpdate()
+    {
+        PlayerMove();
+        CheckGrounded();
+        PlayerJump();
+    }
+
+    private void Resistance()
+    {
+        if (isGrounded && dashTimer <= -0.25)
+        {
+            rb.AddForce(new Vector2(-rb.velocity.x * (1/ speedDecrement), 0));
+        }
     }
 
     private void MoveInput()
     {
+        if (shadowForm.isInShadowForm)
+        {
+            return;
+        }
+
         // Get input for horizontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Dash"))
         {
             isDashing = true;
             Dash(dashSpace);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        PlayerMove();
-        ShadowMove();
-        CheckGrounded();
-        PlayerJump();
     }
 
     public void CheckGrounded()
@@ -137,41 +162,11 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            jumpTimer -= Time.fixedDeltaTime;
+            if (jumpCheckTimer > 0)
+            {
+                jumpTimer -= Time.fixedDeltaTime;
+            }
         }
-    }
-
-    private void ShadowMove()
-    {
-        if (!shadowForm.isInShadowForm) { return; }
-
-        // Set the velocity of the rigidbody
-        if (Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && horizontalMovement < 0)
-        {
-            Debug.Log("Moving Left");
-            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
-        }
-        
-        if (Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && horizontalMovement > 0)
-        {
-            Debug.Log("Moving Right");
-            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
-        }
-
-
-        if (!Physics2D.Raycast(rightCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x > 0.05f)
-        {
-            Debug.Log("Can't Move Right");
-            rb.velocity = Vector2.zero;
-        }
-
-        if (!Physics2D.Raycast(leftCheck.transform.position, -transform.up, 0.1f) && rb.velocity.x < 0.05f)
-        {
-            Debug.Log("Can't Move Left");
-            rb.velocity = Vector2.zero;
-        }
-
-        UpdateAnimations();
     }
 
     private void PlayerMove()
@@ -213,17 +208,36 @@ public class Movement : MonoBehaviour
         {
             rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer * (Time.fixedDeltaTime * 500)), 0);
         }
+        if (horizontalMovement == 0)
+        {
+            if (facingRight == true)
+            {
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x + dashSpace, dashTimer * (Time.fixedDeltaTime * 500)), 0);
+            }
+            if (facingRight == false)
+            {
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, rb.velocity.x - dashSpace, dashTimer * (Time.fixedDeltaTime * 500)), 0);
+            }
+        }
     }
 
     private void Dash(float dashSpace)
     {
-        if (dashAmount >= 1 && rb.velocity.x != 0 && canDash)
+        if (dashAmount >= 1 && canDash)
         {
             Debug.Log("Dashing (through the snow)");
             dashAmount -= 1;
             canDash = false;
             dashTimer = maxDashTimer;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.gravityScale = 0;
+            Invoke("ChangeGravity", 0.3f);
         }
+    }
+
+    private void ChangeGravity()
+    {
+        rb.gravityScale = 1.7f;
     }
 
     private void DashAdd(int dashIncrement)
@@ -248,7 +262,7 @@ public class Movement : MonoBehaviour
         return isGrounded;
     }
 
-    void UpdateAnimations()
+    public void UpdateAnimations()
     {
         if (!isDashing)
         {
@@ -256,11 +270,13 @@ public class Movement : MonoBehaviour
             {
                 state = MoveState.running;
                 sprite.flipX = false;
+                facingRight = true;
             }
             else if (horizontalMovement < 0f)
             {
                 state = MoveState.running;
                 sprite.flipX = true;
+                facingRight = false;
             }
             else
             {
@@ -305,10 +321,5 @@ public class Movement : MonoBehaviour
         }
 
         ani.SetInteger("state", (int)state);
-    }
-
-    private void StopAttackAni()
-    {
-        isAttacking = false;
     }
 }

@@ -72,11 +72,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackBoxCollider: {fileID: 1304634910}
-  knockbackStrength: 6
+  knockbackStrength: 12
   isPlayerTakingEnemyKnockback: 0
-  enemyDamage: 0
-  enemyHealth: 0
+  enemyDamage: 25
+  enemyHealth: 100
   enemyScript: {fileID: 0}
+  playerInvincibilityScript: {fileID: 0}
+  isPlayerColliding: 0
 --- !u!1 &972161066334461965
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,8 +105,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972161066334461965}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.35839, z: 0.039383676}
-  m_LocalScale: {x: 6, y: 6.373125, z: 6}
+  m_LocalPosition: {x: -0.0080199, y: 0.35839, z: 0.039383676}
+  m_LocalScale: {x: 4.3500004, y: 6.373125, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1036197791832919693}
@@ -123,7 +125,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.021549061, y: 0.028683512}
+  m_Offset: {x: -0.01698181, y: 0.037622083}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -134,7 +136,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.22682586, y: 0.06385331}
+  m_Size: {x: 0.272498, y: 0.08173045}
   m_EdgeRadius: 0
 --- !u!114 &6968178141164234089
 MonoBehaviour:
@@ -149,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 0}
+  playerInvincibilityScript: {fileID: 0}
 --- !u!1 &1036197791832919692
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +189,7 @@ Transform:
   - {fileID: 1304634911}
   - {fileID: 7822249006867921502}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1036197791832919695
 SpriteRenderer:
@@ -280,7 +283,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1801319309
 BoxCollider2D:
   m_ObjectHideFlags: 0

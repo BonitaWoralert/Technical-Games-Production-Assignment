@@ -17,6 +17,9 @@ public class ShadowForm : MonoBehaviour
     private Animator animator;
     private Movement movement;
     private LightDetectorReceiver lightDetectorReceiver;
+    private Rigidbody2D rb;
+
+    private ShadowMovement ShadowMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,8 @@ public class ShadowForm : MonoBehaviour
         animator = GetComponent<Animator>();
         movement = GetComponent<Movement>();
         lightDetectorReceiver = GetComponent<LightDetectorReceiver>();
+        ShadowMovement = GetComponent<ShadowMovement>();
+        rb = GetComponent<Rigidbody2D>();
         playerBoxCollider.enabled = true;
         shadowBoxCollider.enabled = false;
     }
@@ -36,6 +41,11 @@ public class ShadowForm : MonoBehaviour
         //Logic for if Player is in Darkness
 
         Change();
+
+        if (isInShadowForm && rb.gravityScale != 0)
+        {
+            rb.gravityScale = 0;
+        }
     }
     private void LateUpdate()
     {
@@ -45,7 +55,7 @@ public class ShadowForm : MonoBehaviour
     {
         shadowLight.enabled = isInShadowForm;
 
-        if (Input.GetKeyDown(KeyCode.F) && isInDarkness && movement.GetGrounded())
+        if (Input.GetButtonDown("Shadow") && isInDarkness && movement.GetGrounded())
         {
             if (isInShadowForm)
             {
@@ -55,6 +65,11 @@ public class ShadowForm : MonoBehaviour
             {
                 ShadowFormChange();
             }
+        }
+
+        if (intensity > 0.05f && isInShadowForm)
+        {
+            PlayerFormChange();
         }
 
         if (stats.shadowEnergy <= 0 && isInShadowForm)
@@ -81,6 +96,8 @@ public class ShadowForm : MonoBehaviour
         playerBoxCollider.enabled = true;
         shadowBoxCollider.enabled = false;
         transform.gameObject.layer = 7;
+        ShadowMovement.Refresh();
+        rb.gravityScale = 1.7f;
     }
     void ShadowFormChange()
     {
@@ -88,5 +105,6 @@ public class ShadowForm : MonoBehaviour
         playerBoxCollider.enabled = false;
         shadowBoxCollider.enabled = true;
         transform.gameObject.layer = 9;
+        rb.gravityScale = 0f;
     }
 }

@@ -44,7 +44,7 @@ public class Hiding_Place : MonoBehaviour
     {
         if(isPlayerInRange == true || isPlayerHiding == true)
         {
-            if (Input.GetKeyDown("e"))
+            if (Input.GetButtonDown("Interact"))
             {
                 if (isPlayerHiding == true)
                 {

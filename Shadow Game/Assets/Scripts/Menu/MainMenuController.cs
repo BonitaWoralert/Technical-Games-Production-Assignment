@@ -9,7 +9,11 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject levelsMenu;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject controlsMenu;
+    [SerializeField] private GameObject keyboardMenu;
+    [SerializeField] private GameObject controllerMenu;
     [SerializeField] private GameObject creditsMenu;
+
+    private bool switchMenu = false;
 
     public void Levels()
     {
@@ -21,6 +25,22 @@ public class MainMenuController : MonoBehaviour
     {
         mainMenu.SetActive(false);
         controlsMenu.SetActive(true);
+    }
+
+    public void Switch()
+    {
+        switchMenu = !switchMenu;
+
+        if (!switchMenu)
+        {
+            keyboardMenu.SetActive(true);
+            controllerMenu.SetActive(false);
+        }
+        else if (switchMenu)
+        {
+            keyboardMenu.SetActive(false);
+            controllerMenu.SetActive(true);
+        }
     }
 
     public void Settings()

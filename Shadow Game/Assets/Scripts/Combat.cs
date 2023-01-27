@@ -19,7 +19,7 @@ public class Combat : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetButtonDown("Attack"))
             {
                 BasicAttack();
                 Debug.Log("Player is attacking!");
