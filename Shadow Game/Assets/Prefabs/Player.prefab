@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 1192468094}
   - component: {fileID: 5034061907921258278}
   - component: {fileID: 6860718859273022401}
+  - component: {fileID: 235173673}
   - component: {fileID: 1436007138}
   - component: {fileID: 4095007693098343723}
   - component: {fileID: 7151996603628060988}
@@ -427,7 +428,7 @@ Transform:
   - {fileID: 3680043439202123331}
   - {fileID: 458810515230651375}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1877749973754294095
 SpriteRenderer:
@@ -547,9 +548,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  shadowEnergy: 0
-  shadowLevel: 0
-  maxShadowLevel: 1
+  shadowEnergy: 10
+  maxShadowEnergy: 10
 --- !u!114 &2518738611042306878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,13 +582,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
   maxSpeed: 4.5
-  speedDecrement: 6.05
   jumpForce: 7.25
   jumpDecrease: 0.3
   maxJumpForce: 7.25
-  jumpTimer: 0
+  jumpTimer: 0.2
   maxJumpTimer: 0.2
-  jumpCheckTimer: 0
+  jumpCheckTimer: 0.06
   maxJumpCheckTimer: 0.06
   isCoyote: 1
   isGrounded: 0
@@ -596,7 +595,7 @@ MonoBehaviour:
   isDashing: 0
   canDash: 1
   maxDashTimer: 0.1
-  dashTimer: 0
+  dashTimer: 0.1
   dashAmount: 3
   isAttacking: 0
   groundLayers:
@@ -606,7 +605,6 @@ MonoBehaviour:
   leftCheck: {fileID: 4187124586237169611}
   rightCheck: {fileID: 5727251857932353995}
   state: 0
-  facingRight: 0
 --- !u!50 &1877749973754294093
 Rigidbody2D:
   serializedVersion: 4
@@ -682,49 +680,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _intenisty: 0
   _update: 0
---- !u!114 &1436007138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877749973754294081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2f5eb21712a2d1408a2cf7443e201e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invincibilityTime: 3
-  invincibilityEffectTime: 0
-  maxInvincibilityTime: 3
-  isInvincible: 1
---- !u!114 &4095007693098343723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877749973754294081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b53f19f8027836f4999cec2c9ee85315, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LeftCheck: {fileID: 3631576584005395349}
-  UpCheck: {fileID: 9152260469254012556}
-  RightCheck: {fileID: 5087586007607297318}
-  DownCheck: {fileID: 8889803798190203265}
-  leftSideCheck: {fileID: 4187124586237169611}
-  rightSideCheck: {fileID: 5727251857932353995}
-  CentreRotatePoint: {fileID: 7099517075374159298}
-  checkDistance: 0.1
-  state: 0
-  moveSpeed: 2
-  gravity: 0.1
-  maxSpeed: 3
-  lm:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!96 &235173673
 TrailRenderer:
   serializedVersion: 3
