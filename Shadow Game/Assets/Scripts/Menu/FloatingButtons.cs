@@ -38,6 +38,13 @@ public class FloatingButtons : MonoBehaviour
 
             transform.position = tempPos;
         }
+        else if (canDance == false)
+        {
+            tempPos.x = posOffset.x;
+            tempPos.y = posOffset.y;
+
+            transform.position = tempPos;
+        }
     }
 
     public void SetDance(bool dancey)
