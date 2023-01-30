@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -13,18 +13,39 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject controllerMenu;
     [SerializeField] private GameObject creditsMenu;
 
+    [SerializeField] private GameObject mainFirstButton;
+    [SerializeField] private GameObject levelsFirstButton;
+    [SerializeField] private GameObject settingsFirstButton;
+    [SerializeField] private GameObject controlsFirstButton;
+    [SerializeField] private GameObject creditsFirstButton;
+
     private bool switchMenu = false;
 
     public void Levels()
     {
         mainMenu.SetActive(false);
         levelsMenu.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(levelsFirstButton);
+    }
+
+    public void Settings()
+    {
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(settingsFirstButton);
     }
 
     public void Controls()
     {
         mainMenu.SetActive(false);
         controlsMenu.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(controlsFirstButton);
     }
 
     public void Switch()
@@ -43,16 +64,13 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
-    public void Settings()
-    {
-        mainMenu.SetActive(false);
-        settingsMenu.SetActive(true);
-    }
-
     public void Credits()
     {
         mainMenu.SetActive(false);
         creditsMenu.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(creditsFirstButton);
     }
 
     public void Back()
@@ -62,6 +80,9 @@ public class MainMenuController : MonoBehaviour
         controlsMenu.SetActive(false);
         settingsMenu.SetActive(false);
         creditsMenu.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(mainFirstButton);
     }
 
     public void Exit()
