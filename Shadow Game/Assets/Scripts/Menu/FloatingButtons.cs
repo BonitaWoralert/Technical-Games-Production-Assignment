@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class FloatingButtons : MonoBehaviour
 {
-    [SerializeField] private float xPos = 0f;
     [SerializeField] private float amplitude = 1.7f;
     [SerializeField] private float frequency = 0.7f;
 
@@ -33,7 +32,6 @@ public class FloatingButtons : MonoBehaviour
         if (canDance == true)
         {
             tempPos = posOffset;
-            tempPos.x += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * xPos;
             tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
 
             transform.position = tempPos;
