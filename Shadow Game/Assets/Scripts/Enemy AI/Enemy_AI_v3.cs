@@ -140,13 +140,13 @@ public class Enemy_AI_v3 : MonoBehaviour
         if (moveForce.x >= 0.01f)
         {
             enemySpriteRenderer.flipX = false;
-            enemyVisionBox.transform.localPosition = defaultVisionBoxPos;
+            //enemyVisionBox.transform.localPosition = defaultVisionBoxPos;
         }
         else if (moveForce.x <= -0.01f)
         {
             //enemySprite.localScale = new Vector3(-defaultSpriteSize.x, defaultSpriteSize.y, defaultSpriteSize.z);
             enemySpriteRenderer.flipX = true;
-            enemyVisionBox.localPosition = -defaultVisionBoxPos;
+            //enemyVisionBox.localPosition = -defaultVisionBoxPos;
         }
     }
 
