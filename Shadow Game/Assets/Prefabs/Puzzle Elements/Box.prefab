@@ -108,7 +108,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 160822549
   m_Mesh: {fileID: 0}
-  m_InstanceId: 135352
+  m_InstanceId: 86176
 --- !u!1 &8287029538932243352
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 624524563, guid: 53d42f856955ae643b890a35bde631c6, type: 3}
+  m_Sprite: {fileID: -359188979, guid: 53d42f856955ae643b890a35bde631c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

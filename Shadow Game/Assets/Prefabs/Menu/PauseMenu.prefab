@@ -4983,7 +4983,7 @@ MonoBehaviour:
   settingsMenu: {fileID: 8174043558644796254}
   controlsMenu: {fileID: 8294465453902511731}
   keyboardMenu: {fileID: 8294465453288739954}
-  controllerMenu: {fileID: 0}
+  controllerMenu: {fileID: 8695977472157924445}
   pauseFirstButton: {fileID: 4618178622060093036}
   settingsFirstButton: {fileID: 3180389785459750500}
   controlsFirstButton: {fileID: 8294465453569957862}
