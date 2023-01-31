@@ -159,6 +159,7 @@ public class Enemy_AI_v2 : MonoBehaviour
         if(currentAIState2 == AIState2.CHASE)
         {
             enemyChaseAI.enabled = true;
+            visionBoxObject.transform.localPosition = defaultVisionBoxPos;
         }
         else
         {
@@ -189,6 +190,15 @@ public class Enemy_AI_v2 : MonoBehaviour
                 suspiciousValue -= suspiciousDrainSpeed * Time.deltaTime;
             }
 
+        }
+
+        if (spriteRenderer.flipX == true)
+        {
+            visionBoxObject.transform.localPosition = new Vector3(defaultVisionBoxPos.x * -1, defaultVisionBoxPos.y);
+        }
+        else
+        {
+            visionBoxObject.transform.localPosition = defaultVisionBoxPos;
         }
 
         //The Chase State has its own movement properties.
@@ -297,26 +307,6 @@ public class Enemy_AI_v2 : MonoBehaviour
     //Chase the player.
     private void Chase()
     {
-        //CheckTimer();
-        //canMove = true;
-        //if (transform.position.x <= playerObject.transform.position.x)
-        //{
-        //    isMoveLeft = false;
-        //}
-        //else
-        //{
-        //    isMoveLeft = true;
-        //}
-        //
-        //if(-attackRange < destination.x - gameObject.transform.position.x && destination.x - gameObject.transform.position.x < attackRange)
-        //{
-        //    if(isAttacking == false)
-        //    {
-        //        isAttacking = true;
-        //        Attack();
-        //    }
-        //}
-        //enemyChaseAI.enabled = true;
         canMove = false;
     }
 
@@ -338,33 +328,44 @@ public class Enemy_AI_v2 : MonoBehaviour
     }
 
     //This function makes the enemy go back to the their starting spawn location.
+    //private void ReturnToPatrol()
+    //{
+    //    //destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
+    //    Debug.Log("RETURNTOPATROL IS CALLED");
+    //
+    //    if (!(patrolStartPointY - 0.3f < rb.transform.position.y || rb.transform.position.y > patrolStartPointY + 0.3f))
+    //    {
+    //        canMove = false;
+    //        //rb.MovePosition(new Vector2(rb.transform.position.x, patrolStartPointY));
+    //        StartCoroutine(Telp());
+    //
+    //        //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
+    //        //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
+    //    }
+    //    else
+    //    {
+    //        //This if statement makes sure the enemy AI switch state to patrol mode when its in range of the starting patrol point.
+    //        //Enemy is in range of patrolStartPoint. Start going to.
+    //        destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
+    //        currentAIState2 = AIState2.PATROLTO;
+    //    }
+    //
+    //    canMove = true;
+    //}
+
     private void ReturnToPatrol()
     {
         destination = new Vector3(patrolEndPointX, patrolStartPointY, 0);
-
-        if (!(patrolStartPointY - 0.3f < rb.transform.position.y || rb.transform.position.y > patrolStartPointY + 0.3f))
-        {
-            canMove = false;
-            //rb.MovePosition(new Vector2(rb.transform.position.x, patrolStartPointY));
-            StartCoroutine(Telp());
-
-            //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
-            //rb.transform.position = new Vector2(rb.transform.position.x, patrolStartPointY);
-        }
-        else
-        { 
-            //This if statement makes sure the enemy AI switch state to patrol mode when its in range of the starting patrol point.
-            //Enemy is in range of patrolStartPoint. Start going to.
-            currentAIState2 = AIState2.PATROLTO;
-        }
-
-        canMove = true;
+        canMove = false;
+        StartCoroutine(Telp());
     }
 
     private IEnumerator Telp()
     {
         yield return new WaitForSeconds(0.1f);
         gameObject.transform.position = resetPosition;
+        canMove = true;
+        currentAIState2 = AIState2.PATROLTO;
     }
 
     //Enemy stays still.
@@ -383,7 +384,7 @@ public class Enemy_AI_v2 : MonoBehaviour
             canMove = false;
         }
 
-        if (suspiciousValue == 0f)
+        if (suspiciousValue <= 0f)
         {
             animator.SetBool("isSuspicious", false);
             canMove = true;
@@ -405,11 +406,7 @@ public class Enemy_AI_v2 : MonoBehaviour
             }
             //HERE!!
             spriteRenderer.flipX = true;
-            visionBoxObject.transform.localPosition = new Vector3(defaultVisionBoxPos.x * -1, defaultVisionBoxPos.y);
-            //attackBoxObject.transform.localPosition = new Vector3(defaultAttackBoxPos.x * -1, defaultAttackBoxPos.y);
             attackBoxCollider.offset = defaultAttackCollisionBoxOffsetX * -1;
-            //visionBoxObject.transform.position = new Vector3(-defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
-            //spriteRenderer.color = defaultColor;
         }
     }
 
@@ -425,26 +422,7 @@ public class Enemy_AI_v2 : MonoBehaviour
             {
                 transform.position = new Vector2(transform.position.x + (normalMovementSpeed * Time.deltaTime), rb.position.y);
             }
-            if (currentAIState2 != AIState2.CHASE)
-            {
-                //spriteRenderer.flipX = false;
-            }
-            else
-            {
-                //if (currentAIState2 == AIState2.CHASE && destination == move.leftCheck.transform.position)
-                //{
-                //    //spriteRenderer.flipX = true;
-                //}
-                //else if (currentAIState2 == AIState2.CHASE && destination == move.rightCheck.transform.position)
-                //{
-                //    //spriteRenderer.flipX = false;
-                //}
-            }
-            visionBoxObject.transform.localPosition = defaultVisionBoxPos;
-            //attackBoxObject.transform.localPosition = defaultAttackBoxPos;
             attackBoxCollider.offset = defaultAttackCollisionBoxOffsetX;
-            //visionBoxObject.transform.position = new Vector3(defaultVisionBoxPosX, visionBoxObject.transform.position.y, visionBoxObject.transform.position.z);
-            //spriteRenderer.color = Color.yellow;
             spriteRenderer.flipX = false;
         }
     }
