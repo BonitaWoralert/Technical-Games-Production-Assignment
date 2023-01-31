@@ -6,6 +6,8 @@ public class ReloadLevel : MonoBehaviour
 {
     [SerializeField] private GameObject nextTrigger;
     [SerializeField] private GameObject reloadTrigger;
+    [SerializeField] private GameObject[] lightActive;
+    [SerializeField] private GameObject[] lightDeactive;
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform player;
 
@@ -17,6 +19,16 @@ public class ReloadLevel : MonoBehaviour
 
             reloadTrigger.SetActive(false);
             nextTrigger.SetActive(true);
+
+            foreach (GameObject light in lightActive)
+            {
+                light.SetActive(true);
+            }
+
+            foreach (GameObject light in lightDeactive)
+            {
+                light.SetActive(false);
+            }
         }
     }
 }
