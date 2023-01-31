@@ -203,7 +203,7 @@ Transform:
   - {fileID: 668939805625565294}
   - {fileID: 482703930}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1930500026024679881
 BoxCollider2D:
@@ -288,7 +288,7 @@ MonoBehaviour:
   isPlayerSpotted: 0
   patrolStartPointY: 0
   patrolEndPointX: 0
-  patrolEndPointOffsetX: 6
+  patrolEndPointOffsetX: -6
   patrolEndPointY: 0
   enemyChaseAI: {fileID: 1439444241}
   patrolPointRange: 0.5
@@ -304,7 +304,7 @@ MonoBehaviour:
   attackRange: 0.5
   suspiciousValue: 0
   suspiciousFillUpSpeed: 45
-  suspiciousDrainSpeed: 5
+  suspiciousDrainSpeed: 15
   suspiciousThreshold: 50
   suspiciousValueMax: 160
   chaseThreshold: 100
@@ -365,8 +365,8 @@ MonoBehaviour:
   speed: 2000
   moveSpeed: 3
   nextWayPointDistance: 1
-  pathUpdateSpeed: 1
-  jumpStrength: 7
+  pathUpdateSpeed: 0.5
+  jumpStrength: 10
   jumpThreshold: 25
   jumpTimer: 2
   defautJumpTimer: 2

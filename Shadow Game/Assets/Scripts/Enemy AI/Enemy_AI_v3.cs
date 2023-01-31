@@ -15,8 +15,10 @@ public class Enemy_AI_v3 : MonoBehaviour
     [SerializeField] private float moveSpeed; //200f //400f
     [SerializeField] private float nextWayPointDistance; //1f
     [SerializeField] private float pathUpdateSpeed; //0.5f
-    [SerializeField] private float jumpStrength;
-    [SerializeField] private float jumpThreshold;
+    [SerializeField] private float shortJumpStrength;
+    [SerializeField] private float longJumpStrength;
+    [SerializeField] private float shortJumpThreshold;
+    [SerializeField] private float longJumpThreshold;
     [SerializeField] private float jumpTimer;
     [SerializeField] private float defautJumpTimer;
     [SerializeField] private bool isJumping;
@@ -26,7 +28,11 @@ public class Enemy_AI_v3 : MonoBehaviour
     private bool reachedEndOfPath = false;
     private Vector3 defaultSpriteSize;
     private Vector3 defaultVisionBoxPos;
-    private Vector2 additionalSpeed;
+    private bool previousDirection = false;
+    [SerializeField] private Vector2 additionalSpeed;
+    [SerializeField] private Vector2 directionDebug;
+    [SerializeField] private Vector2 distanceVectorDebug;
+    [SerializeField] private float distanceDebug;
     //private Vector2 direction;
 
     Seeker seeker;
@@ -42,7 +48,7 @@ public class Enemy_AI_v3 : MonoBehaviour
         defaultSpriteSize = transform.localScale / 6;
         defaultVisionBoxPos = enemyVisionBox.transform.localPosition;
 
-        InvokeRepeating("UpdatePath", 1f, pathUpdateSpeed);
+        InvokeRepeating("UpdatePath", 0.2f, pathUpdateSpeed);
     }
 
     void UpdatePath()
@@ -70,7 +76,7 @@ public class Enemy_AI_v3 : MonoBehaviour
     {
         if(Input.GetKeyDown("q"))
         {
-            Jump();
+            LongJump();
         }
         JumpTimerUpdate();
     }
@@ -93,46 +99,58 @@ public class Enemy_AI_v3 : MonoBehaviour
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWayPoint] - rb.position).normalized;
+        directionDebug = direction;
         Vector2 moveForce = direction * speed * Time.fixedDeltaTime;
         Vector2 moveForceX = new Vector2(direction.x * speed * Time.fixedDeltaTime, 0f);
         Vector2 moveForceSecond = direction * speed;
 
-        if(isJumping == true)
+        //if(isJumping == true)
+        //{
+        //    rb.AddForce(moveForceX);
+        //    //Debug.Log("moveForceX");
+        //}
+        //else
+        //{
+        //    rb.AddForce(moveForce + additionalSpeed);
+        //}
+
+        if (direction.x > 0.01)
         {
-            rb.AddForce(moveForceX);
-            Debug.Log("moveForceX");
+            MoveRight();
+            previousDirection = true;
+        }
+        else if (direction.x < -0.01)
+        {
+            MoveLeft();
+            previousDirection = false;
         }
         else
         {
-            //Moving Left or Right.
-            rb.AddForce(moveForce + additionalSpeed);
-            Debug.Log("moveForce");
-            //if(direction.x < 0)
-            //{
-            //    rb.velocity = new Vector2(-moveSpeed, 0);
-            //}
-            //else if(direction.x > 0)
-            //{
-            //    rb.velocity = new Vector2(moveSpeed, 0);
-            //}
-            //else
-            //{
-            //    rb.AddForce(moveForce);
-            //}
+            if (previousDirection == true)
+            {
+                MoveRight();
+            }
+            else
+            {
+                MoveLeft();
+            }
         }
 
-        if(moveForce.y > jumpThreshold)
+
+        if (direction.y > shortJumpThreshold && direction.y < longJumpThreshold)
         {
-            Jump();
+            ShortJump();
         }
-        //else if()
-        //{
-        //
-        //}
+        else if(direction.y > longJumpThreshold)
+        {
+            LongJump();
+        }
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWayPoint]);
+        distanceVectorDebug = new Vector2(rb.position.x - path.vectorPath[currentWayPoint].x, rb.position.y - path.vectorPath[currentWayPoint].y);
+        distanceDebug = distance;
 
-        if(distance < nextWayPointDistance)
+        if (distance < nextWayPointDistance)
         {
             currentWayPoint++;
         }
@@ -140,21 +158,42 @@ public class Enemy_AI_v3 : MonoBehaviour
         if (moveForce.x >= 0.01f)
         {
             enemySpriteRenderer.flipX = false;
-            enemyVisionBox.transform.localPosition = defaultVisionBoxPos;
+            //enemyVisionBox.transform.localPosition = defaultVisionBoxPos;
         }
         else if (moveForce.x <= -0.01f)
         {
-            //enemySprite.localScale = new Vector3(-defaultSpriteSize.x, defaultSpriteSize.y, defaultSpriteSize.z);
             enemySpriteRenderer.flipX = true;
-            enemyVisionBox.localPosition = -defaultVisionBoxPos;
+        }
+        else
+        {
+            enemySpriteRenderer.flipX = false;
         }
     }
 
-    private void Jump()
+    private void MoveRight()
+    {
+        rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+    }
+
+    private void MoveLeft()
+    {
+        rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+    }
+
+    private void ShortJump()
+    {
+        if (isJumping == false)
+        {
+            rb.velocity += Vector2.up * shortJumpStrength;
+            isJumping = true;
+        }
+    }
+
+    private void LongJump()
     {
         if(isJumping == false)
         {
-            rb.velocity += Vector2.up * jumpStrength;
+            rb.velocity += Vector2.up * longJumpStrength;
             isJumping = true;
         }
     }
