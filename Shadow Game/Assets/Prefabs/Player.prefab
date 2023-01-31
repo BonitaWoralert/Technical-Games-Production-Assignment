@@ -430,7 +430,7 @@ Transform:
   - {fileID: 3680043439202123331}
   - {fileID: 458810515230651375}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1877749973754294095
 SpriteRenderer:
@@ -513,6 +513,10 @@ MonoBehaviour:
   canDash: 1
   maxDashTimer: 0.1
   dashTimer: 0
+  maxDashLevel: 3
+  maxRegenDashLevel: 1
+  currentDashPower: 0
+  dashRegen: 0.4
   isAttacking: 0
   groundLayers:
     serializedVersion: 2
@@ -592,7 +596,7 @@ MonoBehaviour:
   maxShadowEnergy: 1
   shadowDecreaseSpeed: 0.2
   shadowIncreaseSpeed: 0.4
-  dashAmount: 3
+  currentDashLevel: 0
 --- !u!114 &2518738611042306878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,7 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ab5041c4f8fdc458e28588fa0b67bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  movement: {fileID: 1877749973754294092}
 --- !u!114 &4027343391633403307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,7 +896,7 @@ MonoBehaviour:
   - {x: -0.036860917, y: -0.15832403, z: 0}
   m_ShapePathHash: 615085551
   m_Mesh: {fileID: 0}
-  m_InstanceId: -309268
+  m_InstanceId: 98570
 --- !u!114 &2124771310
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,6 +28,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool canDash = true;
     [SerializeField] private float maxDashTimer;
     [SerializeField] private float dashTimer;
+    [SerializeField] private int maxDashLevel;
+    [SerializeField] private int maxRegenDashLevel;
+    public float currentDashPower;
+    [SerializeField] private float dashRegen;
 
     [Header("Attack")]
     [SerializeField] private bool isAttacking = false;
@@ -71,7 +75,7 @@ public class Movement : MonoBehaviour
         dashTimer -= Time.deltaTime;
         
 
-        MoveInput();
+        DashMovement();
 
         trailRenderer.enabled = (dashTimer + 0.25f > 0);
 
@@ -92,17 +96,21 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void MoveInput()
+    private void DashMovement()
     {
-        if (shadowForm.isInShadowForm)
-        {
-            return;
-        }
+        
 
         // Get input for horizontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Dash"))
+        if (currentDashPower < maxRegenDashLevel)
+        {
+            currentDashPower += Time.deltaTime * dashRegen;
+        }
+
+        playerStats.currentDashLevel = (int)MathF.Floor(currentDashPower);
+
+        if (Input.GetButtonDown("Dash") && !shadowForm.isInShadowForm)
         {
             isDashing = true;
             Dash(dashSpace);
@@ -220,11 +228,11 @@ public class Movement : MonoBehaviour
 
     private void Dash(float dashSpace)
     {
-        if (playerStats.dashAmount >= 1 && canDash)
+        if (canDash && currentDashPower > 1)
         {
             Debug.Log("Dashing (through the snow)");
-            playerStats.dashAmount -= 1;
             canDash = false;
+            currentDashPower -= 1;
             dashTimer = maxDashTimer;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.gravityScale = 0;
@@ -237,15 +245,15 @@ public class Movement : MonoBehaviour
         rb.gravityScale = 1.7f;
     }
 
-    private void DashAdd(int dashIncrement)
+    public void DashAdd(int dashIncrement)
     {
-        if (playerStats.dashAmount + dashIncrement >= 3)
+        if (currentDashPower + dashIncrement >= maxDashLevel)
         {
-            playerStats.dashAmount = 3;
+            currentDashPower = maxDashLevel;
         }
         else
         {
-            playerStats.dashAmount += dashIncrement;
+            currentDashPower += dashIncrement;
         }
     }
 
