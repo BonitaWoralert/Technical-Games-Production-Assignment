@@ -34,6 +34,17 @@ public class LevelLoader : MonoBehaviour
                 PlayerPrefs.SetInt("SpawnFlip", 2);
             PlayerPrefs.Save();
         }
+
+        else if (other.gameObject.tag == "Player" && gameObject.name == "Reload Level Trigger")
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
+            PlayerPrefs.SetInt("Spawn", 3);
+            if (left)
+                PlayerPrefs.SetInt("SpawnFlip", 1);
+            else
+                PlayerPrefs.SetInt("SpawnFlip", 2);
+            PlayerPrefs.Save();
+        }
     }
 
     IEnumerator LoadLevel(int levelIndex)
