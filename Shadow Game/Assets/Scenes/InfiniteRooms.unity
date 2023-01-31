@@ -231,10 +231,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1877749973754294092, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
-      propertyPath: dashRegen
-      value: 0.28
-      objectReference: {fileID: 0}
     - target: {fileID: 1877749973754294094, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
       propertyPath: m_RootOrder
       value: 0
