@@ -5,7 +5,7 @@ using UnityEngine.VFX;
 
 public class Particles : MonoBehaviour
 {
-    [SerializeField] private Vector3 endPos;
+    [SerializeField] private GameObject endPos;
     [SerializeField] private BaseSwitch _active;
     private VisualEffect effect;
 
@@ -16,8 +16,7 @@ public class Particles : MonoBehaviour
 
     private void Start()
     {
-        endPos -= transform.position;
-        effect.SetVector3("_target", endPos);
+        effect.SetVector3("_target", endPos.transform.localPosition);
     }
 
     private void Update()

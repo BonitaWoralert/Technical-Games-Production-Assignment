@@ -8,13 +8,10 @@ public class EnemyBounceOff : MonoBehaviour
     [SerializeField] private BoxCollider2D bottomBoxCollider;
     [SerializeField] private GameObject playerObject;
     [SerializeField] private Rigidbody2D playerRigidBody;
-    [SerializeField] private bool isPlayerColliding;
     [SerializeField] private float forcePush;
-
 
     private void Start()
     {
-        isPlayerColliding = false;
         playerObject = GameObject.Find("Player");
         playerRigidBody = playerObject.GetComponent<Rigidbody2D>();
     }
@@ -34,7 +31,6 @@ public class EnemyBounceOff : MonoBehaviour
         //playerRigidBody.AddForce((Vector2.right) * forcePush, ForceMode2D.Force);
         //playerRigidBody.AddForce((Vector2.right) * forcePush, ForceMode2D.Force);
         
-
     }
 
     private void OnCollisionStay2D(Collision2D collision)
