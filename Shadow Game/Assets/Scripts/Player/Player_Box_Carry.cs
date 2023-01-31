@@ -82,7 +82,7 @@ public class Player_Box_Carry : MonoBehaviour
         boxRigidBody.simulated = true;
         Vector2 direction;
 
-        if (playerRigidbody.velocity.y > 0.05f)
+        if (playerRigidbody.velocity.y > 0.05f || playerRigidbody.velocity.y < -0.05f)
         {
             boxToGrab.transform.localPosition = new Vector3(0, boxYOffset, 0);
             //Player is Jumping
