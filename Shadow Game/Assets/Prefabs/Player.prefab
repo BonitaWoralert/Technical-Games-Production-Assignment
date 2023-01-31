@@ -430,7 +430,7 @@ Transform:
   - {fileID: 3680043439202123331}
   - {fileID: 458810515230651375}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1877749973754294095
 SpriteRenderer:
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  shadowEnergy: 10
+  shadowEnergy: 1
   maxShadowEnergy: 1
   shadowDecreaseSpeed: 0.2
   shadowIncreaseSpeed: 0.4
@@ -892,7 +892,7 @@ MonoBehaviour:
   - {x: -0.036860917, y: -0.15832403, z: 0}
   m_ShapePathHash: 615085551
   m_Mesh: {fileID: 0}
-  m_InstanceId: -309268
+  m_InstanceId: 56864
 --- !u!114 &2124771310
 MonoBehaviour:
   m_ObjectHideFlags: 0
