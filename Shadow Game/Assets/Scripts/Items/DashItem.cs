@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DashItem : MonoBehaviour
 {
-    [SerializeField] private Movement movement;
+    [SerializeField] private PlayerStats stats;
     private bool itemCollected = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,7 +13,7 @@ public class DashItem : MonoBehaviour
             itemCollected = true;
             if (itemCollected)
             {
-                movement.dashAmount++;
+                stats.dashAmount++;
                 itemCollected = false;
             }
         }

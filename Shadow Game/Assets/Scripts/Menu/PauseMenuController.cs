@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour
@@ -11,6 +12,10 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private GameObject controlsMenu;
     [SerializeField] private GameObject keyboardMenu;
     [SerializeField] private GameObject controllerMenu;
+
+    [SerializeField] private GameObject pauseFirstButton;
+    [SerializeField] private GameObject settingsFirstButton;
+    [SerializeField] private GameObject controlsFirstButton;
 
     private bool switchMenu = false;
 
@@ -23,6 +28,9 @@ public class PauseMenuController : MonoBehaviour
                 Time.timeScale = 0.0f;
                 pauseMenu.SetActive(true);
                 backgroundImage.SetActive(true);
+
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(pauseFirstButton);
             }
             else if (Time.timeScale == 0.0f)
             {
@@ -48,12 +56,18 @@ public class PauseMenuController : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(settingsFirstButton);
     }
 
     public void Controls()
     {
         pauseMenu.SetActive(false);
         controlsMenu.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(controlsFirstButton);
     }
 
     public void Switch()
@@ -77,6 +91,9 @@ public class PauseMenuController : MonoBehaviour
         pauseMenu.SetActive(true);
         controlsMenu.SetActive(false);
         settingsMenu.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
 
     public void Exit()
