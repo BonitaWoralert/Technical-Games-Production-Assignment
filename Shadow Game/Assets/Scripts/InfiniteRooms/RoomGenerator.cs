@@ -7,24 +7,44 @@ public class RoomGenerator : MonoBehaviour
     private GameObject player;
     public RoomList roomList;
     public GameObject roomSpawnPoint;
-    public List<GameObject> doors;
+    public List<GameObject> exitDoors;
+    public List<GameObject> enterDoors;
     public bool roomSpawned;
     private DoorOpener doorOpener;
+
+    public DoorOpener.DoorType roomType;
 
     // Start is called before the first frame update
     void Start()
     {
         roomList = FindObjectOfType<RoomList>();
         player = roomList.player;
-    }
 
+        StartCoroutine(LateStart(0.05f));
+    }
+    IEnumerator LateStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        //Your Function You Want to Call
+        foreach (var i in enterDoors)
+        {
+            if (i.GetComponent<DoorOpener>().doorType == roomType)
+            {
+                i.SetActive(false);
+            }
+            else
+            {
+                i.SetActive(true);
+            }
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        if (doors != null && roomSpawned == false)
+        if (exitDoors != null && roomSpawned == false)
         {
-            //Distance Checker for all Doors
-            foreach (var i in doors)
+            //Distance Checker for all exitDoors
+            foreach (var i in exitDoors)
             {
                 if (Vector2.Distance(player.transform.position, i.transform.position) < 4f)
                 {
@@ -36,28 +56,32 @@ public class RoomGenerator : MonoBehaviour
                         if (doorOpener.doorType == DoorOpener.DoorType.Up)
                         {
                             roomSpawned = true;
-                            Instantiate(roomList.downRooms[Random.Range(0, roomList.downRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                            GameObject room = Instantiate(roomList.downRooms[Random.Range(0, roomList.downRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                            room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Up;
                         }
 
                         if (doorOpener.doorType == DoorOpener.DoorType.Down)
                         {
                             roomSpawned = true;
-                            Instantiate(roomList.upRooms[Random.Range(0, roomList.upRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                            GameObject room = Instantiate(roomList.upRooms[Random.Range(0, roomList.upRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                            room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Down;
                         }
 
                         if (doorOpener.doorType == DoorOpener.DoorType.Left)
                         {
                             roomSpawned = true;
-                            Instantiate(roomList.rightRooms[Random.Range(0, roomList.rightRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                            GameObject room = Instantiate(roomList.rightRooms[Random.Range(0, roomList.rightRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                            room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Left;
                         }
 
                         if (doorOpener.doorType == DoorOpener.DoorType.Right)
                         {
                             roomSpawned = true;
-                            Instantiate(roomList.leftRooms[Random.Range(0, roomList.leftRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                            GameObject room = Instantiate(roomList.leftRooms[Random.Range(0, roomList.leftRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                            room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Right;
                         }
 
-                        doors.Remove(i);
+                        exitDoors.Remove(i);
                         Destroy(i);
                     }
                 }
