@@ -5,9 +5,9 @@ using TMPro;
 
 public class DialogueSystem : MonoBehaviour
 {
-    private TextMeshProUGUI _textComponent;
+    [SerializeField] private TextMeshProUGUI _textComponent;
 
-    [SerializeField] Dialogue _dialogue;
+    [SerializeField] private Dialogue _dialogue;
 
     private GameObject _player;
 
@@ -15,7 +15,6 @@ public class DialogueSystem : MonoBehaviour
 
     private void Awake()
     {
-        _textComponent = GetComponentInChildren<TextMeshProUGUI>();
         _player = GameObject.Find("Player");
     }
 
