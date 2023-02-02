@@ -18,14 +18,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Level Two.unity
     guid: b469b90c2478f544a9974eca6afd6d9b
   - enabled: 1
+    path: Assets/Scenes/Levels/Vertical_Level.unity
+    guid: 23d3e72e6edb60f40a0d9a0fbf862e28
+  - enabled: 1
     path: Assets/Scenes/Levels/Underground_Level.unity
     guid: 9342dcf2b2fa3d44e92935fc71936f14
-  - enabled: 1
-    path: Assets/Scenes/Levels/Alex_Box_Puzzle.unity
-    guid: 550700e9b6891b242bcedcffa8f31f81
-  - enabled: 1
-    path: Assets/Scenes/Levels/Alex_Light_Puzzle.unity
-    guid: 997dd556282d04642b883993d82bf74d
   - enabled: 0
     path: Assets/Scenes/Levels/Village_Level.unity
     guid: 5eabb0e69f2c7084fa1a32929beb54af
