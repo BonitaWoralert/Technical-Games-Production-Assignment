@@ -12,6 +12,7 @@ public class DialogueSystem : MonoBehaviour
     private GameObject _player;
 
     private int _index;
+    private bool _open;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class DialogueSystem : MonoBehaviour
     private void OnEnable()
     {
         _index = 0;
+        _open = true;
         _textComponent.color = _dialogue._color[_index];
         _textComponent.text = _dialogue._text[_index];
         _player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
@@ -38,17 +40,21 @@ public class DialogueSystem : MonoBehaviour
     {
         if (Input.GetButtonDown("Submit"))
         {
-            if (_index < _dialogue._text.Length-1)
+            if (!_open)
             {
-                _index++;
-                _textComponent.color = _dialogue._color[_index];
-                _textComponent.text = _dialogue._text[_index];
+                if (_index < _dialogue._text.Length - 1)
+                {
+                    _index++;
+                    _textComponent.color = _dialogue._color[_index];
+                    _textComponent.text = _dialogue._text[_index];
+                }
             }
-            else
+            else if (_open)
             {
                 _player.GetComponent<Movement>().enabled = true;
                 _player.GetComponent<ShadowForm>().enabled = true;
                 gameObject.SetActive(false);
+                _open = false;
             }
         }
     }
