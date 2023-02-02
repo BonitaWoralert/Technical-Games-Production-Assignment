@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Levels/MainMenu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 99ca0741c97eea746a3e4072afe7733d
   - enabled: 1
     path: Assets/Scenes/Levels/Tutorial.unity
@@ -24,9 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Underground_Level.unity
     guid: 9342dcf2b2fa3d44e92935fc71936f14
   - enabled: 0
-    path: Assets/Scenes/Levels/Village_Level.unity
-    guid: 5eabb0e69f2c7084fa1a32929beb54af
-  - enabled: 0
     path: Assets/Scenes/Levels/Nicholas_Level_1.unity
     guid: 7839de1c6b3eb334dbc62449d8862686
   - enabled: 0
@@ -35,7 +32,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Levels/Nicholas_Level_3.unity
     guid: 070877db85df108499a3e157e7950403
+  - enabled: 0
+    path: Assets/Scenes/Levels/Village_Level.unity
+    guid: 5eabb0e69f2c7084fa1a32929beb54af
   - enabled: 1
-    path: Assets/Scenes/Levels/EndMenu.unity
+    path: Assets/Scenes/EndMenu.unity
     guid: 4466debbf95e7c945b79b80c47d0e586
   m_configObjects: {}
