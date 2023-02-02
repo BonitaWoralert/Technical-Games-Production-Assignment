@@ -20,6 +20,10 @@ public class ShadowForm : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerStats playerStats;
 
+    private SpaceCheck spaceCheck;
+    private Collider2D[] _spaceCheck;
+    [SerializeField] private ContactFilter2D _spaceFilter;
+
     private ShadowMovement ShadowMovement;
 
     // Start is called before the first frame update
@@ -36,6 +40,7 @@ public class ShadowForm : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerBoxCollider.enabled = true;
         shadowBoxCollider.enabled = false;
+        spaceCheck = GetComponentInChildren<SpaceCheck>();
     }
     // Update is called once per frame
     void Update()
@@ -96,12 +101,19 @@ public class ShadowForm : MonoBehaviour
 
     void PlayerFormChange()
     {
-        isInShadowForm = !isInShadowForm;
-        playerBoxCollider.enabled = true;
-        shadowBoxCollider.enabled = false;
-        transform.gameObject.layer = 7;
-        ShadowMovement.Refresh();
-        rb.gravityScale = 1.7f;
+        if (spaceCheck.GetSpace())
+        {
+            playerBoxCollider.enabled = true;
+            isInShadowForm = !isInShadowForm;
+            shadowBoxCollider.enabled = false;
+            transform.gameObject.layer = 7;
+            ShadowMovement.Refresh();
+            rb.gravityScale = 1.7f;
+            if (stats.shadowEnergy < 0f)
+            {
+                stats.shadowEnergy = 0f;
+            }
+        }
     }
     void ShadowFormChange()
     {
