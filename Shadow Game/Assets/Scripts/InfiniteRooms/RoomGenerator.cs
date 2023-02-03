@@ -11,15 +11,16 @@ public class RoomGenerator : MonoBehaviour
     public List<GameObject> enterDoors;
     public bool roomSpawned;
     private DoorOpener doorOpener;
-
+    public PlayerStats stats;
     public DoorOpener.DoorType roomType;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         roomList = FindObjectOfType<RoomList>();
         player = roomList.player;
-
+        stats = FindObjectOfType<PlayerStats>();
         StartCoroutine(LateStart(0.05f));
     }
     IEnumerator LateStart(float waitTime)
@@ -81,6 +82,7 @@ public class RoomGenerator : MonoBehaviour
                             room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Right;
                         }
 
+                        stats.coins += Random.Range(0, stats.roomCoins);
                         exitDoors.Remove(i);
                         Destroy(i);
                     }
