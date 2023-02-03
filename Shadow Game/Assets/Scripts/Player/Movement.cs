@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool isGrounded = true;
 
     [Header("Dash")]
-    [SerializeField] private float dashSpace;
+    public float dashSpace;
     [SerializeField] private bool isDashing = false;
     [SerializeField] private bool canDash = true;
     [SerializeField] private float maxDashTimer;
@@ -154,7 +154,6 @@ public class Movement : MonoBehaviour
         //inside FixedUpdate
         if (Input.GetButton("Jump") && jumpTimer > 0 && jumpForce > 0)
         {
-            Debug.Log("Jumping");
             rb.AddForce(new Vector2(0f, jumpForce * (Time.fixedDeltaTime * 500)));
             jumpForce -= jumpDecrease; //Or Whatever amount
         }
@@ -228,7 +227,7 @@ public class Movement : MonoBehaviour
 
     private void Dash(float dashSpace)
     {
-        if (canDash && currentDashPower > 1)
+        if (canDash && currentDashPower >= 1)
         {
             Debug.Log("Dashing (through the snow)");
             canDash = false;
