@@ -13,12 +13,12 @@ public class DashCountScript : MonoBehaviour
     private void Start()
     {
         statsScript = FindObjectOfType<PlayerStats>();
-        currentDashCount = statsScript.dashAmount;
+        currentDashCount = statsScript.currentDashLevel;
     }
     // Update is called once per frame
     void Update()
     {
-        currentDashCount = statsScript.dashAmount;
-        dashText.text = "dash: " + currentDashCount.ToString();
+        currentDashCount = statsScript.currentDashLevel;
+        dashText.text = currentDashCount.ToString();
     }
 }
