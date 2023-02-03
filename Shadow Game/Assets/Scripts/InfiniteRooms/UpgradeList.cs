@@ -15,7 +15,7 @@ public class UpgradeList : MonoBehaviour
     {
         if (shopSpawn.isShopEmpty)
         {
-            Debug.Log("a");
+            Debug.Log("Shop Empty");
         }
     }
 }
@@ -25,4 +25,5 @@ public class UpgradeDetails
 {
     public string name;
     public int uses;
+    public GameObject prefab;
 }

@@ -37,7 +37,7 @@ public class ShadowMovement : MonoBehaviour
     [HideInInspector] public State state;
     float vertical;
     float horizontal;
-    [SerializeField] private float moveSpeed;
+    public float moveSpeed;
     [SerializeField] private float gravity;
     [SerializeField] private float maxSpeed;
     [SerializeField] private LayerMask lm;

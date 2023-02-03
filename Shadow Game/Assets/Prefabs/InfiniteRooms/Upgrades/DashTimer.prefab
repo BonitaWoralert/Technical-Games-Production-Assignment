@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1179662672793805869}
   - component: {fileID: -9019635674702268976}
   m_Layer: 0
-  m_Name: DashSpeed
+  m_Name: DashTimer
   m_TagString: Upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499f2f81949537d44a497cceb0d7e62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeType: 3
+  id: 0
+  upgradeType: 4

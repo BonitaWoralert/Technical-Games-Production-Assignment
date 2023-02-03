@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Upgrades : MonoBehaviour
 {
-    
+    public int id;
     public enum UpgradeType
     {
         Health,

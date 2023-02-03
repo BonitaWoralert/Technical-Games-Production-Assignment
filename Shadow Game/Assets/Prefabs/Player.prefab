@@ -453,7 +453,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1877749973754294094}
   - component: {fileID: 1877749973754294095}
-  - component: {fileID: 8244003577384714395}
   - component: {fileID: 1877749973754294092}
   - component: {fileID: 1877749973754294080}
   - component: {fileID: 4354898294533776782}
@@ -557,23 +556,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8244003577384714395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877749973754294081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0b7e1065ec3ac74d9cebec56aea6be5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeDetails:
-  - name: Health
-    uses: 3
-  - name: Health
-    uses: 3
 --- !u!114 &1877749973754294092
 MonoBehaviour:
   m_ObjectHideFlags: 0

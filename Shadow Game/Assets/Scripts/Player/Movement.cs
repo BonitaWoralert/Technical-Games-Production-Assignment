@@ -28,10 +28,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool canDash = true;
     [SerializeField] private float maxDashTimer;
     [SerializeField] private float dashTimer;
-    [SerializeField] private int maxDashLevel;
+    public int maxDashLevel;
     [SerializeField] private int maxRegenDashLevel;
     public float currentDashPower;
-    [SerializeField] private float dashRegen;
+    public float dashRegen;
 
     [Header("Attack")]
     [SerializeField] private bool isAttacking = false;
