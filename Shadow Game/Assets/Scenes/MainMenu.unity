@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1985213938}
+      - m_Target: {fileID: 1065541604}
         m_TargetAssemblyTypeName: LoadingScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 3
@@ -3122,8 +3122,6 @@ GameObject:
   m_Component:
   - component: {fileID: 480062396}
   - component: {fileID: 480062397}
-  - component: {fileID: 480062399}
-  - component: {fileID: 480062400}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -3184,32 +3182,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &480062399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480062395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4e6f09f9bfe50458ed54439faac549, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 3528040295782661958}
-  loadingBarFill: {fileID: 1996198220508079746}
---- !u!114 &480062400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480062395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1756b03505499754697e69ec013a369a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &489544337
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,7 +3506,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1985213938}
+      - m_Target: {fileID: 1065541604}
         m_TargetAssemblyTypeName: LoadingScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 3
@@ -4618,7 +4590,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1985213938}
+      - m_Target: {fileID: 1065541604}
         m_TargetAssemblyTypeName: LoadingScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 3
@@ -8491,7 +8463,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1985213938}
+      - m_Target: {fileID: 1065541604}
         m_TargetAssemblyTypeName: LoadingScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 3
@@ -8954,6 +8926,8 @@ GameObject:
   - component: {fileID: 1065541600}
   - component: {fileID: 1065541601}
   - component: {fileID: 1065541602}
+  - component: {fileID: 1065541604}
+  - component: {fileID: 1065541603}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -9094,6 +9068,7 @@ MonoBehaviour:
   settingsFirstButton: {fileID: 490101568}
   controlsFirstButton: {fileID: 1039412069}
   creditsFirstButton: {fileID: 1763427378}
+  buttonSelect: {fileID: 1065541603}
 --- !u!114 &1065541601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9121,6 +9096,117 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fd5933535d55f4abbbd66b76d5522b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1065541603
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065541593}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fdeebf2dcaa7095479fed1d7fdfdaf0a, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1065541604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065541593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4e6f09f9bfe50458ed54439faac549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 3528040295782661958}
+  loadingBarFill: {fileID: 1996198220508079746}
+  buttonSelect: {fileID: 1065541603}
 --- !u!1 &1069625794
 GameObject:
   m_ObjectHideFlags: 0
@@ -9668,7 +9754,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1985213938}
+      - m_Target: {fileID: 1065541604}
         m_TargetAssemblyTypeName: LoadingScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 3
@@ -13154,7 +13240,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1985213938}
+      - m_Target: {fileID: 1065541604}
         m_TargetAssemblyTypeName: LoadingScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 3
@@ -14923,6 +15009,7 @@ GameObject:
   - component: {fileID: 1932588892}
   - component: {fileID: 1932588891}
   - component: {fileID: 1932588894}
+  - component: {fileID: 1932588895}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -15029,6 +15116,102 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!82 &1932588895
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932588890}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 77e32db2718fa8b40a0f89e7e4c03f85, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1942530878
 GameObject:
   m_ObjectHideFlags: 0
@@ -15114,7 +15297,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1985213940}
-  - component: {fileID: 1985213938}
   - component: {fileID: 1985213937}
   m_Layer: 5
   m_Name: LevelMenu
@@ -15147,20 +15329,6 @@ MonoBehaviour:
   m_Spacing: {x: 15, y: 15}
   m_Constraint: 1
   m_ConstraintCount: 3
---- !u!114 &1985213938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985213936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4e6f09f9bfe50458ed54439faac549, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 3528040295782661958}
-  loadingBarFill: {fileID: 1996198220508079746}
 --- !u!224 &1985213940
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15277,7 +15445,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 480062399}
+      - m_Target: {fileID: 1065541604}
         m_TargetAssemblyTypeName: LoadingScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 3
@@ -15950,6 +16118,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1792061894}
     m_Modifications:
+    - target: {fileID: 1205235189819434566, guid: 73d9540cc6071ba46ab5c99f4f66d2c2, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3099387511550659599, guid: 73d9540cc6071ba46ab5c99f4f66d2c2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
