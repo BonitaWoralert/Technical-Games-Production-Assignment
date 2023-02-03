@@ -5,12 +5,13 @@ using UnityEngine;
 public class Combat : MonoBehaviour
 {
     public Animator animator;
-    public Transform attackPoint;
 
-    [SerializeField] private LayerMask enemyLayers;
-    [SerializeField] private int attackDamage = 50;
-    [SerializeField] private float attackRange = 0.5f;
-    [SerializeField] private float attackRate = 10.0f;
+    public Transform attackPoint;
+    private LayerMask enemyLayers;
+
+    private int attackDamage = 50;
+    private float attackRange = 0.5f;
+    private float attackRate = 10.0f;
     private float nextAttackTime;
 
     // Update is called once per frame
@@ -21,6 +22,7 @@ public class Combat : MonoBehaviour
             if (Input.GetButtonDown("Attack"))
             {
                 BasicAttack();
+                Debug.Log("Player is attacking!");
                 nextAttackTime = Time.time + 1.0f / attackRate;
             }
         }
@@ -29,8 +31,7 @@ public class Combat : MonoBehaviour
     void BasicAttack()
     {
         //Plays the attack animation
-        animator.SetTrigger("Attack");
-
+        //animator.SetTrigger("Attack");
         animator.SetInteger("state", 6);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
