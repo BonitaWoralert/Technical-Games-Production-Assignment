@@ -42,6 +42,10 @@ public class Movement : MonoBehaviour
     public GameObject leftCheck;
     public GameObject rightCheck;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource dashSound;
+    [SerializeField] private AudioSource jumpSound;
+
     private Rigidbody2D rb;
     private Animator ani;
     private SpriteRenderer sprite;
@@ -112,6 +116,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetButtonDown("Dash") && !shadowForm.isInShadowForm)
         {
+            dashSound.Play();
             isDashing = true;
             Dash(dashSpace);
         }
