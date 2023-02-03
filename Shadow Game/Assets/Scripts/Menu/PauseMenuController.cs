@@ -17,6 +17,8 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private GameObject settingsFirstButton;
     [SerializeField] private GameObject controlsFirstButton;
 
+    [SerializeField] private AudioSource buttonSound;
+
     private bool switchMenu = false;
 
     void Update()
@@ -25,6 +27,8 @@ public class PauseMenuController : MonoBehaviour
         {
             if (Time.timeScale == 1.0f)
             {
+                buttonSound.Play();
+
                 Time.timeScale = 0.0f;
                 pauseMenu.SetActive(true);
                 backgroundImage.SetActive(true);
@@ -34,6 +38,8 @@ public class PauseMenuController : MonoBehaviour
             }
             else if (Time.timeScale == 0.0f)
             {
+                buttonSound.Play();
+
                 Time.timeScale = 1.0f;
                 pauseMenu.SetActive(false);
                 settingsMenu.SetActive(false);
@@ -47,6 +53,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void Resume()
     {
+        buttonSound.Play();
+
         Time.timeScale = 1.0f;
         pauseMenu.SetActive(false);
         backgroundImage.SetActive(false);
@@ -54,6 +62,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void Settings()
     {
+        buttonSound.Play();
+
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
 
@@ -63,6 +73,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void Controls()
     {
+        buttonSound.Play();
+
         pauseMenu.SetActive(false);
         controlsMenu.SetActive(true);
 
@@ -72,6 +84,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void Switch()
     {
+        buttonSound.Play();
+
         switchMenu = !switchMenu;
 
         if (!switchMenu)
@@ -88,6 +102,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void Back()
     {
+        buttonSound.Play();
+
         pauseMenu.SetActive(true);
         controlsMenu.SetActive(false);
         settingsMenu.SetActive(false);
@@ -98,6 +114,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void Exit()
     {
+        buttonSound.Play();
+
         pauseMenu.SetActive(false);
         backgroundImage.SetActive(false);
     }
