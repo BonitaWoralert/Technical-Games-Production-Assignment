@@ -7,6 +7,7 @@ public class InteractButton : BaseSwitch
     private bool _playerInRange;
     private SpriteRenderer _spriteRenderer;
     private Animator animator;
+    [SerializeField] private AudioSource switchSound;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class InteractButton : BaseSwitch
     {
         if ((_playerInRange && Input.GetButtonDown("Interact")) || _state)
         {
+            switchSound.Play();
             _state = !_state;
         }
 
