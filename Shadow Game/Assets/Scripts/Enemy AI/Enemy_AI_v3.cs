@@ -33,13 +33,15 @@ public class Enemy_AI_v3 : MonoBehaviour
     [SerializeField] private Vector2 directionDebug;
     [SerializeField] private Vector2 distanceVectorDebug;
     [SerializeField] private float distanceDebug;
-    //private Vector2 direction;
+    private GameObject playerGameObject;
 
     Seeker seeker;
     Rigidbody2D rb;
 
     void Start()
     {
+        playerGameObject = GameObject.Find("Player");
+        target = playerGameObject.transform;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         enemySpriteRenderer = enemySpriteGameObject.GetComponent<SpriteRenderer>();

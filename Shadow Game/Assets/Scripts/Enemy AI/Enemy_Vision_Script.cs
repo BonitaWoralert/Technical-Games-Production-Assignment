@@ -8,6 +8,14 @@ public class Enemy_Vision_Script : MonoBehaviour
     [SerializeField] private AIState2 lastAIState;
     [SerializeField] private Collider2D playerColliderBox;
 
+    private GameObject playerGameObject;
+
+    private void Start()
+    {
+        playerGameObject = GameObject.Find("Player");
+        playerColliderBox = playerGameObject.GetComponent<Collider2D>();    
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player" && collision == playerColliderBox)
