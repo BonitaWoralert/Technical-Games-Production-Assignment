@@ -29,15 +29,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Levels/Village_Level.unity
     guid: 5eabb0e69f2c7084fa1a32929beb54af
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Levels/Nicholas_Level_1.unity
     guid: 7839de1c6b3eb334dbc62449d8862686
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Levels/Nicholas_Level_2.unity
     guid: 9f1e7fe817395f7488ea87a139684df7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Levels/Nicholas_Level_3.unity
     guid: 070877db85df108499a3e157e7950403
+  - enabled: 1
+    path: Assets/Scenes/Levels/Nicholas_Level_4.unity
+    guid: 1e348557e30b66e44ae85844f63e14b0
   - enabled: 1
     path: Assets/Scenes/Levels/EndMenu.unity
     guid: 4466debbf95e7c945b79b80c47d0e586
