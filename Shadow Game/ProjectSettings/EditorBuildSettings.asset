@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/The Plains of Grass/2 - 4.unity
     guid: 6fc706ce356fb264b85153eefc376b37
   - enabled: 1
+    path: Assets/Scenes/The Plains of Grass/2 - 5.unity
+    guid: cc4fc30e95c02e244a367ef08ec289fe
+  - enabled: 1
     path: Assets/Scenes/Levels/Level Two.unity
     guid: b469b90c2478f544a9974eca6afd6d9b
   - enabled: 1
