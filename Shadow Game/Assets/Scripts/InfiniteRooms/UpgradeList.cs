@@ -25,5 +25,6 @@ public class UpgradeDetails
 {
     public string name;
     public int uses;
+    public int cost;
     public GameObject prefab;
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Upgrades : MonoBehaviour
 {
     public int id;
+    public int cost;
+    public ShopSpawnSystem shopSpawnSystem;
     public enum UpgradeType
     {
         Health,

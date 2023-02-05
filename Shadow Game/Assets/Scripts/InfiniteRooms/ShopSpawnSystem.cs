@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ShopSpawnSystem : MonoBehaviour
 {
-    public List<GameObject> upgradeLocations;
-    public List<GameObject> upgrades;
-    public UpgradeList upgradeList;
-    public UpgradeDetails upgradeDetails;
-    public Shop shop;
-    public int upgradeValue;
-    public GameObject a;
+    [SerializeField] List<GameObject> upgradeLocations;
+    [SerializeField] List<GameObject> upgrades;
+    [SerializeField] UpgradeList upgradeList;
+    [SerializeField] UpgradeDetails upgradeDetails;
+    [SerializeField] Shop shop;
+    [SerializeField] int upgradeValue;
+    [SerializeField] GameObject a;
+    public List<GameObject> upgradesInRoom;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,9 @@ public class ShopSpawnSystem : MonoBehaviour
             Debug.Log("Instantiating Upgrade");
             GameObject upgrade = Instantiate(upgradeList.upgradeDetails[upgradeValue].prefab, i.transform.position, Quaternion.identity);
             upgrade.GetComponent<Upgrades>().id = upgradeValue;
+            upgrade.GetComponent<Upgrades>().shopSpawnSystem = GetComponent<ShopSpawnSystem>();
+            upgrade.GetComponent<Upgrades>().cost = upgradeList.upgradeDetails[upgradeValue].cost;
+            upgradesInRoom.Add(upgrade);
         }
         else
         {

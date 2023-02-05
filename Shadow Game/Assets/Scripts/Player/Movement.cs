@@ -28,8 +28,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool canDash = true;
     [SerializeField] private float maxDashTimer;
     [SerializeField] private float dashTimer;
-    public int maxDashLevel;
-    [SerializeField] private int maxRegenDashLevel;
+    [SerializeField] private int maxDashLevel;
+    public int maxRegenDashLevel;
     public float currentDashPower;
     public float dashRegen;
 

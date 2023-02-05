@@ -8,7 +8,7 @@ public class Shop : MonoBehaviour
     public List<GameObject> upgrades;
     public bool isShopEmpty;
     UpgradeList upgradeList;
-
+    [SerializeField] GameObject tail;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,43 +26,52 @@ public class Shop : MonoBehaviour
                 if (i.GetComponent<Upgrades>())
                 {
                     Upgrades currentUpgrade = i.GetComponent<Upgrades>();
-                    if (currentUpgrade.upgradeType == Upgrades.UpgradeType.Health)
+                    if (FindObjectOfType<PlayerStats>().coins >= currentUpgrade.cost)
                     {
-                        player.GetComponent<PlayerStats>().maxHealth += 50;
+                        if (currentUpgrade.upgradeType == Upgrades.UpgradeType.Health)
+                        {
+                            player.GetComponent<PlayerStats>().maxHealth += 50;
+                        }
+                        if (currentUpgrade.upgradeType == Upgrades.UpgradeType.ShadowTimerDecrease)
+                        {
+                            player.GetComponent<PlayerStats>().shadowDecreaseSpeed -= 0.05f;
+                        }
+                        if (currentUpgrade.upgradeType == Upgrades.UpgradeType.ShadowTimerIncrease)
+                        {
+                            player.GetComponent<PlayerStats>().shadowIncreaseSpeed += 0.1f;
+                        }
+                        if (currentUpgrade.upgradeType == Upgrades.UpgradeType.DashPower)
+                        {
+                            player.GetComponent<Movement>().dashSpace += 3;
+                        }
+                        if (currentUpgrade.upgradeType == Upgrades.UpgradeType.DashTimer)
+                        {
+                            player.GetComponent<Movement>().dashRegen += 0.15f;
+                        }
+                        if (currentUpgrade.upgradeType == Upgrades.UpgradeType.MaxDashes)
+                        {
+                            player.GetComponent<Movement>().maxRegenDashLevel += 1;
+                        }
+                        if (currentUpgrade.upgradeType == Upgrades.UpgradeType.FasterShadowMovement)
+                        {
+                            player.GetComponent<ShadowMovement>().moveSpeed += 2;
+                        }
+                        if (currentUpgrade.upgradeType == Upgrades.UpgradeType.MoreCoinsPerRoom)
+                        {
+                            player.GetComponent<PlayerStats>().roomCoins += 2;
+                        }
+                        if (currentUpgrade.upgradeType == Upgrades.UpgradeType.FurryTail)
+                        {
+                            tail.SetActive(true);
+                        }
+                        upgradeList.upgradeDetails[currentUpgrade.id].uses -= 1;
+                        FindObjectOfType<PlayerStats>().coins -= currentUpgrade.cost;
+                        foreach (var j in currentUpgrade.shopSpawnSystem.GetComponent<ShopSpawnSystem>().upgradesInRoom)
+                        {
+                            Destroy(j);
+                        }
+                        currentUpgrade.shopSpawnSystem.GetComponent<ShopSpawnSystem>().upgradesInRoom.Clear();
                     }
-                    if (currentUpgrade.upgradeType == Upgrades.UpgradeType.ShadowTimerDecrease)
-                    {
-                        player.GetComponent<PlayerStats>().shadowDecreaseSpeed -= 0.5f;
-                    }
-                    if (currentUpgrade.upgradeType == Upgrades.UpgradeType.ShadowTimerIncrease)
-                    {
-                        player.GetComponent<PlayerStats>().shadowIncreaseSpeed += 0.1f;
-                    }
-                    if (currentUpgrade.upgradeType == Upgrades.UpgradeType.DashPower)
-                    {
-                        player.GetComponent<Movement>().dashSpace += 3;
-                    }
-                    if (currentUpgrade.upgradeType == Upgrades.UpgradeType.DashTimer)
-                    {
-                        player.GetComponent<Movement>().dashRegen += 0.15f;
-                    }
-                    if (currentUpgrade.upgradeType == Upgrades.UpgradeType.MaxDashes)
-                    {
-                        player.GetComponent<Movement>().maxDashLevel += 1;
-                    }
-                    if (currentUpgrade.upgradeType == Upgrades.UpgradeType.FasterShadowMovement)
-                    {
-                        player.GetComponent<ShadowMovement>().moveSpeed += 2;
-                    }
-                    if (currentUpgrade.upgradeType == Upgrades.UpgradeType.MoreCoinsPerRoom)
-                    {
-                        player.GetComponent<PlayerStats>().roomCoins += 2;
-                    }
-                    if (currentUpgrade.upgradeType == Upgrades.UpgradeType.FurryTail)
-                    {
-
-                    }
-                    upgradeList.upgradeDetails[currentUpgrade.id].uses -= 1;
                 }
             }
         }
