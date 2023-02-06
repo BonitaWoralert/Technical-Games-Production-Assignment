@@ -544,7 +544,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2330636152433546841}
         m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: Settings
         m_Mode: 1
@@ -2872,9 +2872,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6651012488928666282}
         m_TargetAssemblyTypeName: SavePrefs, Assembly-CSharp
-        m_MethodName: SaveGame
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3218,7 +3218,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2330636152433546841}
         m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
@@ -3352,7 +3352,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2330636152433546841}
         m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: Controls
         m_Mode: 1
@@ -4970,7 +4970,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2330636152433546841}
         m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: Back
         m_Mode: 1
@@ -5453,7 +5453,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2330636152433546841}
         m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: Exit
         m_Mode: 1
@@ -5572,7 +5572,7 @@ Transform:
   - {fileID: 5687584506277171125}
   - {fileID: 7583363372993694807}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8075173444660650097
 GameObject:

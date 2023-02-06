@@ -12,26 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/The Plains/2 - 1.unity
     guid: 1cbc2072ca037b640a89e46fc6477849
   - enabled: 1
-    path: Assets/Scenes/The Plains/2 - 2.unity
-    guid: 505f559159c9e184a833c984af76218e
-  - enabled: 1
-    path: Assets/Scenes/The Plains/2 - 3.unity
-    guid: 394ba0820dd50134f959d84af835729d
-  - enabled: 1
     path: Assets/Scenes/The Plains/2 - 4.unity
     guid: 32a8eee692043e84a9eef4a21333f960
-  - enabled: 1
-    path: Assets/Scenes/The Plains/2 - 5.unity
-    guid: cc4fc30e95c02e244a367ef08ec289fe
   - enabled: 1
     path: Assets/Scenes/The Plains of Grass/2 - 1.unity
     guid: cbd2b12883cffd04a81c88a461e4d201
   - enabled: 1
     path: Assets/Scenes/The Plains of Grass/2 - 4.unity
     guid: 6fc706ce356fb264b85153eefc376b37
-  - enabled: 1
-    path: Assets/Scenes/The Plains of Grass/2 - 5.unity
-    guid: cc4fc30e95c02e244a367ef08ec289fe
   - enabled: 1
     path: Assets/Scenes/Levels/Level Two.unity
     guid: b469b90c2478f544a9974eca6afd6d9b
