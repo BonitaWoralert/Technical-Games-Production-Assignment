@@ -18,7 +18,7 @@ public class Enemy_Vision_Script : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player" && collision == playerColliderBox)
+        if((collision.gameObject.tag == "Player" || collision.gameObject.tag == "InvinciblePlayerColBox"))
         {
             //Makes sure that AIState is not NONE, this is done because OnTriggerEnter2D can be triggered multiple times.
             if(enemyAIScript.GetLastAIState2() != AIState2.NONE)
