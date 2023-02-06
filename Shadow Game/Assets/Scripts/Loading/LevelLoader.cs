@@ -8,6 +8,8 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private Animator transition;
     private float transitionTime = 0.5f;
 
+    [SerializeField] private AudioSource winSound;
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -15,6 +17,8 @@ public class LevelLoader : MonoBehaviour
 
         if (other.gameObject.tag == "Player" && gameObject.name == "Next Level Trigger")
         {
+            winSound.Play();
+
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
             PlayerPrefs.SetInt("Spawn", 2);
             if (left)

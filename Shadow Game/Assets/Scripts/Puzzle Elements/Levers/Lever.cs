@@ -9,6 +9,7 @@ public class Lever : BaseSwitch
     private Color _inactiveColor;
     private SpriteRenderer _spriteRenderer;
     private Animator animator;
+    [SerializeField] private AudioSource switchSound;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class Lever : BaseSwitch
     {
         if (_playerInRange && Input.GetButtonDown("Interact"))
         {
+            switchSound.Play();
             _state = !_state;
         }
 

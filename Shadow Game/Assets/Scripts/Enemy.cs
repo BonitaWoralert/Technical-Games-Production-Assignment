@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     public int maxHealth = 100;
     public int currentHealth;
+    [SerializeField] private AudioSource deathSound;
     //private Enemy_AI_v2 enemyAIScript;
 
     // Start is called before the first frame update
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour
     void SetDie()
     {
         Debug.Log("Enemy died!");
+        deathSound.Play();
         //Play animation
         animator.SetBool("isDead", true);
 
