@@ -4027,6 +4027,8 @@ MonoBehaviour:
   roomSpawned: 0
   stats: {fileID: 0}
   roomType: 0
+  roomMinCoins: 0
+  roomMaxCoins: 10
 --- !u!1 &7925161953178283786
 GameObject:
   m_ObjectHideFlags: 0

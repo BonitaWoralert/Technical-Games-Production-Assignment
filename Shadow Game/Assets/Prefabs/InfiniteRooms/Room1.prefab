@@ -7892,6 +7892,8 @@ MonoBehaviour:
   roomSpawned: 0
   stats: {fileID: 0}
   roomType: 0
+  roomMinCoins: 0
+  roomMaxCoins: 5
 --- !u!114 &4334890388465455227
 MonoBehaviour:
   m_ObjectHideFlags: 0
