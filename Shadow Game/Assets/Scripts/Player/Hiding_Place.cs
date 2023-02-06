@@ -8,12 +8,14 @@ public class Hiding_Place : MonoBehaviour
     private bool isPlayerHiding;
     private Color defaultColor;
     private Color changedColor;
-    private SpriteRenderer spriteRenderer;
+    //private SpriteRenderer spriteRenderer;
 
     private GameObject playerObject;
     private SpriteRenderer playerSpriteRenderer;
     private Rigidbody2D playerRigidBody;
     private BoxCollider2D playerBoxCollider;
+
+    private Animator animator;
 
     private bool hideFrame;
 
@@ -21,14 +23,16 @@ public class Hiding_Place : MonoBehaviour
     {
         isPlayerInRange = false;
         isPlayerHiding = false;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        defaultColor = spriteRenderer.color;
+        //spriteRenderer = GetComponent<SpriteRenderer>();
+        //defaultColor = spriteRenderer.color;
         changedColor = Color.blue;
 
         playerObject = GameObject.Find("Player");
         playerSpriteRenderer = playerObject.GetComponent<SpriteRenderer>();
         playerBoxCollider = playerObject.GetComponent <BoxCollider2D>();
         playerRigidBody = playerObject.GetComponent<Rigidbody2D>();
+
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -69,18 +73,20 @@ public class Hiding_Place : MonoBehaviour
         {
             playerObject.transform.position = transform.position;
             playerRigidBody.velocity = Vector3.zero;
-            spriteRenderer.color = changedColor;
+            //spriteRenderer.color = changedColor;
             playerSpriteRenderer.enabled = false;
             playerBoxCollider.enabled = false;
             playerRigidBody.simulated = false;
+            animator.SetBool("isOccupied", true);
         }
         else
         {
-            spriteRenderer.color = defaultColor;
+            //spriteRenderer.color = defaultColor;
             playerSpriteRenderer.enabled = true;
             playerBoxCollider.enabled = true;
             playerRigidBody.simulated = true;
             playerObject.GetComponent<Movement>().CheckGrounded();
+            animator.SetBool("isOccupied", false);
         }
     }
 

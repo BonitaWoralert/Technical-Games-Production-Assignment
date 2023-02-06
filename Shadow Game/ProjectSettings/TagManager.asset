@@ -8,6 +8,8 @@ TagManager:
   - EnemyVision
   - Checkpoint
   - PuzzleBox
+  - PuzzleOutput
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -25,8 +27,8 @@ TagManager:
   - Obstacle
   - PuzzleBox
   - Floors/Roofs
-  - 
-  - 
+  - InvisibleObstacle
+  - InvinciblePlayerColBox
   - 
   - 
   - 
