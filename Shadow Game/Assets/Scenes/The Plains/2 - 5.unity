@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -202,7 +202,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
---- !u!43 &222457321
+--- !u!43 &240344662
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -549,6 +549,17 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
+--- !u!114 &388782682 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2860907512616319097, guid: 2fc6730f2ca593140add354b18af83aa, type: 3}
+  m_PrefabInstance: {fileID: 388782681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f32cabae3f337e4d867c82e1b4cf073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &736906907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +1056,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3242891871456341770, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 388782682}
     - target: {fileID: 3242891871707348353, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1053,6 +1068,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3242891871761001771, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 388782682}
+    - target: {fileID: 3255859303905953048, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
+      propertyPath: statsScript
+      value: 
+      objectReference: {fileID: 388782682}
     - target: {fileID: 6722285723185533089, guid: 672836f813ebe9640b5c2a1918f0a02e, type: 3}
       propertyPath: m_RootOrder
       value: 9
