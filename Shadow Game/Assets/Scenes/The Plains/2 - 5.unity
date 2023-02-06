@@ -202,7 +202,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 74d39b173969ae14ea7401e5b28c7828, type: 3}
---- !u!43 &240344662
+--- !u!43 &316852354
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -670,6 +670,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 4678167234595763337, guid: b5a7e8d98acba1340b2593e731e36a28, type: 3}
   m_PrefabInstance: {fileID: 769037185}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &769037187 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8141845455316124626, guid: b5a7e8d98acba1340b2593e731e36a28, type: 3}
+  m_PrefabInstance: {fileID: 769037185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1279051404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -722,6 +727,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 1422632071699293010, guid: e1577a6e00357804a9ca9ee43c317c3f, type: 3}
+      propertyPath: winSound
+      value: 
+      objectReference: {fileID: 769037187}
     - target: {fileID: 1422632071699293010, guid: e1577a6e00357804a9ca9ee43c317c3f, type: 3}
       propertyPath: transition
       value: 
@@ -1131,6 +1140,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7516790708649071715, guid: 6ff07777dc536a2418459682e819cf3b, type: 3}
+      propertyPath: winSound
+      value: 
+      objectReference: {fileID: 769037187}
     - target: {fileID: 7516790708649071715, guid: 6ff07777dc536a2418459682e819cf3b, type: 3}
       propertyPath: transition
       value: 
