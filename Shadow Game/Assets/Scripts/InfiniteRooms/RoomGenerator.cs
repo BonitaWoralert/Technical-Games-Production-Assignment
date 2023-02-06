@@ -13,7 +13,9 @@ public class RoomGenerator : MonoBehaviour
     private DoorOpener doorOpener;
     public PlayerStats stats;
     public DoorOpener.DoorType roomType;
-    
+    public int roomMinCoins;
+    public int roomMaxCoins;
+
 
     // Start is called before the first frame update
     void Start()
@@ -82,7 +84,7 @@ public class RoomGenerator : MonoBehaviour
                             room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Right;
                         }
 
-                        stats.coins += Random.Range(0, stats.roomCoins);
+                        stats.coins += Random.Range(roomMinCoins, roomMaxCoins + stats.roomCoins);
                         exitDoors.Remove(i);
                         Destroy(i);
                     }

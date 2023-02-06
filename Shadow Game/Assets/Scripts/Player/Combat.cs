@@ -12,6 +12,7 @@ public class Combat : MonoBehaviour
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private float attackRate = 10.0f;
     private float nextAttackTime;
+    public Collider2D[] hitEnemies;
 
     // Update is called once per frame
     void Update()
@@ -33,7 +34,7 @@ public class Combat : MonoBehaviour
 
         animator.SetInteger("state", 6);
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);

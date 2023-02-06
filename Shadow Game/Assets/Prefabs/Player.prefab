@@ -669,6 +669,8 @@ MonoBehaviour:
   shadowDecreaseSpeed: 0.2
   shadowIncreaseSpeed: 0.4
   currentDashLevel: 0
+  coins: 0
+  roomCoins: 0
 --- !u!114 &2518738611042306878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,6 +758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1192468094}
   attackPoint: {fileID: 3008466043395654960}
+  hitEnemies: []
 --- !u!114 &6860718859273022401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,6 +953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 1877749973754294092}
+  stats: {fileID: 0}
 --- !u!114 &4027343391633403307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +986,7 @@ MonoBehaviour:
   - {x: -0.036860917, y: -0.15832403, z: 0}
   m_ShapePathHash: 615085551
   m_Mesh: {fileID: 0}
-  m_InstanceId: 98570
+  m_InstanceId: 98936
 --- !u!114 &2124771310
 MonoBehaviour:
   m_ObjectHideFlags: 0
