@@ -7,7 +7,6 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float knockbackStrength;
     [SerializeField] private bool isPlayerTakingEnemyKnockback;
     public int enemyDamage;
-    [SerializeField] private int enemyHealth;
     private PlayerStats playerStatsScript;
     private GameObject playerObject;
     //private SpriteRenderer playerSpriteRenderer;

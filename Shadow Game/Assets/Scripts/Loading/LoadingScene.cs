@@ -8,9 +8,12 @@ public class LoadingScene : MonoBehaviour
 {
     public GameObject loadingScreen;
     public Image loadingBarFill;
+    [SerializeField] private AudioSource buttonSelect;
 
     public void LoadScene(int sceneId)
     {
+        buttonSelect.Play();
+
         Time.timeScale = 1.0f;
         StartCoroutine(LoadSceneAsync(sceneId));
     }

@@ -37,7 +37,7 @@ public class ShadowMovement : MonoBehaviour
     [HideInInspector] public State state;
     float vertical;
     float horizontal;
-    [SerializeField] private float moveSpeed;
+    public float moveSpeed;
     [SerializeField] private float gravity;
     [SerializeField] private float maxSpeed;
     [SerializeField] private LayerMask lm;
@@ -170,9 +170,9 @@ public class ShadowMovement : MonoBehaviour
     {
         //Basic Checks to Determine Interactions
         Physics2D.queriesHitTriggers = false;
-        LeftCheckBool = Physics2D.Raycast(LeftCheck.transform.position, -transform.right, checkDistance);
-        RightCheckBool = Physics2D.Raycast(RightCheck.transform.position, transform.right, checkDistance);
-        DownCheckBool = Physics2D.Raycast(DownCheck.transform.position, -transform.up, checkDistance);
+        LeftCheckBool = Physics2D.Raycast(LeftCheck.transform.position, -transform.right, checkDistance, lm);
+        RightCheckBool = Physics2D.Raycast(RightCheck.transform.position, transform.right, checkDistance, lm);
+        DownCheckBool = Physics2D.Raycast(DownCheck.transform.position, -transform.up, checkDistance, lm);
     }
 
     private void ShadowMove()

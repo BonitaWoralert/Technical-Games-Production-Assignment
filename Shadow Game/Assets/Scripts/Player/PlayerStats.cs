@@ -11,11 +11,12 @@ public class PlayerStats : MonoBehaviour
     public float shadowEnergy;
     public int maxShadowEnergy = 1;
     private ShadowForm shadowForm;
-    [SerializeField] private float shadowDecreaseSpeed = 0.2f;
-    [SerializeField] private float shadowIncreaseSpeed = 0.4f;
-
-    public int dashAmount;
-
+    public float shadowDecreaseSpeed = 0.2f;
+    public float shadowIncreaseSpeed = 0.4f;
+    public int currentDashLevel;
+    public int coins;
+    public int roomCoins;
+    
     // Start is called before the first frame update
     void Start()
     {

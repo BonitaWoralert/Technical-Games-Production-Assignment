@@ -9,6 +9,7 @@ public class Player_Invincibility : MonoBehaviour
     [SerializeField] private float invincibilityEffectTime;
     [SerializeField] public float maxInvincibilityTime;
     [SerializeField] private bool isInvincible;
+    [SerializeField] private AudioSource damageSound;
     private SpriteRenderer spriteRenderer;
     private GameObject playerGameObject;
     private GameObject playerInvincibilityGameObject;
@@ -55,6 +56,8 @@ public class Player_Invincibility : MonoBehaviour
             isInvincible = false;
             playerNormalCollider2D.enabled = true;
             playerInvincibleCollider2D.enabled = false;
+            damageSound.Stop();
+
         }
         else
         {
@@ -68,6 +71,7 @@ public class Player_Invincibility : MonoBehaviour
     public void SetInvincibility(bool newState)
     {
         isInvincible = newState;
+        damageSound.Play();
     }
 
     public bool GetInvincibility()

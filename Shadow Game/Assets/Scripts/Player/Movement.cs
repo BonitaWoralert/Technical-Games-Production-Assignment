@@ -23,11 +23,15 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool isGrounded = true;
 
     [Header("Dash")]
-    [SerializeField] private float dashSpace;
+    public float dashSpace;
     [SerializeField] private bool isDashing = false;
     [SerializeField] private bool canDash = true;
     [SerializeField] private float maxDashTimer;
     [SerializeField] private float dashTimer;
+    [SerializeField] private int maxDashLevel;
+    public int maxRegenDashLevel;
+    public float currentDashPower;
+    public float dashRegen;
 
     [Header("Attack")]
     [SerializeField] private bool isAttacking = false;
@@ -37,6 +41,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     public GameObject leftCheck;
     public GameObject rightCheck;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource dashSound;
+    [SerializeField] private AudioSource jumpSound;
 
     private Rigidbody2D rb;
     private Animator ani;
@@ -71,7 +79,7 @@ public class Movement : MonoBehaviour
         dashTimer -= Time.deltaTime;
         
 
-        MoveInput();
+        DashMovement();
 
         trailRenderer.enabled = (dashTimer + 0.25f > 0);
 
@@ -92,18 +100,23 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void MoveInput()
+    private void DashMovement()
     {
-        if (shadowForm.isInShadowForm)
-        {
-            return;
-        }
+        
 
         // Get input for horizontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Dash"))
+        if (currentDashPower < maxRegenDashLevel)
         {
+            currentDashPower += Time.deltaTime * dashRegen;
+        }
+
+        playerStats.currentDashLevel = (int)MathF.Floor(currentDashPower);
+
+        if (Input.GetButtonDown("Dash") && !shadowForm.isInShadowForm)
+        {
+            dashSound.Play();
             isDashing = true;
             Dash(dashSpace);
         }
@@ -146,7 +159,6 @@ public class Movement : MonoBehaviour
         //inside FixedUpdate
         if (Input.GetButton("Jump") && jumpTimer > 0 && jumpForce > 0)
         {
-            Debug.Log("Jumping");
             rb.AddForce(new Vector2(0f, jumpForce * (Time.fixedDeltaTime * 500)));
             jumpForce -= jumpDecrease; //Or Whatever amount
         }
@@ -220,11 +232,11 @@ public class Movement : MonoBehaviour
 
     private void Dash(float dashSpace)
     {
-        if (playerStats.dashAmount >= 1 && canDash)
+        if (canDash && currentDashPower >= 1)
         {
             Debug.Log("Dashing (through the snow)");
-            playerStats.dashAmount -= 1;
             canDash = false;
+            currentDashPower -= 1;
             dashTimer = maxDashTimer;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.gravityScale = 0;
@@ -237,15 +249,15 @@ public class Movement : MonoBehaviour
         rb.gravityScale = 1.7f;
     }
 
-    private void DashAdd(int dashIncrement)
+    public void DashAdd(int dashIncrement)
     {
-        if (playerStats.dashAmount + dashIncrement >= 3)
+        if (currentDashPower + dashIncrement >= maxDashLevel)
         {
-            playerStats.dashAmount = 3;
+            currentDashPower = maxDashLevel;
         }
         else
         {
-            playerStats.dashAmount += dashIncrement;
+            currentDashPower += dashIncrement;
         }
     }
 

@@ -19,10 +19,14 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject controlsFirstButton;
     [SerializeField] private GameObject creditsFirstButton;
 
+    [SerializeField] private AudioSource buttonSelect;
+
     private bool switchMenu = false;
 
     public void Levels()
     {
+        buttonSelect.Play();
+
         mainMenu.SetActive(false);
         levelsMenu.SetActive(true);
 
@@ -32,6 +36,8 @@ public class MainMenuController : MonoBehaviour
 
     public void Settings()
     {
+        buttonSelect.Play();
+
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
 
@@ -41,6 +47,8 @@ public class MainMenuController : MonoBehaviour
 
     public void Controls()
     {
+        buttonSelect.Play();
+
         mainMenu.SetActive(false);
         controlsMenu.SetActive(true);
 
@@ -50,6 +58,8 @@ public class MainMenuController : MonoBehaviour
 
     public void Switch()
     {
+        buttonSelect.Play();
+
         switchMenu = !switchMenu;
 
         if (!switchMenu)
@@ -66,6 +76,8 @@ public class MainMenuController : MonoBehaviour
 
     public void Credits()
     {
+        buttonSelect.Play();
+
         mainMenu.SetActive(false);
         creditsMenu.SetActive(true);
 
@@ -75,6 +87,8 @@ public class MainMenuController : MonoBehaviour
 
     public void Back()
     {
+        buttonSelect.Play();
+
         mainMenu.SetActive(true);
         levelsMenu.SetActive(false);
         controlsMenu.SetActive(false);

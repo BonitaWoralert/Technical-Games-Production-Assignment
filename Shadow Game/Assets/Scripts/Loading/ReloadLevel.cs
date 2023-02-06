@@ -10,6 +10,7 @@ public class ReloadLevel : MonoBehaviour
     [SerializeField] private GameObject[] lightDeactive;
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform player;
+    [SerializeField] private Lever lever;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,17 +18,20 @@ public class ReloadLevel : MonoBehaviour
         {
             player.position = new Vector2(startPoint.position.x,startPoint.position.y);
 
-            reloadTrigger.SetActive(false);
-            nextTrigger.SetActive(true);
-
-            foreach (GameObject light in lightActive)
+            if (lever.GetState())
             {
-                light.SetActive(true);
-            }
+                reloadTrigger.SetActive(false);
+                nextTrigger.SetActive(true);
 
-            foreach (GameObject light in lightDeactive)
-            {
-                light.SetActive(false);
+                foreach (GameObject light in lightActive)
+                {
+                    light.SetActive(true);
+                }
+
+                foreach (GameObject light in lightDeactive)
+                {
+                    light.SetActive(false);
+                }
             }
         }
     }
