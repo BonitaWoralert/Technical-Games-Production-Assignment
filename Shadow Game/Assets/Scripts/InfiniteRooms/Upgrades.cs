@@ -6,6 +6,7 @@ public class Upgrades : MonoBehaviour
 {
     public int id;
     public int cost;
+    public string name;
     public ShopSpawnSystem shopSpawnSystem;
     public enum UpgradeType
     {
