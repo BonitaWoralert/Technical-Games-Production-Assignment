@@ -669,6 +669,8 @@ MonoBehaviour:
   shadowDecreaseSpeed: 0.2
   shadowIncreaseSpeed: 0.4
   currentDashLevel: 0
+  coins: 0
+  roomCoins: 0
 --- !u!114 &2518738611042306878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,6 +758,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1192468094}
   attackPoint: {fileID: 3008466043395654960}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  attackDamage: 50
+  attackRange: 0.5
+  attackRate: 10
 --- !u!114 &6860718859273022401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,6 +958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 1877749973754294092}
+  stats: {fileID: 0}
 --- !u!114 &4027343391633403307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +991,7 @@ MonoBehaviour:
   - {x: -0.036860917, y: -0.15832403, z: 0}
   m_ShapePathHash: 615085551
   m_Mesh: {fileID: 0}
-  m_InstanceId: 98570
+  m_InstanceId: 88086
 --- !u!114 &2124771310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,7 +1090,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4939639692833486105}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.114, y: -0.069, z: 0}
+  m_LocalPosition: {x: 0.136, y: -0.017, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

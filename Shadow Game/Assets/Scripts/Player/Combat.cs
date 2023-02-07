@@ -29,8 +29,6 @@ public class Combat : MonoBehaviour
     void BasicAttack()
     {
         //Plays the attack animation
-        animator.SetTrigger("Attack");
-
         animator.SetInteger("state", 6);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);

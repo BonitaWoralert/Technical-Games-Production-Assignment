@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private Animator transition;
-    private float transitionTime = 0.5f;
+    [SerializeField] private float transitionTime = 0.5f;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
