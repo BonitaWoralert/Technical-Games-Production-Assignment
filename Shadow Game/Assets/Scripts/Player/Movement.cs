@@ -77,7 +77,6 @@ public class Movement : MonoBehaviour
             jumpCheckTimer -= Time.deltaTime;
         }
         dashTimer -= Time.deltaTime;
-        
 
         DashMovement();
 
@@ -96,14 +95,12 @@ public class Movement : MonoBehaviour
     {
         if (isGrounded && dashTimer <= -0.1)
         {
-            rb.AddForce(new Vector2(-rb.velocity.x * (1/ speedDecrement), 0));
+            rb.AddForce(new Vector2(-rb.velocity.x * (1 / speedDecrement), 0));
         }
     }
 
     private void DashMovement()
     {
-        
-
         // Get input for horizontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 

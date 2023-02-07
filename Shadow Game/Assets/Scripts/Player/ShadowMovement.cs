@@ -41,6 +41,9 @@ public class ShadowMovement : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private float maxSpeed;
     [SerializeField] private LayerMask lm;
+    [SerializeField] private float changeTimer;
+    [SerializeField] private float maxChangeTimer;
+
     void Start()
     {
         state = State.Normal;
@@ -57,6 +60,10 @@ public class ShadowMovement : MonoBehaviour
             RotationLogic();
             GravityManipulation();
             ShadowMove();
+        }
+        if (changeTimer > 0)
+        {
+            changeTimer -= Time.deltaTime;
         }
     }
 
@@ -84,7 +91,7 @@ public class ShadowMovement : MonoBehaviour
         vertical = Input.GetAxisRaw("Vertical");
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (state == State.Normal)
+        if (state == State.Normal && changeTimer <= 0)
         {
             if (vertical > 0)
             {
@@ -100,7 +107,7 @@ public class ShadowMovement : MonoBehaviour
                 }
             }
         }
-        if (state == State.Left)
+        if (state == State.Left && changeTimer <= 0)
         {
             if (horizontal > 0)
             {
@@ -116,7 +123,7 @@ public class ShadowMovement : MonoBehaviour
                 }
             }
         }
-        if (state == State.UpsideDown)
+        if (state == State.UpsideDown && changeTimer <= 0)
         {
             if (vertical < 0)
             {
@@ -132,7 +139,7 @@ public class ShadowMovement : MonoBehaviour
                 }
             }
         }
-        if (state == State.Right)
+        if (state == State.Right && changeTimer <= 0)
         {
             if (horizontal < 0)
             {
@@ -154,7 +161,7 @@ public class ShadowMovement : MonoBehaviour
     {
         //Turn Left
         Debug.Log("Turned Left");
-
+        changeTimer = maxChangeTimer;
         transform.RotateAround(CentreRotatePoint.transform.position, new Vector3(0, 0, 1), 90);
     }
 
@@ -162,7 +169,7 @@ public class ShadowMovement : MonoBehaviour
     {
         //Turn Right
         Debug.Log("Turned Right");
-
+        changeTimer = maxChangeTimer;
         transform.RotateAround(CentreRotatePoint.transform.position, new Vector3(0, 0, 1), -90);
     }
 
