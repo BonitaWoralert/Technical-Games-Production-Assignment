@@ -913,8 +913,8 @@ MonoBehaviour:
   invincibilityEffectTime: 0
   maxInvincibilityTime: 3
   isInvincible: 1
-  playerNormalCollider2D: {fileID: 1877749973754294080}
   damageSound: {fileID: 4479031545641606243}
+  playerNormalCollider2D: {fileID: 1877749973754294080}
 --- !u!114 &4095007693098343723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,7 +941,7 @@ MonoBehaviour:
   maxSpeed: 3
   lm:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4097
 --- !u!114 &7151996603628060988
 MonoBehaviour:
   m_ObjectHideFlags: 0
