@@ -1926,10 +1926,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 3176655631405314094}
   m_HandleRect: {fileID: 3176655631192742485}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2304,10 +2304,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 3180389785746528805}
   m_HandleRect: {fileID: 3180389786102231134}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5626,7 +5626,7 @@ Transform:
   - {fileID: 5687584506277171125}
   - {fileID: 7583363372993694807}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8075173444660650097
 GameObject:
