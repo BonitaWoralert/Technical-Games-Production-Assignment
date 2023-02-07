@@ -17,6 +17,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject levelsFirstButton;
     [SerializeField] private GameObject settingsFirstButton;
     [SerializeField] private GameObject controlsFirstButton;
+    [SerializeField] private GameObject controls2FirstButton;
     [SerializeField] private GameObject creditsFirstButton;
 
     [SerializeField] private AudioSource buttonSelect;
@@ -66,11 +67,17 @@ public class MainMenuController : MonoBehaviour
         {
             keyboardMenu.SetActive(true);
             controllerMenu.SetActive(false);
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(controlsFirstButton);
         }
         else if (switchMenu)
         {
             keyboardMenu.SetActive(false);
             controllerMenu.SetActive(true);
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(controls2FirstButton);
         }
     }
 
