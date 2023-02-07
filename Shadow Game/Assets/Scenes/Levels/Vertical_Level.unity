@@ -1797,7 +1797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7321311441664026375, guid: b5a7e8d98acba1340b2593e731e36a28, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2016,6 +2016,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7516790708649071715, guid: 6ff07777dc536a2418459682e819cf3b, type: 3}
+      propertyPath: winSound
+      value: 
+      objectReference: {fileID: 590831328}
+    - target: {fileID: 7516790708649071715, guid: 6ff07777dc536a2418459682e819cf3b, type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 590831327}
     - target: {fileID: 7516790708649071724, guid: 6ff07777dc536a2418459682e819cf3b, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -26197,6 +26205,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 1422632071699293010, guid: e1577a6e00357804a9ca9ee43c317c3f, type: 3}
+      propertyPath: winSound
+      value: 
+      objectReference: {fileID: 590831328}
+    - target: {fileID: 1422632071699293010, guid: e1577a6e00357804a9ca9ee43c317c3f, type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 590831327}
     - target: {fileID: 1422632071699293021, guid: e1577a6e00357804a9ca9ee43c317c3f, type: 3}
       propertyPath: m_Name
       value: Previous Level Trigger
