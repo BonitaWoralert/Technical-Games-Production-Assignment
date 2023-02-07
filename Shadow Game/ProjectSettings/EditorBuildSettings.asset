@@ -9,27 +9,45 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 99ca0741c97eea746a3e4072afe7733d
   - enabled: 1
-    path: Assets/Scenes/The Plains/2 - 1.unity
-    guid: 1cbc2072ca037b640a89e46fc6477849
-  - enabled: 1
-    path: Assets/Scenes/The Plains/2 - 4.unity
-    guid: 32a8eee692043e84a9eef4a21333f960
-  - enabled: 1
-    path: Assets/Scenes/The Plains of Grass/2 - 1.unity
-    guid: cbd2b12883cffd04a81c88a461e4d201
-  - enabled: 1
-    path: Assets/Scenes/The Plains of Grass/2 - 4.unity
-    guid: 6fc706ce356fb264b85153eefc376b37
-  - enabled: 1
     path: Assets/Scenes/Levels/Level Two.unity
     guid: b469b90c2478f544a9974eca6afd6d9b
+  - enabled: 1
+    path: Assets/Scenes/Levels/Underground_Level.unity
+    guid: 9342dcf2b2fa3d44e92935fc71936f14
   - enabled: 1
     path: Assets/Scenes/Levels/Vertical_Level.unity
     guid: 23d3e72e6edb60f40a0d9a0fbf862e28
   - enabled: 1
-    path: Assets/Scenes/Levels/Underground_Level.unity
-    guid: 9342dcf2b2fa3d44e92935fc71936f14
-  - enabled: 0
+    path: Assets/Scenes/The Plains/2 - 1.unity
+    guid: 1cbc2072ca037b640a89e46fc6477849
+  - enabled: 1
+    path: Assets/Scenes/The Plains/2 - 2.unity
+    guid: d6cbfb4ad3ea3e34782f065953988216
+  - enabled: 1
+    path: Assets/Scenes/The Plains/2 - 3.unity
+    guid: 1babe5ca87ca7124db6721df50595468
+  - enabled: 1
+    path: Assets/Scenes/The Plains/2 - 4.unity
+    guid: 32a8eee692043e84a9eef4a21333f960
+  - enabled: 1
+    path: Assets/Scenes/The Plains/2 - 5.unity
+    guid: 7a807c65c9d16ec4fb149513f70af332
+  - enabled: 1
+    path: Assets/Scenes/The Plains of Grass/2 - 1.unity
+    guid: cbd2b12883cffd04a81c88a461e4d201
+  - enabled: 1
+    path: Assets/Scenes/The Plains of Grass/2 - 2.unity
+    guid: e20a2efe5b35c14458dafc98653ca7f7
+  - enabled: 1
+    path: Assets/Scenes/The Plains of Grass/2 - 3.unity
+    guid: 308ce321649fd1d45bfbf981d9c93cf3
+  - enabled: 1
+    path: Assets/Scenes/The Plains of Grass/2 - 4.unity
+    guid: 6fc706ce356fb264b85153eefc376b37
+  - enabled: 1
+    path: Assets/Scenes/The Plains of Grass/2 - 5.unity
+    guid: 135cc0ea3d20e7d4c9aec7438beefb5c
+  - enabled: 1
     path: Assets/Scenes/Levels/Nicholas_Level_1.unity
     guid: 7839de1c6b3eb334dbc62449d8862686
   - enabled: 1
@@ -38,10 +56,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Nicholas_Level_3.unity
     guid: 070877db85df108499a3e157e7950403
-  - enabled: 0
-    path: Assets/Scenes/Levels/Village_Level.unity
-    guid: 5eabb0e69f2c7084fa1a32929beb54af
+  - enabled: 1
+    path: Assets/Scenes/Levels/Nicholas_Level_4.unity
+    guid: 1e348557e30b66e44ae85844f63e14b0
   - enabled: 1
     path: Assets/Scenes/EndMenu.unity
     guid: 4466debbf95e7c945b79b80c47d0e586
+  - enabled: 1
+    path: Assets/Scenes/InfiniteRooms.unity
+    guid: 24414513324f21648a5f00e5cda36f81
   m_configObjects: {}
