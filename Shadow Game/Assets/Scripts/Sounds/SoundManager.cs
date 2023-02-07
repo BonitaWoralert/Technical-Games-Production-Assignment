@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -34,33 +35,33 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeMusic()
     {
-        AudioListener.volume = musicSlider.value;
+        //AudioListener.volume = musicSlider.value;
         SaveMusic();
     }
 
     private void LoadMusic()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
     }
 
     private void SaveMusic()
     {
-        PlayerPrefs.SetFloat("musicVolume", musicSlider.value);
+        PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
     }
 
     public void ChangeSfx()
     {
-        AudioListener.volume = sfxSlider.value;
+        //AudioListener.volume = sfxSlider.value;
         SaveSfx();
     }
 
     private void LoadSfx()
     {
-        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+        sfxSlider.value = PlayerPrefs.GetFloat("SfxVolume");
     }
 
     private void SaveSfx()
     {
-        PlayerPrefs.SetFloat("sfxVolume", sfxSlider.value);
+        PlayerPrefs.SetFloat("SfxVolume", sfxSlider.value);
     }
 }

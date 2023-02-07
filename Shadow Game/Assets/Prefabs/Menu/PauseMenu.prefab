@@ -1432,7 +1432,7 @@ AudioSource:
   m_GameObject: {fileID: 2917899159681216154}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 577541012480657783, guid: 8bee8d80d69ac544a99e4e66bd7228c7, type: 2}
   m_audioClip: {fileID: 8300000, guid: fdeebf2dcaa7095479fed1d7fdfdaf0a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1926,13 +1926,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 3176655631405314094}
   m_HandleRect: {fileID: 3176655631192742485}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1941832674586337803}
+        m_TargetAssemblyTypeName: MixLevels, Assembly-CSharp
+        m_MethodName: SetSfxLvl
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4405310322628180196}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: ChangeSfx
@@ -2292,13 +2304,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 3180389785746528805}
   m_HandleRect: {fileID: 3180389786102231134}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1941832674586337803}
+        m_TargetAssemblyTypeName: MixLevels, Assembly-CSharp
+        m_MethodName: SetMusicLvl
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4405310322628180196}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: ChangeMusic
@@ -4339,7 +4363,7 @@ AudioSource:
   m_GameObject: {fileID: 6066107475766834802}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7022454558768887432, guid: 8bee8d80d69ac544a99e4e66bd7228c7, type: 2}
   m_audioClip: {fileID: 8300000, guid: cf729c41bf69f5349a74d78b75f68415, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -5128,6 +5152,8 @@ GameObject:
   - component: {fileID: 6780345422486113941}
   - component: {fileID: 2330636152433546841}
   - component: {fileID: 4405310322628180196}
+  - component: {fileID: 1941832674586337803}
+  - component: {fileID: 1143344403727091335}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -5196,6 +5222,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSlider: {fileID: 3180389785459750502}
   sfxSlider: {fileID: 3176655631620791405}
+--- !u!114 &1941832674586337803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6651012488928666282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2060510667315774790da15044afcc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: 8bee8d80d69ac544a99e4e66bd7228c7, type: 2}
+--- !u!114 &1143344403727091335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6651012488928666282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4e6f09f9bfe50458ed54439faac549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 2061514411635179023}
+  loadingBarFill: {fileID: 4025670712765835211}
+  buttonSelect: {fileID: 8496569130214379987}
 --- !u!1 &6671757374518916891
 GameObject:
   m_ObjectHideFlags: 0
@@ -9822,6 +9876,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3099387511550659599, guid: 73d9540cc6071ba46ab5c99f4f66d2c2, type: 3}
   m_PrefabInstance: {fileID: 2839472474211811725}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2061514411635179023 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4322379514903134082, guid: 73d9540cc6071ba46ab5c99f4f66d2c2, type: 3}
+  m_PrefabInstance: {fileID: 2839472474211811725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4025670712765835211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1205235189819434566, guid: 73d9540cc6071ba46ab5c99f4f66d2c2, type: 3}
+  m_PrefabInstance: {fileID: 2839472474211811725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7533507859398668593
 PrefabInstance:
   m_ObjectHideFlags: 0

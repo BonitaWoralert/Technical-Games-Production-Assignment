@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.Experimental.XR.Interaction;
 
 public class Enemy_AI_v3 : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class Enemy_AI_v3 : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    bool canSpriteFlip;
+
     void Start()
     {
         playerGameObject = GameObject.Find("Player");
@@ -46,9 +49,10 @@ public class Enemy_AI_v3 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemySpriteRenderer = enemySpriteGameObject.GetComponent<SpriteRenderer>();
         additionalSpeed = new Vector2(5f, 0f);
-        jumpTimer = defautJumpTimer;
+        //jumpTimer = defautJumpTimer;
         defaultSpriteSize = transform.localScale / 6;
         defaultVisionBoxPos = enemyVisionBox.transform.localPosition;
+        canSpriteFlip = true;
 
         InvokeRepeating("UpdatePath", 0.2f, pathUpdateSpeed);
     }
@@ -157,19 +161,19 @@ public class Enemy_AI_v3 : MonoBehaviour
             currentWayPoint++;
         }
 
-        if (moveForce.x >= 0.01f)
+        if (moveForce.x >= 2f)
         {
             enemySpriteRenderer.flipX = false;
             //enemyVisionBox.transform.localPosition = defaultVisionBoxPos;
         }
-        else if (moveForce.x <= -0.01f)
+        else if (moveForce.x <= -2f)
         {
             enemySpriteRenderer.flipX = true;
         }
-        else
-        {
-            enemySpriteRenderer.flipX = false;
-        }
+        //else
+        //{
+        //    enemySpriteRenderer.flipX = false;
+        //}
     }
 
     private void MoveRight()
