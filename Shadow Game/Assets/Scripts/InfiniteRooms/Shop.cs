@@ -26,7 +26,7 @@ public class Shop : MonoBehaviour
                 if (i.GetComponent<Upgrades>())
                 {
                     Upgrades currentUpgrade = i.GetComponent<Upgrades>();
-                    if (FindObjectOfType<PlayerStats>().coins >= currentUpgrade.cost)
+                    if (FindObjectOfType<InfiniteStats>().coins >= currentUpgrade.cost)
                     {
                         if (currentUpgrade.upgradeType == Upgrades.UpgradeType.Health)
                         {
@@ -58,14 +58,14 @@ public class Shop : MonoBehaviour
                         }
                         if (currentUpgrade.upgradeType == Upgrades.UpgradeType.MoreCoinsPerRoom)
                         {
-                            player.GetComponent<PlayerStats>().roomCoins += 2;
+                            FindObjectOfType<InfiniteStats>().roomCoins += 2;
                         }
                         if (currentUpgrade.upgradeType == Upgrades.UpgradeType.FurryTail)
                         {
                             tail.SetActive(true);
                         }
                         upgradeList.upgradeDetails[currentUpgrade.id].uses -= 1;
-                        FindObjectOfType<PlayerStats>().coins -= currentUpgrade.cost;
+                        FindObjectOfType<InfiniteStats>().coins -= currentUpgrade.cost;
                         foreach (var j in currentUpgrade.shopSpawnSystem.GetComponent<ShopSpawnSystem>().upgradesInRoom)
                         {
                             Destroy(j);
