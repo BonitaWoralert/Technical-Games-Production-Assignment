@@ -21,7 +21,14 @@ public class DialogueSystem : MonoBehaviour
 
     private void Start()
     {
-        _textComponent.color = _dialogue._color[_index];
+        if (_dialogue._color.Length > 0)
+        {
+            _textComponent.color = _dialogue._color[_index];
+        }
+        else
+        {
+            _textComponent.color = Color.black;
+        }
         _textComponent.text = _dialogue._text[_index];
     }
 
@@ -45,7 +52,14 @@ public class DialogueSystem : MonoBehaviour
                 if (_index < _dialogue._text.Length - 1)
                 {
                     _index++;
-                    _textComponent.color = _dialogue._color[_index];
+                    if (_dialogue._color.Length > _index)
+                    {
+                        _textComponent.color = _dialogue._color[_index];
+                    }
+                    else
+                    {
+                        _textComponent.color= Color.black;
+                    }
                     _textComponent.text = _dialogue._text[_index];
                 }
             }
