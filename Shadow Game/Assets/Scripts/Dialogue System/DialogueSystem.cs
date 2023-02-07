@@ -54,7 +54,7 @@ public class DialogueSystem : MonoBehaviour
     {
         if (Input.GetButtonDown("Submit"))
         {
-            if (!_open)
+            if (_open)
             {
                 if (_index < _dialogue._text.Length - 1)
                 {
@@ -69,13 +69,13 @@ public class DialogueSystem : MonoBehaviour
                     }
                     _textComponent.text = _dialogue._text[_index];
                 }
-            }
-            else if (_open)
-            {
-                _player.GetComponent<Movement>().enabled = true;
-                _player.GetComponent<ShadowForm>().enabled = true;
-                gameObject.SetActive(false);
-                _open = false;
+                else
+                {
+                    _player.GetComponent<Movement>().enabled = true;
+                    _player.GetComponent<ShadowForm>().enabled = true;
+                    gameObject.SetActive(false);
+                    _open = false;
+                }
             }
         }
     }
