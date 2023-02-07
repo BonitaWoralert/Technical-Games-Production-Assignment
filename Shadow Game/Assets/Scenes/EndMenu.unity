@@ -2539,6 +2539,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1065541603}
+        m_TargetAssemblyTypeName: MixLevels, Assembly-CSharp
+        m_MethodName: SetMusicLvl
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &498591166
 GameObject:
   m_ObjectHideFlags: 0
@@ -5271,6 +5283,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1065541603}
+        m_TargetAssemblyTypeName: MixLevels, Assembly-CSharp
+        m_MethodName: SetSfxLvl
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &984561068
 GameObject:
   m_ObjectHideFlags: 0
@@ -5573,6 +5597,7 @@ GameObject:
   - component: {fileID: 1065541594}
   - component: {fileID: 1065541598}
   - component: {fileID: 1065541599}
+  - component: {fileID: 1065541603}
   - component: {fileID: 1065541600}
   - component: {fileID: 1065541601}
   - component: {fileID: 1065541602}
@@ -5741,7 +5766,7 @@ AudioSource:
   m_GameObject: {fileID: 1065541593}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 577541012480657783, guid: 8bee8d80d69ac544a99e4e66bd7228c7, type: 2}
   m_audioClip: {fileID: 8300000, guid: fdeebf2dcaa7095479fed1d7fdfdaf0a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -5828,6 +5853,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1065541603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065541593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2060510667315774790da15044afcc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: 8bee8d80d69ac544a99e4e66bd7228c7, type: 2}
 --- !u!1 &1075543709
 GameObject:
   m_ObjectHideFlags: 0
@@ -11498,7 +11536,7 @@ AudioSource:
   m_GameObject: {fileID: 1932588890}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7022454558768887432, guid: 8bee8d80d69ac544a99e4e66bd7228c7, type: 2}
   m_audioClip: {fileID: 8300000, guid: cf729c41bf69f5349a74d78b75f68415, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
