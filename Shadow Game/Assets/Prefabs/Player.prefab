@@ -604,7 +604,7 @@ MonoBehaviour:
   dashSound: {fileID: 6512715905650647402}
   jumpSound: {fileID: 4233661946935718237}
   state: 0
-  facingRight: 0
+  facingRight: 1
 --- !u!61 &1877749973754294080
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   - {x: -0.036860917, y: -0.15832403, z: 0}
   m_ShapePathHash: 615085551
   m_Mesh: {fileID: 0}
-  m_InstanceId: 66944
+  m_InstanceId: 184994
 --- !u!114 &2124771310
 MonoBehaviour:
   m_ObjectHideFlags: 0
