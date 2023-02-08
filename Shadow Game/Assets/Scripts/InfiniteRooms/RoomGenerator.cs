@@ -84,8 +84,10 @@ public class RoomGenerator : MonoBehaviour
                             room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Right;
                         }
 
+                        Debug.Log("Removing"); 
                         stats.coins += Random.Range(roomMinCoins, roomMaxCoins + stats.roomCoins);
                         exitDoors.Remove(i);
+                        Debug.Log("Removing Door");
                         Destroy(i);
                     }
                 }
