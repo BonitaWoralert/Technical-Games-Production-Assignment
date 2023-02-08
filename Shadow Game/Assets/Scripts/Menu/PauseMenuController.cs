@@ -16,6 +16,7 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private GameObject pauseFirstButton;
     [SerializeField] private GameObject settingsFirstButton;
     [SerializeField] private GameObject controlsFirstButton;
+    [SerializeField] private GameObject controllerFirstButton;
 
     [SerializeField] private AudioSource buttonSound;
 
@@ -92,11 +93,15 @@ public class PauseMenuController : MonoBehaviour
         {
             keyboardMenu.SetActive(true);
             controllerMenu.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(controlsFirstButton);
         }
         else if (switchMenu)
         {
             keyboardMenu.SetActive(false);
             controllerMenu.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(controllerFirstButton);
         }
     }
 
