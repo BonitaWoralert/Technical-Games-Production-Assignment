@@ -11,7 +11,7 @@ public class RoomGenerator : MonoBehaviour
     public List<GameObject> enterDoors;
     public bool roomSpawned;
     private DoorOpener doorOpener;
-    public PlayerStats stats;
+    public InfiniteStats stats;
     public DoorOpener.DoorType roomType;
     public int roomMinCoins;
     public int roomMaxCoins;
@@ -22,7 +22,7 @@ public class RoomGenerator : MonoBehaviour
     {
         roomList = FindObjectOfType<RoomList>();
         player = roomList.player;
-        stats = FindObjectOfType<PlayerStats>();
+        stats = FindObjectOfType<InfiniteStats>();
         StartCoroutine(LateStart(0.05f));
     }
     IEnumerator LateStart(float waitTime)

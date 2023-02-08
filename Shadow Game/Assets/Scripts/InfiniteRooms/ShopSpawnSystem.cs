@@ -39,6 +39,7 @@ public class ShopSpawnSystem : MonoBehaviour
             upgrade.GetComponent<Upgrades>().id = upgradeValue;
             upgrade.GetComponent<Upgrades>().shopSpawnSystem = GetComponent<ShopSpawnSystem>();
             upgrade.GetComponent<Upgrades>().cost = upgradeList.upgradeDetails[upgradeValue].cost;
+            upgrade.GetComponent<Upgrades>().name = upgradeList.upgradeDetails[upgradeValue].name;
             upgradesInRoom.Add(upgrade);
         }
         else
