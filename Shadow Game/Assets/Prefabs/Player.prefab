@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 4060480681007559666}
   - component: {fileID: 4027343391633403307}
   - component: {fileID: 2124771310}
+  - component: {fileID: 8767907991055298045}
   - component: {fileID: 6512715905650647402}
   - component: {fileID: 4233661946935718237}
   - component: {fileID: 4479031545641606243}
@@ -676,8 +677,6 @@ MonoBehaviour:
   shadowDecreaseSpeed: 0.2
   shadowIncreaseSpeed: 0.4
   currentDashLevel: 0
-  coins: 0
-  roomCoins: 0
 --- !u!114 &2518738611042306878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,6 +941,8 @@ MonoBehaviour:
   lm:
     serializedVersion: 2
     m_Bits: 4097
+  changeTimer: 0
+  maxChangeTimer: 0
 --- !u!114 &7151996603628060988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,7 +970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 1877749973754294092}
-  stats: {fileID: 2860907512616319097}
+  stats: {fileID: 0}
 --- !u!114 &4027343391633403307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,7 +1003,7 @@ MonoBehaviour:
   - {x: -0.036860917, y: -0.15832403, z: 0}
   m_ShapePathHash: 615085551
   m_Mesh: {fileID: 0}
-  m_InstanceId: 184994
+  m_InstanceId: 47234
 --- !u!114 &2124771310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,6 +1016,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb83dce7e9717f43a71301c95814a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8767907991055298045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877749973754294081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f7e3ed5f95758a429977a926dd23079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStartingPos: {x: 0, y: 0}
 --- !u!82 &6512715905650647402
 AudioSource:
   m_ObjectHideFlags: 0
