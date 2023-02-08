@@ -113,7 +113,6 @@ public class Movement : MonoBehaviour
 
         if (Input.GetButtonDown("Dash") && !shadowForm.isInShadowForm)
         {
-            dashSound.Play();
             isDashing = true;
             Dash(dashSpace);
         }
@@ -232,6 +231,7 @@ public class Movement : MonoBehaviour
         if (canDash && currentDashPower >= 1)
         {
             Debug.Log("Dashing (through the snow)");
+            dashSound.Play();
             canDash = false;
             currentDashPower -= 1;
             dashTimer = maxDashTimer;
