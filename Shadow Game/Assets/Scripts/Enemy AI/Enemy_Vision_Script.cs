@@ -32,7 +32,7 @@ public class Enemy_Vision_Script : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && collision == playerColliderBox)
+        if ((collision.gameObject.tag == "Player"))
         {
             if(enemyAIScript.GetLastAIState2() == AIState2.CHASE)
             {
