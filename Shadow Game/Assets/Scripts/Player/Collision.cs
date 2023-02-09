@@ -19,7 +19,7 @@ public class Collision : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.name == "Player")
         {
             cam = GameObject.FindObjectOfType<CinemachineBrain>();
             cam.enabled = false;
