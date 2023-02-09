@@ -12,7 +12,7 @@ public class Enemy_AI_v2 : MonoBehaviour
     ///     Return (Go back to patrol pattern location)
     /// </summary>
 
-    private bool isSpriteFlip;
+    private bool originalSpriteFlipX;
     [SerializeField] private SpriteRenderer spriteRenderer;
     private Color defaultColor;
     private Vector2 defaultVisionBoxPos;
@@ -115,12 +115,16 @@ public class Enemy_AI_v2 : MonoBehaviour
 
         if (patrolStartPointX < patrolEndPointX)
         {
+            //Ghoul starts patrol by facing right.
             isMoveLeft = false;
             isPatrolToMoveDirectionLeft = false;
+            originalSpriteFlipX = false;
         }
         else
         {
+            //Ghoul starts patrol by facing left.
             isMoveLeft = true;
+            originalSpriteFlipX = true;
             isPatrolToMoveDirectionLeft = true;
         }
 
@@ -135,12 +139,23 @@ public class Enemy_AI_v2 : MonoBehaviour
                 break;
             case AIState2.PATROLTO:
                 PatrolTo();
+                animator.SetBool("isPatroling", true);
+                animator.SetBool("isSuspicious", false);
+                animator.SetBool("isChasing", false);
+                spriteRenderer.flipX = originalSpriteFlipX;
                 break;
             case AIState2.PATROLBACK:
                 PatrolBack();
+                animator.SetBool("isPatroling", true);
+                animator.SetBool("isSuspicious", false);
+                animator.SetBool("isChasing", false);
+                spriteRenderer.flipX = !originalSpriteFlipX;
                 break;
             case AIState2.SUSPICIOUS:
                 Suspicious();
+                animator.SetBool("isPatroling", false);
+                animator.SetBool("isSuspicious", true);
+                animator.SetBool("isChasing", false);
                 break;
             case AIState2.CHASE:
                 Chase();
@@ -159,10 +174,14 @@ public class Enemy_AI_v2 : MonoBehaviour
         if(currentAIState2 == AIState2.CHASE)
         {
             enemyChaseAI.enabled = true;
+            animator.SetBool("isChasing", true);
+            animator.SetBool("isPatroling", false);
+            animator.SetBool("isSuspicious", false);
             visionBoxObject.transform.localPosition = defaultVisionBoxPos;
         }
         else
         {
+            animator.SetBool("isChasing", false);
             enemyChaseAI.enabled = false;
         }
 
@@ -375,6 +394,7 @@ public class Enemy_AI_v2 : MonoBehaviour
         if (suspiciousValue > chaseThreshold)
         {
             animator.SetBool("isSuspicious", false);
+            suspiciousValue = suspiciousValueMax;
             canMove = true;
             currentAIState2 = AIState2.CHASE;
         }

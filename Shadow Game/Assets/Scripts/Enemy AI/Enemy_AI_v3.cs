@@ -40,6 +40,7 @@ public class Enemy_AI_v3 : MonoBehaviour
     Rigidbody2D rb;
 
     bool canSpriteFlip;
+    private bool isShortJump;
 
     void Start()
     {
@@ -47,7 +48,7 @@ public class Enemy_AI_v3 : MonoBehaviour
         target = playerGameObject.transform;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        enemySpriteRenderer = enemySpriteGameObject.GetComponent<SpriteRenderer>();
+        enemySpriteRenderer = GetComponent<SpriteRenderer>();
         additionalSpeed = new Vector2(5f, 0f);
         //jumpTimer = defautJumpTimer;
         defaultSpriteSize = transform.localScale / 6;
@@ -192,6 +193,7 @@ public class Enemy_AI_v3 : MonoBehaviour
         {
             rb.velocity += Vector2.up * shortJumpStrength;
             isJumping = true;
+            isShortJump = true;
         }
     }
 
@@ -201,6 +203,7 @@ public class Enemy_AI_v3 : MonoBehaviour
         {
             rb.velocity += Vector2.up * longJumpStrength;
             isJumping = true;
+            isShortJump = false;
         }
     }
 
@@ -213,7 +216,15 @@ public class Enemy_AI_v3 : MonoBehaviour
         else
         {
             isJumping = false;
-            jumpTimer = defautJumpTimer;
+            if(isShortJump == true)
+            {
+                jumpTimer = defautJumpTimer * 0.5f;
+                isShortJump = false;
+            }
+            else
+            {
+                jumpTimer = defautJumpTimer;
+            }
         }
     }
 
