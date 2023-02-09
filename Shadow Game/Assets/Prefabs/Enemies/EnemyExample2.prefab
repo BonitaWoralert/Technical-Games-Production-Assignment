@@ -365,13 +365,13 @@ MonoBehaviour:
   speed: 2000
   moveSpeed: 3
   nextWayPointDistance: 1
-  pathUpdateSpeed: 0.5
+  pathUpdateSpeed: 1
   shortJumpStrength: 6.5
   longJumpStrength: 10
-  shortJumpThreshold: 0.72
+  shortJumpThreshold: 0.92
   longJumpThreshold: 0.9
   jumpTimer: 0
-  defautJumpTimer: 1.2
+  defautJumpTimer: 1
   isJumping: 0
   additionalSpeed: {x: 30, y: 0}
   directionDebug: {x: 0, y: 0}

@@ -34,6 +34,7 @@ public class Enemy_AI_v3 : MonoBehaviour
     [SerializeField] private Vector2 directionDebug;
     [SerializeField] private Vector2 distanceVectorDebug;
     [SerializeField] private float distanceDebug;
+    [SerializeField] private bool canShortJump;
     private GameObject playerGameObject;
 
     Seeker seeker;
@@ -143,15 +144,26 @@ public class Enemy_AI_v3 : MonoBehaviour
             }
         }
 
+        //In some levels, short jumps are not necessary.
+        if(canShortJump == true)
+        {
+            if (direction.y > shortJumpThreshold && direction.y < longJumpThreshold)
+            {
+                ShortJump();
+            }
+            else if (direction.y > longJumpThreshold)
+            {
+                LongJump();
+            }
+        }
+        else
+        {
+            if (direction.y > longJumpThreshold)
+            {
+                LongJump();
+            }
+        }
 
-        if (direction.y > shortJumpThreshold && direction.y < longJumpThreshold)
-        {
-            ShortJump();
-        }
-        else if(direction.y > longJumpThreshold)
-        {
-            LongJump();
-        }
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWayPoint]);
         distanceVectorDebug = new Vector2(rb.position.x - path.vectorPath[currentWayPoint].x, rb.position.y - path.vectorPath[currentWayPoint].y);
