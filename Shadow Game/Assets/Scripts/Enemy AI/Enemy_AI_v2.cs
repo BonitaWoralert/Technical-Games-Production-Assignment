@@ -113,6 +113,8 @@ public class Enemy_AI_v2 : MonoBehaviour
         defaultAttackCollisionBoxOffsetX = attackBoxCollider.offset;
         isAttacking = false;
 
+        turnTimer = maxTurnTimer;
+
         if (patrolStartPointX < patrolEndPointX)
         {
             //Ghoul starts patrol by facing right.
@@ -139,14 +141,14 @@ public class Enemy_AI_v2 : MonoBehaviour
                 break;
             case AIState2.PATROLTO:
                 PatrolTo();
-                animator.SetBool("isPatroling", true);
+                //animator.SetBool("isPatroling", true);
                 animator.SetBool("isSuspicious", false);
                 animator.SetBool("isChasing", false);
                 spriteRenderer.flipX = originalSpriteFlipX;
                 break;
             case AIState2.PATROLBACK:
                 PatrolBack();
-                animator.SetBool("isPatroling", true);
+                //animator.SetBool("isPatroling", true);
                 animator.SetBool("isSuspicious", false);
                 animator.SetBool("isChasing", false);
                 spriteRenderer.flipX = !originalSpriteFlipX;
@@ -257,7 +259,7 @@ public class Enemy_AI_v2 : MonoBehaviour
         if (turnTimer <= 0f)
         {
             turnTimer = maxTurnTimer;
-            animator.SetBool("isSuspicious", false);
+            animator.SetBool("isPatroling", true);
             if (currentAIState2 == AIState2.PATROLTO)
             {
                 destination = new Vector3(patrolStartPointX, patrolStartPointY, 0);
@@ -282,7 +284,8 @@ public class Enemy_AI_v2 : MonoBehaviour
         else
         {
             canMove = false;
-            animator.SetBool("isSuspicious", true);
+            //animator.SetBool("isSuspicious", true);
+            animator.SetBool("isPatroling", false);
         }
 
     }
