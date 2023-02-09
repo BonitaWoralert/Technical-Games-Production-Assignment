@@ -40416,7 +40416,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   roomType: 0
   roomMinCoins: 0
-  roomMaxCoins: 10
+  roomMaxCoins: 12
 --- !u!114 &3808034065298995465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41479,7 +41479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7159402724660995510, guid: 975227b0a6978794090d24559776a9fb, type: 3}
       propertyPath: m_InstanceId
-      value: -1533906
+      value: -78052
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -42691,7 +42691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7159402724660995510, guid: 975227b0a6978794090d24559776a9fb, type: 3}
       propertyPath: m_InstanceId
-      value: -1533918
+      value: -77914
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -43461,7 +43461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7159402724660995510, guid: 975227b0a6978794090d24559776a9fb, type: 3}
       propertyPath: m_InstanceId
-      value: -1534046
+      value: -78076
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
