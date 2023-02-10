@@ -13,7 +13,7 @@ public class Button : BaseSwitch
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag != "Ground")
+        if (collision.tag == "Player" || collision.tag == "PuzzleBox")
         {
             animator.SetBool("isActive", true);
             _state = true;
@@ -22,7 +22,7 @@ public class Button : BaseSwitch
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag != "Ground")
+        if (collision.tag == "Player" || collision.tag == "PuzzleBox")
         {
             _state = false;
             animator.SetBool("isActive", false);
