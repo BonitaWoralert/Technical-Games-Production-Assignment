@@ -25,6 +25,12 @@ public class Collision : MonoBehaviour
             cam.enabled = false;
             isDead = true;
         }
+        if (other.gameObject.name == "InvinclibleCollisionBox")
+        {
+            cam = GameObject.FindObjectOfType<CinemachineBrain>();
+            cam.enabled = false;
+            isDead = true;
+        }
     }
 
     IEnumerator SceneReset()
