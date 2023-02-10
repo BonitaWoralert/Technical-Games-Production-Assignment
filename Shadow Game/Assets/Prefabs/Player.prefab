@@ -656,7 +656,7 @@ MonoBehaviour:
   isAttacking: 0
   groundLayers:
     serializedVersion: 2
-    m_Bits: 4097
+    m_Bits: 21505
   groundCheck: {fileID: 6138690871593200435}
   leftCheck: {fileID: 4187124586237169611}
   rightCheck: {fileID: 5727251857932353995}
@@ -1035,7 +1035,7 @@ MonoBehaviour:
   - {x: -0.036860917, y: -0.15832403, z: 0}
   m_ShapePathHash: 615085551
   m_Mesh: {fileID: 0}
-  m_InstanceId: 41424
+  m_InstanceId: 97022
 --- !u!114 &2124771310
 MonoBehaviour:
   m_ObjectHideFlags: 0

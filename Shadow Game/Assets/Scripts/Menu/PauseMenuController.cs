@@ -19,8 +19,13 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private GameObject controllerFirstButton;
 
     [SerializeField] private AudioSource buttonSound;
-
+    private Movement movement;
     private bool switchMenu = false;
+
+    private void Start()
+    {
+        movement = FindObjectOfType<Movement>();
+    }
 
     void Update()
     {
@@ -29,7 +34,10 @@ public class PauseMenuController : MonoBehaviour
             if (Time.timeScale == 1.0f)
             {
                 buttonSound.Play();
-
+                if (movement != null)
+                {
+                    movement.enabled = false;
+                }
                 Time.timeScale = 0.0f;
                 pauseMenu.SetActive(true);
                 backgroundImage.SetActive(true);
@@ -40,7 +48,10 @@ public class PauseMenuController : MonoBehaviour
             else if (Time.timeScale == 0.0f)
             {
                 buttonSound.Play();
-
+                if (movement != null)
+                {
+                    Invoke("MovementRegen", 0.1f);
+                }
                 Time.timeScale = 1.0f;
                 pauseMenu.SetActive(false);
                 settingsMenu.SetActive(false);
@@ -50,12 +61,20 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
-    
+    void MovementRegen()
+    {
+        movement.enabled = true;
+    }
+
+
 
     public void Resume()
     {
         buttonSound.Play();
-
+        if (movement != null)
+        {
+            Invoke("MovementRegen", 0.1f);
+        }
         Time.timeScale = 1.0f;
         pauseMenu.SetActive(false);
         backgroundImage.SetActive(false);
