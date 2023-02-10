@@ -177,12 +177,6 @@ public class Enemy_Slime_AI : MonoBehaviour
     private void VelocityInputTest()
     {
         //Remove this function when test is finished.
-        if(Input.GetKeyDown("e"))
-        {
-            //rb.AddForce(new Vector2(0, movementForceY));
-            rb.velocity += new Vector2(movementForceX, movementForceY);
-        }
-
         velocityX = rb.velocity.x;
         velocityY = rb.velocity.y;
     }
