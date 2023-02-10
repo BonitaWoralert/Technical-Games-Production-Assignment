@@ -121,6 +121,12 @@ public class Player_Box_Carry : MonoBehaviour
         isCarryingBox = false;
     }
 
+    public void GrabReset()
+    {
+        isCarryingBox = false;
+        grabColliderBox.enabled = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "PuzzleBox")
