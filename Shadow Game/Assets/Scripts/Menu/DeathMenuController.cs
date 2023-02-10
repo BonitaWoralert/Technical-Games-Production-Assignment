@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DeathMenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private AudioSource buttonSound;
+    [SerializeField] private LoadingScene loadingScene;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Menu"))
+        {
+            buttonSound.Play();
+            loadingScene.LoadScene(0);
+        }
     }
 }
