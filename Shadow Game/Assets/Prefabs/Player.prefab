@@ -801,7 +801,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackDamage: 50
-  attackRange: 2.5
+  attackRange: 4
   attackRate: 10
   attackSound: {fileID: 3744105908792403932}
   hitEnemies: []
