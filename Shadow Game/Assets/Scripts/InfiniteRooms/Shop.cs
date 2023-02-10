@@ -31,6 +31,7 @@ public class Shop : MonoBehaviour
                         if (currentUpgrade.upgradeType == Upgrades.UpgradeType.Health)
                         {
                             player.GetComponent<PlayerStats>().maxHealth += 50;
+                            player.GetComponent<PlayerStats>().health += player.GetComponent<PlayerStats>().maxHealth;
                         }
                         if (currentUpgrade.upgradeType == Upgrades.UpgradeType.ShadowTimerDecrease)
                         {
