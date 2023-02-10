@@ -72,6 +72,11 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            jumpSound.Play();
+        }
+
         if (jumpCheckTimer > 0)
         {
             jumpCheckTimer -= Time.deltaTime;

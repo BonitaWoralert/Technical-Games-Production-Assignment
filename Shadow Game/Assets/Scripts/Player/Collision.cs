@@ -10,7 +10,7 @@ public class Collision : MonoBehaviour
     private bool isDead = false;
     private float transitionTime = 1.0f;
     private CinemachineBrain cam;
-
+    GameObject box;
     // Update is called once per frame
     void Update()
     {
@@ -20,6 +20,12 @@ public class Collision : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "Player")
+        {
+            cam = GameObject.FindObjectOfType<CinemachineBrain>();
+            cam.enabled = false;
+            isDead = true;
+        }
+        if (other.gameObject.name == "InvincibleCollisionBox")
         {
             cam = GameObject.FindObjectOfType<CinemachineBrain>();
             cam.enabled = false;
