@@ -8,4 +8,5 @@ public class InfiniteStats : MonoBehaviour
     public int roomCoins;
     public int enemyHealth;
     public int enemyDamage;
+    public int roomNumber;
 }

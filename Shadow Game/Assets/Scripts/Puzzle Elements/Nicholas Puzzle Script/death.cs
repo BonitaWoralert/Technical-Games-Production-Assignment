@@ -45,10 +45,6 @@ public class death : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         stats.health = stats.maxHealth;
         canDie = true;
-        player.GetComponent<Movement>().enabled = true;
-        player.GetComponent<ShadowMovement>().enabled = true;
-        player.GetComponent<Combat>().enabled = true;
-        player.GetComponent<ShadowForm>().enabled = true;
         ani.SetInteger("state", 2);
         yield return new WaitForEndOfFrame();
         ani.SetInteger("state", 0);
