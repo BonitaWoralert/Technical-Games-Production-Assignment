@@ -77,6 +77,11 @@ public class Player_Box_Carry : MonoBehaviour
         }
     }
 
+    public bool GetBoxCarry()
+    {
+        return isCarryingBox;
+    }
+
     private void BoxDrop()
     {
         boxRigidBody.simulated = true;
