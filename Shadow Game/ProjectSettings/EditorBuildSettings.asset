@@ -27,8 +27,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Vertical_Level.unity
     guid: 23d3e72e6edb60f40a0d9a0fbf862e28
   - enabled: 1
-    path: Assets/Scenes/Levels/Underground_Level.unity
-    guid: 9342dcf2b2fa3d44e92935fc71936f14
+    path: Assets/Scenes/Levels/Underground_Level Puzzles.unity
+    guid: f43951908d12e7c478ef3653d06002e9
   - enabled: 1
     path: Assets/Scenes/The Plains/Plains lvl 1.unity
     guid: 1cbc2072ca037b640a89e46fc6477849
