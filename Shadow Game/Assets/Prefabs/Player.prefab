@@ -181,6 +181,64 @@ Transform:
   m_Father: {fileID: 1877749973754294094}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1063628040528200012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7157690384523406594}
+  - component: {fileID: 3240972962434869597}
+  m_Layer: 18
+  m_Name: ShadowCollisionBox
+  m_TagString: ShadowPlayerColBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7157690384523406594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063628040528200012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1877749973754294094}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &3240972962434869597
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063628040528200012}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01, y: -0.124}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.18, y: 0.07}
+  m_EdgeRadius: 0
 --- !u!1 &1713675138889215047
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +513,6 @@ GameObject:
   - component: {fileID: 1877749973754294095}
   - component: {fileID: 1877749973754294092}
   - component: {fileID: 1877749973754294080}
-  - component: {fileID: 4354898294533776782}
   - component: {fileID: 2860907512616319097}
   - component: {fileID: 2518738611042306878}
   - component: {fileID: 1877749973754294093}
@@ -507,6 +564,7 @@ Transform:
   - {fileID: 458810515230651375}
   - {fileID: 6923007287496506606}
   - {fileID: 3815551236227482838}
+  - {fileID: 7157690384523406594}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -632,32 +690,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18, y: 0.28}
   m_EdgeRadius: 0
---- !u!61 &4354898294533776782
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877749973754294081}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.01, y: -0.124}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 2
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.18, y: 0.07}
-  m_EdgeRadius: 0
 --- !u!114 &2860907512616319097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,7 +726,7 @@ MonoBehaviour:
   shadowLight: {fileID: 5707208601521377497}
   intensity: 0
   playerBoxCollider: {fileID: 1877749973754294080}
-  shadowBoxCollider: {fileID: 4354898294533776782}
+  shadowBoxCollider: {fileID: 3240972962434869597}
   _spaceFilter:
     useTriggers: 0
     useLayerMask: 1
@@ -1003,7 +1035,7 @@ MonoBehaviour:
   - {x: -0.036860917, y: -0.15832403, z: 0}
   m_ShapePathHash: 615085551
   m_Mesh: {fileID: 0}
-  m_InstanceId: 84074
+  m_InstanceId: 41424
 --- !u!114 &2124771310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1611,7 +1643,7 @@ GameObject:
   - component: {fileID: 7633279687296767314}
   m_Layer: 17
   m_Name: InvincibleCollisionBox
-  m_TagString: Untagged
+  m_TagString: InvinciblePlayerColBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
