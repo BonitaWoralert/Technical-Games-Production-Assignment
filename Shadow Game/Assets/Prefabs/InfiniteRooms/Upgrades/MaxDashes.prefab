@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1179662672793805869}
   - component: {fileID: -9019635674702268976}
   - component: {fileID: -732553857190648260}
+  - component: {fileID: -478657158508491886}
   m_Layer: 0
   m_Name: MaxDashes
   m_TagString: Upgrade
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   cost: 0
+  name: 
   shopSpawnSystem: {fileID: 0}
   upgradeType: 5
 --- !u!212 &-732553857190648260
@@ -101,3 +103,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-478657158508491886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179662672793805868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b52c446c7680a4ba8ec40693b6958e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0.25
+  amplitude: 0.25
+  frequency: 0.25
