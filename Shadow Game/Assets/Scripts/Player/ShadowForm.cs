@@ -24,6 +24,8 @@ public class ShadowForm : MonoBehaviour
     private Collider2D[] _spaceCheck;
     [SerializeField] private ContactFilter2D _spaceFilter;
 
+    private Player_Box_Carry _boxCarry;
+
     private ShadowMovement ShadowMovement;
 
     // Start is called before the first frame update
@@ -41,6 +43,7 @@ public class ShadowForm : MonoBehaviour
         playerBoxCollider.enabled = true;
         shadowBoxCollider.enabled = false;
         spaceCheck = GetComponentInChildren<SpaceCheck>();
+        _boxCarry = GetComponentInChildren<Player_Box_Carry>();
     }
     // Update is called once per frame
     void Update()
@@ -64,7 +67,7 @@ public class ShadowForm : MonoBehaviour
     {
         shadowLight.enabled = isInShadowForm;
 
-        if (Input.GetButtonDown("Shadow") && isInDarkness && movement.GetGrounded())
+        if (Input.GetButtonDown("Shadow") && isInDarkness && movement.GetGrounded() && !_boxCarry.GetBoxCarry())
         {
             if (isInShadowForm)
             {
