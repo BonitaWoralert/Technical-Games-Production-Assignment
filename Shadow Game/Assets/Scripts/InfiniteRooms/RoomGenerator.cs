@@ -59,33 +59,66 @@ public class RoomGenerator : MonoBehaviour
                         if (doorOpener.doorType == DoorOpener.DoorType.Up)
                         {
                             roomSpawned = true;
-                            GameObject room = Instantiate(roomList.downRooms[Random.Range(0, roomList.downRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
-                            room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Up;
+                            if (stats.roomNumber % 4 == 0)
+                            {
+                                GameObject room = Instantiate(roomList.bonusRoom, doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                                room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Up;
+                            }
+                            else
+                            {
+                                GameObject room = Instantiate(roomList.downRooms[Random.Range(0, roomList.downRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                                room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Up;
+                            }
                         }
 
                         if (doorOpener.doorType == DoorOpener.DoorType.Down)
                         {
                             roomSpawned = true;
-                            GameObject room = Instantiate(roomList.upRooms[Random.Range(0, roomList.upRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
-                            room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Down;
+                            if (stats.roomNumber % 4 == 0)
+                            {
+                                GameObject room = Instantiate(roomList.bonusRoom, doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                                room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Down;
+                            }
+                            else
+                            {
+                                GameObject room = Instantiate(roomList.upRooms[Random.Range(0, roomList.upRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                                room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Down;
+                            }
                         }
 
                         if (doorOpener.doorType == DoorOpener.DoorType.Left)
                         {
                             roomSpawned = true;
-                            GameObject room = Instantiate(roomList.rightRooms[Random.Range(0, roomList.rightRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
-                            room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Left;
+                            if (stats.roomNumber % 4 == 0)
+                            {
+                                GameObject room = Instantiate(roomList.bonusRoom, doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                                room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Left;
+                            }
+                            else
+                            {
+                                GameObject room = Instantiate(roomList.rightRooms[Random.Range(0, roomList.rightRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                                room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Left;
+                            }
                         }
 
                         if (doorOpener.doorType == DoorOpener.DoorType.Right)
                         {
                             roomSpawned = true;
-                            GameObject room = Instantiate(roomList.leftRooms[Random.Range(0, roomList.leftRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
-                            room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Right;
+                            if (stats.roomNumber % 4 == 0)
+                            {
+                                GameObject room = Instantiate(roomList.bonusRoom, doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                                room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Right;
+                            }
+                            else
+                            {
+                                GameObject room = Instantiate(roomList.leftRooms[Random.Range(0, roomList.leftRooms.Count)], doorOpener.roomPlacement.transform.position, Quaternion.identity);
+                                room.GetComponent<RoomGenerator>().roomType = DoorOpener.DoorType.Right;
+                            }
                         }
 
                         Debug.Log("Removing"); 
                         stats.coins += Random.Range(roomMinCoins, roomMaxCoins + stats.roomCoins);
+                        stats.roomNumber += 1;
                         exitDoors.Remove(i);
                         Debug.Log("Removing Door");
                         Destroy(i);

@@ -9,5 +9,7 @@ public class RoomList : MonoBehaviour
     public List<GameObject> leftRooms;
     public List<GameObject> rightRooms;
 
+    public GameObject bonusRoom;
+
     public GameObject player;
 }

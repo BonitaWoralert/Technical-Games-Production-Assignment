@@ -11,6 +11,7 @@ public class Combat : MonoBehaviour
     [SerializeField] private int attackDamage = 50;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private float attackRate = 10.0f;
+    [SerializeField] private AudioSource attackSound;
     private float nextAttackTime;
     public Collider2D[] hitEnemies;
 
@@ -30,7 +31,10 @@ public class Combat : MonoBehaviour
     void BasicAttack()
     {
         //Plays the attack animation
+        animator.SetTrigger("Attack");
+
         animator.SetInteger("state", 6);
+        attackSound.Play();
 
         hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
