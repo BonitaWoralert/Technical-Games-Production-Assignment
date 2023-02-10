@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: exit
+  m_text: press pause to leave
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccbbb94239a7b6845967735b849f75f5, type: 2}
   m_sharedMaterial: {fileID: 8335120720431657326, guid: ccbbb94239a7b6845967735b849f75f5, type: 2}
@@ -2876,6 +2876,7 @@ MonoBehaviour:
   pauseFirstButton: {fileID: 1912784455}
   settingsFirstButton: {fileID: 574719753}
   controlsFirstButton: {fileID: 574719753}
+  controllerFirstButton: {fileID: 0}
   buttonSound: {fileID: 1065541602}
 --- !u!1 &1155091932
 GameObject:
@@ -3071,7 +3072,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1287527193
+--- !u!43 &1295355622
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4566,7 +4567,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 49.99997, y: -252.87}
-  m_SizeDelta: {x: 230, y: 35}
+  m_SizeDelta: {x: 320, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1912784457
 MonoBehaviour:
