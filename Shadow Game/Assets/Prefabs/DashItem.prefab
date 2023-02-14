@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5817555763376496085}
   - component: {fileID: 5817555763376496084}
   - component: {fileID: 5817555763376496090}
+  - component: {fileID: 3292634367523578623}
   m_Layer: 0
   m_Name: DashItem
   m_TagString: Item
@@ -101,3 +102,18 @@ CircleCollider2D:
   m_Offset: {x: 0.0029268265, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &3292634367523578623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817555763376496087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b52c446c7680a4ba8ec40693b6958e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  amplitude: 1
+  frequency: 0.8
