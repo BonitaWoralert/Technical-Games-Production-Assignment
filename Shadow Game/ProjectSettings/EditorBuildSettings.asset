@@ -30,22 +30,22 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Underground_Level Puzzles.unity
     guid: f43951908d12e7c478ef3653d06002e9
   - enabled: 1
-    path: Assets/Scenes/The Plains/Plains lvl 1.unity
+    path: Assets/Scenes/Levels/The Plains/Plains lvl 1.unity
     guid: 1cbc2072ca037b640a89e46fc6477849
   - enabled: 1
-    path: Assets/Scenes/The Plains/Plains lvl 2.unity
+    path: Assets/Scenes/Levels/The Plains/Plains lvl 2.unity
     guid: d6cbfb4ad3ea3e34782f065953988216
   - enabled: 1
-    path: Assets/Scenes/The Plains/Plains lvl 3.unity
+    path: Assets/Scenes/Levels/The Plains/Plains lvl 3.unity
     guid: 32a8eee692043e84a9eef4a21333f960
   - enabled: 1
-    path: Assets/Scenes/The Plains/Plains lvl 4.unity
+    path: Assets/Scenes/Levels/The Plains/Plains lvl 4.unity
     guid: 1babe5ca87ca7124db6721df50595468
   - enabled: 1
     path: Assets/Scenes/EndMenu.unity
     guid: 4466debbf95e7c945b79b80c47d0e586
   - enabled: 1
-    path: Assets/Scenes/InfiniteLevels.unity
+    path: Assets/Scenes/Levels/InfiniteLevels.unity
     guid: ffbef5cd6f728bc4daa87f45e4b8324b
   - enabled: 1
     path: Assets/Scenes/DeathMenu.unity
