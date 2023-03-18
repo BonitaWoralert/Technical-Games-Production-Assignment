@@ -63,6 +63,11 @@ public class Player_Box_Carry : MonoBehaviour
         }
     }
 
+    public bool BoxInRange()
+    {
+        return isBoxInRange;
+    }
+
     private void BoxCarry()
     {
         if((boxToGrab != null && isBoxInRange == true) && boxRigidBody != null)

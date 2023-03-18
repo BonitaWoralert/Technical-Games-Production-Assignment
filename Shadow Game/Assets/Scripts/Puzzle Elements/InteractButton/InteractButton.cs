@@ -8,16 +8,18 @@ public class InteractButton : BaseSwitch
     private SpriteRenderer _spriteRenderer;
     private Animator animator;
     [SerializeField] private AudioSource switchSound;
+    [SerializeField] GameObject player;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
-        if ((_playerInRange && Input.GetButtonDown("Interact")) || _state)
+        if (((_playerInRange && Input.GetButtonDown("Interact")) || _state) && !player.GetComponentInChildren<Player_Box_Carry>().BoxInRange())
         {
             switchSound.Play();
             _state = !_state;

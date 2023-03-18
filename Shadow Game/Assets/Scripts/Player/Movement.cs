@@ -98,7 +98,7 @@ public class Movement : MonoBehaviour
 
     private void Resistance()
     {
-        if (isGrounded && dashTimer <= -0.1)
+        if (isGrounded)
         {
             rb.AddForce(new Vector2(-rb.velocity.x * (1 / speedDecrement), 0));
         }
@@ -235,7 +235,6 @@ public class Movement : MonoBehaviour
     {
         if (canDash && currentDashPower >= 1)
         {
-            Debug.Log("Dashing (through the snow)");
             dashSound.Play();
             canDash = false;
             currentDashPower -= 1;
